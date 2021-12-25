@@ -1,0 +1,368 @@
+---
+title: "Chapter 1: Introduction to  R"
+output: 
+  html_document: 
+    theme: sandstone
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
+    css: ../style.css
+    highlight: tango
+---
+
+# Introduction
+
+R, R Studio and R Markdown are very powerful and can do a lot of things. More than we could even cover in a single semester, so we're not. We're going to take it slowly and introduce new features over time. By the end of the semester your documents will be near professional looking. This is how you will submit assignments, so you will get lots of practice. 
+
+* **R**: The programming language (the engine)
+* **R Studio**: The integrated development environment (IDE) that we will use R from. (the car)
+* **R Markdown**: This type of document that combines R code with Markdown formatting to create a literate, reproducible document. (the heated seats, dual climate control and shimmery paint job)
+
+::: .{red}
+At this point it is expected that you have followed the [class_setup](../hw/hw0_setup.html) assignment which walks you through downloading & installing R, R Studio, and $\LaTeX$,  getting your class folder setup and downloading your homework 1 assignment.
+:::
+
+---
+
+# Programming with R
+
+## Terminology
+
+The basis of programming is that we write down instructions for the computer to follow, and then we tell the computer to follow those instructions. 
+
+We write, or *code*, instructions in R because it is a common language that both the computer and we can understand. 
+
+We call the instructions *commands* and we tell the computer to follow the instructions by *executing* (also called *running*) those commands.
+
+The **console** pane is the place where commands written in the R language can be typed and executed immediately by the computer. It is also where the results will be shown for commands that have been executed. 
+
+You can type commands directly into the console and press <kbd>`Enter`</kbd> to execute those commands, but they will be forgotten when you close the session.
+
+## Code appearance
+
+In these notes, code is displayed like this: 
+
+```{r}
+2+2
+```
+
+where the output or result of the code is displayed with two pound signs (`##`)
+
+---
+
+# Arithmetic 
+
+## R is an overgrown calculator. 
+
+Type the following in the console and hit <kbd>`Enter`</kbd> to _run_ these commands one at a time.  
+
+```r
+1+1
+4-3
+3*7
+8/3
+2^3
+pi^2
+```
+
+There are many built in functions in R such as `log` or `exp`. Using these functions in R is not much different than using them on your calculator. The function `log` has two arguments, one is required and one is set to a default, $log_{b}(x)$ where *b* is the base. The default is *b* which is set to `exp(1)` (i.e. the natural logarithm). 
+
+:::{.blue}
+### You try it
+Below are some examples of built in functions in R. Run them from your console. 
+```r
+exp(2)
+log(8)
+log(8,base=2)
+```
+:::
+
+Now lets try a more complicated equation. 
+
+```{r, error=TRUE}
+2 + 5*(8^3)- 3*log10)
+```
+
+Uh oh, we got an Error. Nothing to worry about, errors happen all the time. Put a open parenthesis `(` before `log10` to fix it and try again. 
+
+## > R is waiting on you...
+
+In the console type the following code, then press <kbd>`Enter`</kbd>.
+
+```r
+2 + 5*(8^3)- 3*log(10
+```
+
+Notice the console shows a `+` prompt. This means that you haven't finished entering a complete command. 
+
+This is because you have not 'closed' a parenthesis or quotation, i.e. you don't have the same number of left-parentheses as right-parentheses, or the same number of opening and closing quotation marks.
+
+When this happens, and you thought you finished typing your command, click inside the console window and press <kbd>`Esc`</kbd>; this will cancel the incomplete command and return you to the `>` prompt.
+
+
+## Storing results
+
+Most of the time we will want to save our results. To do so we use the _assignment operator_ `<-` notation. This lets us save a value into an _object_, which we can then use later similar to a variable $x$ in algebra. 
+
+```{r}
+height <- 62
+```
+
+* Visually identify the `height` object in your _Global Environment_ (top right panel)
+* Assigned objects aren't printed automatically, you must either enter the name of the object, or wrap the command in parenthesis. 
+
+```{r}
+(height <- 62)
+height
+```
+
+:::{.yellow}
+**Naming Conventions**
+Be creative, yet informative with your variable names. You will be writing code a lot this semester, and you want your code to be unique to you and not look like a carbon copy of your neighbor. While `pants` and `nifty` are valid variable names, they may not be the best to describe the results from a die roll. 
+:::
+
+:::{.blue}
+### You try it
+Run each of the following commands in your console one at a time. Print out the value of `height` after each time. What happens? 
+
+```r
+(height <- height + 2)
+(height <- 3 * height)
+```
+:::
+
+
+---
+
+# R Markdown
+
+![Credit Allison Horst](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/rmarkdown_wizards.png)
+
+## How does it work?  
+
+![](https://codimd.carpentries.org/uploads/upload_d3a37cb74a8c9c9b6956fd92d6a7f888.png)
+
+Ideally, such analysis reports are reproducible documents: If an error is discovered, or if some additional subjects are added to the data, you can just re-compile the report and get the new or corrected results rather than having to reconstruct figures, paste them into a Word document, and hand-edit various detailed results.
+
+> This process is known as literate programming
+
+## Basic Components of a Rmarkdown file
+
+* YAML header
+* code chunks
+* Markdown
+    - bullet , numbered lists
+    - bold, italic
+        - Bold: `**text**`
+        - Italic: `_text_`
+    - section headers
+        - First level `#text`
+        - Second level `##text`
+
+:::{.blue}
+### You try it.
+1. Create a new R Markdown document. Save this to your class folder as `test.Rmd`. 
+2. Delete all of the R code chunks and write a bit of Markdown (some sections, some italicized text, and an itemized list). 
+3. Knit this file when you are done. 
+:::
+
+## Basic $\LaTeX$
+
+* In line $\LaTeX$ code is surrounded by dollar signs `$` so `$x^{2}` resolves as $x^{2}$. 
+* $\LaTeX$ code does **NOT** go inside R code chunks. It's not R code. 
+* To create equations on their own line, surround your equation in two `$$`, and for readability put a blank line before and after your equation in your Markdown document, and put the `$$` each on their own line. Example: 
+
+```
+$$
+k_{n+1} = n^2 + k_n^2 - k_{n-1}
+$$
+```
+resolves as
+
+$$
+k_{n+1} = n^2 + k_n^2 - k_{n-1}
+$$
+
+* Superscript: `^`
+* Subscript: `_`
+* Greek, both lower and upper case: `\alpha, \Alpha, \beta, \Beta, \gamma, \Gamma` 
+* Sums and integrals: `sum`($\sum$), `\sum_{i=1}^{10} t_i` ($\sum_{i=1}^{10} t_i$), `\int`($\int$), `\int_0^\infty` ($\int_0^\infty$)
+
+More help writing math in $\LaTeX$: https://en.m.wikibooks.org/wiki/LaTeX/Mathematics
+
+
+## Visual Editor
+
+RStudio has a nice visual editor to help you see what your compiled document will look like, and to help you with making your work more nicely formatted. [See here for more information.](https://rstudio.github.io/visual-markdown-editing/). This also has help for technical writing such as LaTeX
+
+:::{.blue}
+Follow the link above and switch to visual editor mode for your new Rmarkdown test document. 
+
+Then type out the Pythagorean theorem, and knit to PDF to make sure it looks right. 
+:::
+
+----
+
+# Vectors
+
+A vector is a list of values in order to be able to work with them. For us they will usually represent data collected on a characteristic of the population. In general, we want to give the vector a name so that we can call it later when needed. 
+
+* Vector of the first 5 primes
+```{r}
+primes <- c(2,3,5,7,11)
+primes
+```
+
+* Vector of the numbers 1 through 10
+```{r}
+1:10
+```
+
+* Sequence of odd numbers from 1 to 10, 
+```{r}
+(odds <- seq(1, 10, by=2))
+```
+
+* We can use the `rep` function to repeat a sequence of numbers in varying patterns. Read `?rep` for a text explanation of the differences. 
+```{r}
+rep(c(2,3), times=c(4,3))
+rep(c(2,3), each=2)
+rep(c(2, 3), length.out = 3)
+```
+
+* The vector does not have to be numerical if we use quotes around the word
+```{r}
+rep(c("Bryan", "Darrin"), each = 2)
+```
+
+----
+
+# Indexing vectors
+
+We can index vectors to pull off values at a particular position on a vector.
+
+Returns first and second number of the vector we called "primes" above
+```{r}
+primes[1]
+primes[2]
+```
+
+Returns first three numbers of a vector
+```{r}
+primes[1:3]
+```
+
+We can change a vector to TRUE and FALSE by writing a logical statement. 
+
+```{r}
+primes>6
+```
+
+This is super useful to do things like identify the numbers in primes that are greater than 6
+```{r}
+primes[primes>6]
+```
+
+And count the number of primes greater than 6
+```{r}
+sum(primes>6)
+```
+
+It may not seem useful to you now, but these are fundamental to calculating probabilities in the next chapter. 
+
+----
+
+# Logical Operators
+Often we are going to want to compare elements of a vector to a value, or perhaps another vector. The standard comparison operators that will return either `TRUE` or `FALSE` are `=`, `!=`, `>`, `<`, `>=`, and `<=`. 
+
+* Is 4 a prime? 
+```{r}
+primes[primes == 4]
+```
+
+* Another way to see if a value is contained inside a vector is using the `%in%` operator. 
+
+```{r}
+4 %in% primes
+```
+
+* This works to compare each elements of a vector. Here it's returning TRUE and FALSE for each element in `odds`, on whether or not it is also an element of `primes`.
+```{r}
+odds %in% primes
+```
+
+## TRUE and FALSE as binary indicators
+What's cool about TRUE and FALSE, is that TRUE resolves as 1 and FALSE resolves as 0 when doing arithmetic. 
+
+* How many odd numbers are prime (in our given vectors)
+```{r}
+sum(odds %in% primes)
+```
+
+This can be very useful if we want to count the number of elements in a vector that meet a certain criteria. 
+
+## AND and OR
+
+Often we will want to find out if two events are true at the same time, or if at least one of them is true. Using parenthesis to help keep our statements organized, we can ask multiple logical statements at the same time using either AND `&` or OR `|`
+
+* Is 9 an odd prime? 
+```{r}
+(9 %in% odds) & (9 %in% primes)
+```
+
+:::{.blue}
+### You try it
+Is 9 an odd or a prime? 
+```{r}
+(9 %in% odds) | (9 %in% primes)
+```
+:::
+
+----
+
+# Data Types 
+
+All data in R has a data type, and certain functions only work on certain data types. Here are common ones you will see in this class. 
+
+* `int` integer
+* `num` number 
+* `chr` character. aka string, aka text 
+* `logi` logical. Can only be `TRUE` or `FALSE`
+
+Which data types do you think you could take the `mean()` of? 
+
+
+----
+
+# Plotting
+
+For starters we are going to stick with the simple plotting method in R, namely the `plot` function. Short and simple, the arguments are `plot(x, y)`
+
+```{r}
+x <- -10:10
+y <- x^2
+plot(x, y)
+```
+
+The default is to just plot the points, but sometimes we may want to connect those points with a line (`l` is a lower case L). See `?plot` for more plotting types. 
+
+```{r}
+plot(x, y, type='l')
+```
+
+:::{.blue}
+### You try it
+Create a plot of $y = log(x+1)$ where $x$ is a sequence of non-negative numbers from $a$ to $b$ and YOU get to choose $a$ and $b$. 
+:::
+
+----
+
+# Additional resources
+
+* [R Studio IDE](https://support.rstudio.com/hc/en-us/sections/200107586-Using-the-RStudio-IDE)
+* [R Projects](https://support.rstudio.com/hc/en-us/articles/200526207-Using-RStudio-Projects)
+* [R Markdown](https://support.rstudio.com/hc/en-us/articles/205368677-R-Markdown-Dynamic-Documents-for-R)
+* The R Language
+    - [Data Carpentry](https://datacarpentry.org/R-ecology-lesson/01-intro-to-r.html)
+    - [Speegle Textbook](https://mathstat.slu.edu/~speegle/_book/RData.html)
+    - [Chico State's Math 130](https://norcalbiostat.github.io/MATH130/notes/04_r.html)
