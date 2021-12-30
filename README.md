@@ -2,18 +2,24 @@
 
 Each person modifies their own branch and submits pull requests (PR) into the `main` branch. **Robin will handle all PR's**
 
-When you start a new task
+## When you start a new task
 
-* `git checkout -b <branch name>` to start a new branch
+* make sure you are on the `main` branch
+* do a `git pull` to make sure your local files are up to date with the main branch
+* Then start a new branch. `git checkout -b <branch name>` to start a new branch
 * do the things, commit often, and push up to your branch on github often also
     * `git add -A`
     * `git commit -m "message"`
     * `git push`
 * When task complete, open a pull request from your branch to `main`. 
-* After successful merge of your item back into the `main` branch, either do a pull request from `main` to your branch, or delete your branch and start a new one. 
-* To delete a local branch type `git branch -d <branch name>`
+* After successful merge of your item back into the `main` branch delete your branch
+     * Switch back to main branch type `git checkout main` 
+      * Delete a local branch type `git branch -d <branch name>`
 
-## Notes
+----
+
+# Notes
+
 ### 12/21/21
 * Robins goals for this week: Revise Ch 1 and Hw 1.  
 * Sent ch1 notes in slack
