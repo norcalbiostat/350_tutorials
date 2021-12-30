@@ -19,6 +19,7 @@
 
 # RStudio files
 .Rproj.user/
+math_350_tutorials.Rproj
 
 # produced vignettes
 vignettes/*.html
