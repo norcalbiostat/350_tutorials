@@ -1,4 +1,4 @@
-# 350_tutorials
+﻿# 350_tutorials
 
 Each person modifies their own branch and submits pull requests (PR) into the `main` branch. **Robin will handle all PR's**
 
@@ -98,6 +98,25 @@ Next next steps:
     - Idea: Shiny engine allows you to knit/render/download files. Will go to their 'downloads' folder. 
 
 
+* Aldo Updates: Some notes. ‘checkr’ package is a nightmare. Last time it was updated with 2018.
+- Issues: Calling function arguments with this package is a pain in the ass
+-The package conflicts too much with 'rlang' and 'dplyr' packages
+	-some of the functions that include ‘_arg’ (which are a lot)
+Error given: ‘Error : Can't take the names() of the .data pronoun’
+
+-Spent a while trying to figure out trying to get the checkr package up to date by modifying some of its files and using those as an updated version of the package but it’s just outdated
+
+*Not sure why I didn’t look into the ‘gradethis’ package a longggg time ago but that’s definitely the one we should go with regards to using it using to check student’s code as they move through the exercises
+	-The package is continuously updated and much easier to use
+
+*Progress so far: Basically wasted a lot of time editing ‘checkr.’
+-but I learned a lot about ghithub. Also, a lot of the same concepts carry over to the ‘gradethis’ package
+-Was able to create some example quizzes including those that include code-chunks
+-Also included some hints and was able automate some questions and the checking progress by reusing the same checking function for similar questions.
+-I’m still waiting on cleaning it since I have a ton of junk and test files up so I haven’t pushed it to my folder yet
+*Also learned how to create exams that students 
 
 
+
+ 
 
