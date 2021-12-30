@@ -1,106 +1,160 @@
 ---
-title: "Chapter 1: Introduction to  R"
-output: 
-  learnr::tutorial
+title: "Introducing `checkr`"
+output: learnr::tutorial
 runtime: shiny_prerendered
 ---
 
 ```{r setup, include=FALSE}
-library('leaflet')
-library('learnr')
-library('checkr')
+library(learnr)
+library(checkr)
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.checker = checkr::check_for_learnr)
+# tutorial_options(exercise.checker = function(...) cat("Bogus checker\n"))
+
+#USER_CODE = "message(\"Hi world\")"
+hello_check <- function(USER_CODE) {
+  code <- for_checkr(USER_CODE)
+  res <- misconception(code, line_where(code, insist(is.null(F))), 
+                       message = paste(
+                         "Just typing the string doesn't do it. Note that the output", 
+                         "has quotes and is formatted as an output, not a simple message."))
+  res <- misconception(res, line_where(res, insist(F == print)), 
+                       message = paste(
+                         "Using print() isn't right.",
+                         "True, that's the way character strings are displayed,", 
+                         "but the format of the display is as a quoted output and",
+                         "not just a simple message."))
+  res <- line_calling(res, cat, message, message = "Try the cat() or message() functions.")
+                    
+  check(arg_number(res, 1), passif(V == "Hello, World!", "Good job!"),
+        failif(tolower(V) == "hello, world!", "Get the capitalization right!"),
+        failif(TRUE, "The string should be 'Hello, World!', not '{{V}}'.")) 
+}
+
+two_plus_two_check <- function(USER_CODE) {
+  res <- for_checkr(USER_CODE)
+  res <- line_where(res, insist(V == 4, "The result should be 4, not {{V}}."))
+  res <- line_where(res, 
+                    insist(F == "+", paste(
+                      "Think about what function corresponds to 'addition'.", 
+                      "It isn't {{F}}.")))
+  arg_number(res, 1, failif(V != 2, "The first argument should be 2, not {{E}}."),
+             passif(TRUE, "Yes, that's it!"))
+}
+
+hello_fun_strict <- function(USER_CODE) {
+  code <- for_checkr(USER_CODE)
+  line_binding(code, 
+               cat("Hello, World!"),  # a pattern with no flexibility.
+               passif(TRUE, "That's right."),
+               fail = "No. Try aain.")
+}
 ```
 
-## Arithmetic
+## What's this document about?
 
-### R is an overgrown calculator.
+This is a `learnr` tutorial to display some examples of code-checking with the `checkr` package.
 
-Type the following in the console and hit <kbd>`Enter`</kbd> to *run* these commands one at a time.
+As you may know, `learnr` is a system for creating and distributing interactive documents, particularly documents that provide exercise-boxes where the reader can type and execute R code.
 
-``` r
-1+1
-4-3
-3*7
-8/3
-2^3
-pi^2
+`Checkr` is a package that provides feedback about the code that is being executed in a `learnr` exercise box.
+
+## Hello, World!
+
+"Hello, World!" is a famous introductory example in programming. In this task, you will ... 
+
+> Write the one-line version of "Hello, World!" in R. Your code should cause the message `Hello, World!` to appear. 
+
+Press "Run" to try out your command to make sure it does what you were expecting. When you are satisfied, press "Submit" to get the `checkr` feedback.
+
+The box below has been instrumented with `checkr` statements intended to guide the user to a correct answer. Exactly what "guide the user" means is ambiguous. Play around with various possible answers and see if you agree that the `checkr` statement I choose are helpful.
+
+
+```{r eval = FALSE, echo = FALSE}
+hello_check(quote("\"Hello, World!\""))
+hello_check(quote(cat("Hello, World!")))
+hello_check(quote(print("Hello, World")))
+hello_check(quote(cat("hello")))
+hello_check(quote(cat("Hello, world!")))
 ```
 
-```{r calculatorexcerices1, exercise = TRUE}
-    
+```{r hello-world-check}
+hello_check(USER_CODE)
 ```
 
-There are many built in functions in R such as `log` or `exp`. Using these functions in R is not much different than using them on your calculator. The function `log` has two arguments, one is required and one is set to a default, $log_{b}(x)$ where *b* is the base. The default is *b* which is set to `exp(1)` (i.e. the natural logarithm).
-
-::: blue
-### You try it
-
-Below are some examples of built in functions in R. Run them from your console.
-
-``` r
-exp(2)
-log(8)
-log(8,base=2)
+```{r hello-world-code-check}
+3
 ```
 
-```{r youtryit1, exercise = TRUE}
-    
-```
-:::
-
-Now lets try a more complicated equation.
-
-```{r calculatorexample_error1, exercise = TRUE, exercise.eval = FALSE,error=TRUE}
-2 + 5*(8^3)- 3*log10)
+```{r hello-world, exercise = TRUE}
+"Hello, World!"
 ```
 
-::: {#calculatorexample_error1-hint}
-Uh oh, we got an Error. Nothing to worry about, errors happen all the time. Put a open parenthesis `(` before `log10` to fix it and try again.
-:::
+### The man behind the curtain
 
-### Storing results
+Ordinarily, you would not show students the `checkr` statements implementing this behavior. But our purpose here is to introduce `checkr`, So here are the statements for the above exercise.
 
-Most of the time we will want to save our results. To do so we use the *assignment operator* `<-` notation. This lets us save a value into an *object*, which we can then use later similar to a variable $x$ in algebra.
-
-```{r objectrexcerices1, exercise = TRUE}
- height <- 62
+```{r echo = FALSE, comment = "", tidy = FALSE}
+print_function_contents(
+  hello_check,
+  from_file = system.file("learnr_examples/internal-examples.R", 
+                          package = "checkr"))
 ```
 
-Assigned objects aren't printed automatically, you must either enter the name of the object, or wrap the command in parenthesis.
+Breaking this down, line by line:
 
-```{r objectrexcerices2, exercise = TRUE}
-(height <- 62)
-height
+- [1] accepts the user submission from `learnr`. This is always called `USER_CODE`. The function `for_check()` does some pre-processing of the user submission to turn it into evaluated code and format it for use in later `checkr` functions.
+- [2] tests for a particular kind of mistaken answer. The `misconception()` function will generate a `checkr` fail message, if the pattern identified in the second argument passes. That pattern, `line_where(code, is.null(F))`, means, "scan the code looking for a line where no function is being used." This will captures a line that contains only a character string.
+- [5] tests for another specific misconception, that the user invokes `print()` on the string. 
+- [9] looks whether the function invoked by the user is `cat()`. If not, the check fails. (Note that [5] already ruled out that `print()` was being invoked.)
+- [10] checks the argument to the `cat()` function. (We know it's `cat()`, because [9] has established this.) If that argument is exactly `"Hello, World!" the submission passes. Otherwise, we check for a particular error involving capitalization and, if that's not the case, generate a message to tell the student what's wrong.
+
+Depending on the submission, any of the checks on lines 2, 5, 9, and 10 might fail. If a check fails, later checks that use the previous result will short circuit to a failed check. For instance, if the check on line [2] fails, the remaining checks won't be performed in detail: they will just pass along the failed result from line [2].
+
+An instructor with a different pedagogical approach might prefer to structure the checking in an entirely different way. For instance, here are `checkr` statements that simply tell the user whether or not the submission did what was requested:
+
+```{r echo = FALSE}
+print_function_contents(
+  hello_fun_strict,
+  from_file = system.file("learnr_examples/internal-examples.R", 
+                          package = "checkr"))
 ```
 
-**END**
-
-::: yellow
-**Naming Conventions** Be creative, yet informative with your variable names. You will be writing code a lot this semester, and you want your code to be unique to you and not look like a carbon copy of your neighbor. While `pants` and `nifty` are valid variable names, they may not be the best to describe the results from a die roll.
-:::
-
-::: blue
-### You try it
-
-Run each of the following commands in your console one at a time. Print out the value of `height` after each time. What happens?
-
-``` r
-(height <- height + 2)
-(height <- 3 * height)
+```{r hello-world-strict, exercise = TRUE}
+"Hello, World!"
 ```
 
-```{r youtryit2, exercise = TRUE}
-
-```
-:::
-
-## Vectors
-
-A vector is a list of values in order to be able to work with them. For us they will usually represent data collected on a characteristic of the population. In general, we want to give the vector a name so that we can call it later when needed. 
-
-* Create a vector of the first 5 primes, and print this vector.
-```{r}
-(primes <- c(2,3,5,7,11))
+```{r hello-world-strict-check}
+hello_fun_strict(USER_CODE)
 ```
 
-------------------------------------------------------------------------
+## Two plus two
+
+Not as famous as "Hello, World!" is the first example in the `learnr` documentation:
+
+> Write the code to add two and two.
+
+
+```{r two-plus-two, exercise=TRUE}
+
+```
+
+Of course, a submission of `2 + 2` will work. See what happens when you try to fool the checking system with a submission like `6 - 4` or `1 + 1 + 1 + 1`. 
+
+
+```{r two-plus-two-code-check}
+1 # To trigger pre-check, this chunk must have something in it.
+```
+
+```{r two-plus-two-check}
+two_plus_two_check(USER_CODE)
+```
+
+Here are the `checkr` statements implementing the above behavior:
+```{r echo = FALSE}
+print_function_contents(
+  two_plus_two_check,
+  from_file = system.file("learnr_examples/internal-examples.R", 
+                          package = "checkr"))
+```
+

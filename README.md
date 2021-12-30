@@ -1,4 +1,4 @@
-ï»¿# 350_tutorials
+# 350_tutorials
 
 Each person modifies their own branch and submits pull requests (PR) into the `main` branch. **Robin will handle all PR's**
 
@@ -55,10 +55,10 @@ https://community.rstudio.com/t/does-updating-learnr-tutorials-installed-via-pac
 * Faith is messing around with chapter 1 notes sent in Slack --thinking learnr could create a nice page.
     * Might work to use checkr with learnr to allow students to check their code as they go
     * Setting up the table of contents in learnr allows students to return to whatever section they were working on Learnr stuff
-    * Set progressive field to true in the yaml header to reveal sections as students work so there arenâ€™t any spoilers (from link above)
+    * Set progressive field to true in the yaml header to reveal sections as students work so there aren’t any spoilers (from link above)
 
 ### 12/26/21
-Still working on converting notes. Iâ€™m not sure how the exercises where students use the console and are seeing how objects are stored will work in learnR -- looking into this
+Still working on converting notes. I’m not sure how the exercises where students use the console and are seeing how objects are stored will work in learnR -- looking into this
 Might work to just insert images
 
 
@@ -98,23 +98,28 @@ Next next steps:
     - Idea: Shiny engine allows you to knit/render/download files. Will go to their 'downloads' folder. 
 
 
-* Aldo Updates: Some notes. â€˜checkrâ€™ package is a nightmare. Last time it was updated with 2018.
+* Aldo Updates: Some notes. ‘checkr’ package is a nightmare. Last time it was updated with 2018.
 - Issues: Calling function arguments with this package is a pain in the ass
 -The package conflicts too much with 'rlang' and 'dplyr' packages
-	-some of the functions that include â€˜_argâ€™ (which are a lot)
-Error given: â€˜Error : Can't take the names() of the .data pronounâ€™
+	-some of the functions that include ‘_arg’ (which are a lot)
+Error given: ‘Error : Can't take the names() of the .data pronoun’
 
--Spent a while trying to figure out trying to get the checkr package up to date by modifying some of its files and using those as an updated version of the package but itâ€™s just outdated
+-Spent a while trying to figure out trying to get the checkr package up to date by modifying some of its files and using those as an updated version of the package but it’s just outdated
 
-*Not sure why I didnâ€™t look into the â€˜gradethisâ€™ package a longggg time ago but thatâ€™s definitely the one we should go with regards to using it using to check studentâ€™s code as they move through the exercises
+*Not sure why I didn’t look into the ‘gradethis’ package a longggg time ago but that’s definitely the one we should go with regards to using it using to check student’s code as they move through the exercises
 	-The package is continuously updated and much easier to use
 
-*Progress so far: Basically wasted a lot of time editing â€˜checkr.â€™
--but I learned a lot about ghithub. Also, a lot of the same concepts carry over to the â€˜gradethisâ€™ package
--Was able to create some example quizzes including those that include code-chunks
--Also included some hints and was able automate some questions and the checking progress by reusing the same checking function for similar questions.
--Iâ€™m still waiting on cleaning it since I have a ton of junk and test files up so I havenâ€™t pushed it to my folder yet
-*Also learned how to create exams that students 
+*Progress so far: Basically wasted a lot of time editing ‘checkr.’
+
+	-but I learned a lot about ghithub. Also, a lot of the same 	concepts carry over to the ‘gradethis’ package
+
+	-Was able to create some example quizzes including those 	that include code-chunks
+
+	-Also included some hints and was able automate some 	questions and the checking progress by reusing the same 	checking function for similar questions.
+
+	-I’m still waiting on cleaning it since I have a ton of junk 	and test files up so I haven’t pushed it to my folder yet
+
+*Also learned how to create exams that students can complete with an autograder without access to source code
 
 
 
