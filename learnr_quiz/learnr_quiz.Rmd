@@ -1,0 +1,34 @@
+---
+title: "R/exams quiz"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include = FALSE}
+## package and list of various exercises
+exams2learnr <- function(file, label = knitr::opts_current$get("label")) {
+  force(label)
+  x <- exams::xexams(file)[[1]][[1]]
+  x <- list(
+    text = x$question, 
+    type = "learnr_text",
+    learnr::answer(x$metainfo$solution, correct = TRUE)
+  )
+  knitr::opts_current$set(label = label)
+  do.call(learnr::question, x)
+}
+exm <- list(
+    c("swisscapital.Rmd", "capitals.Rmd"),
+    "deriv.Rnw",
+    "deriv2.Rnw",
+    "fruit.Rmd",
+    "boxplots.Rmd",
+    "ttest.Rmd",
+    "function.Rmd"
+)
+```
+
+# ```{r rexams_quiz, echo = FALSE, message = FALSE}
+# exams2learnr(exm, caption = "Please solve the following exercises")
+# 
+# ```
