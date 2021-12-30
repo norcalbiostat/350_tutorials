@@ -13,8 +13,8 @@ Each person modifies their own branch and submits pull requests (PR) into the `m
     * `git push`
 * When task complete, open a pull request from your branch to `main`. 
 * After successful merge of your item back into the `main` branch delete your branch
-     * Switch back to main branch type `git checkout main` 
-      * Delete a local branch type `git branch -d <branch name>`
+     * Switch back to main branch type `git checkout main`  
+     * Delete a local branch type `git branch -d <branch name>`
 
 ----
 
