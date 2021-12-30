@@ -18,6 +18,17 @@ Each person modifies their own branch and submits pull requests (PR) into the `m
 
 ----
 
+References
+
+* https://pkgs.rstudio.com/learnr/articles/publishing.html
+* https://community.rstudio.com/t/how-to-get-user-id-in-the-website-created-by-learnr-and-published-in-rstudio-connect/44067
+* https://education.rstudio.com/blog/2020/09/delivering-learnr-tutorials-in-a-package/
+* Info from the R Community on using a package to deploy tutorials, and how to get student data out.
+https://community.rstudio.com/t/does-updating-learnr-tutorials-installed-via-package-overwrite-user-progress/124804/4 (
+
+
+----
+
 # Notes
 
 ### 12/21/21
@@ -32,3 +43,38 @@ http://127.0.0.1:6168/chp1notes_learnrtrial1.Rmd
 ### 12/26/21
 Still working on converting notes. I’m not sure how the exercises where students use the console and are seeing how objects are stored will work in learnR -- looking into this
 Might work to just insert images
+
+
+### 12/29/21
+
+* Straight Practice. 
+    - `learnr` tutorials
+    - not collected for a grade (?)
+    - distributed through a package
+    - Examples, you try it & a little explanatory/context text. Checked for correctness.
+  
+Types of activities: 
+
+* Multiple choice quiz to check knowledge. Has a correct answer.
+* Check if the results of a code chunk is equal to or within a numeric tolerance of an answer
+  - both abilities to run code to test
+  - submit answer to check against a correct answer
+
+
+Next steps: 
+
+* Robin figure out how to create and distribute tutorials via package
+* Faith: clean up ch1 tutorial for appearance & minor verbiage
+* Aldo: add to ch1notes_learnrtrial1 a multiple choice quiz
+* both: figure out how to check the results of a code chunk against an answer. 
+    - is the code right
+    - is the number right
+    
+
+
+
+
+
+
+
+

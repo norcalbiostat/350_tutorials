@@ -10,43 +10,6 @@ library('leaflet')
 library('learnr')
 library('checkr')
 ```
-## Introduction
-
-R, R Studio and R Markdown are very powerful and can do a lot of things. More than we could even cover in a single semester, so we're not. We're going to take it slowly and introduce new features over time. By the end of the semester your documents will be near professional looking. This is how you will submit assignments, so you will get lots of practice.
-
--   **R**: The programming language (the engine)
--   **R Studio**: The integrated development environment (IDE) that we will use R from. (the car)
--   **R Markdown**: This type of document that combines R code with Markdown formatting to create a literate, reproducible document. (the heated seats, dual climate control and shimmery paint job)
-
-::: .{red}
-At this point it is expected that you have followed the [class_setup](../hw/hw0_setup.html) assignment which walks you through downloading & installing R, R Studio, and $\LaTeX$, getting your class folder setup and downloading your homework 1 assignment.
-:::
-
-## Programming with R
-
-### Terminology
-
-The basis of programming is that we write down instructions for the computer to follow, and then we tell the computer to follow those instructions.
-
-We write, or *code*, instructions in R because it is a common language that both the computer and we can understand.
-
-We call the instructions *commands* and we tell the computer to follow the instructions by *executing* (also called *running*) those commands.
-
-The **console** pane is the place where commands written in the R language can be typed and executed immediately by the computer. It is also where the results will be shown for commands that have been executed.
-
-You can type commands directly into the console and press <kbd>`Enter`</kbd> to execute those commands, but they will be forgotten when you close the session.
-
-### Code appearance
-
-In these notes, code is displayed like this:
-
-```{r addition, exercise=TRUE}
-2+2
-```
-
-where the output or result of the code is displayed with two pound signs (`##`)
-
-------------------------------------------------------------------------
 
 ## Arithmetic
 
@@ -95,24 +58,6 @@ Now lets try a more complicated equation.
 Uh oh, we got an Error. Nothing to worry about, errors happen all the time. Put a open parenthesis `(` before `log10` to fix it and try again.
 :::
 
-### \> R is waiting on you...
-
-**BEGIN**(need to fix) In the console type the following code, then press <kbd>\`run code\`\`</kbd>. *not sure how to make the doc show characteristics of console yet*
-
-``` r
-2 + 5*(8^3)- 3*log(10
-```
-
-```{r calculatorexcerices3, exercise = TRUE}
- 
-```
-
-Notice the console shows a `+` prompt. This means that you haven't finished entering a complete command.
-
-This is because you have not 'closed' a parenthesis or quotation, i.e. you don't have the same number of left-parentheses as right-parentheses, or the same number of opening and closing quotation marks.
-
-When this happens, and you thought you finished typing your command, click inside the console window and press <kbd>`Esc`</kbd>; this will cancel the incomplete command and return you to the `>` prompt.
-
 ### Storing results
 
 Most of the time we will want to save our results. To do so we use the *assignment operator* `<-` notation. This lets us save a value into an *object*, which we can then use later similar to a variable $x$ in algebra.
@@ -121,8 +66,7 @@ Most of the time we will want to save our results. To do so we use the *assignme
  height <- 62
 ```
 
--   Visually identify the `height` object in your *Global Environment* (top right panel)
--   Assigned objects aren't printed automatically, you must either enter the name of the object, or wrap the command in parenthesis.
+Assigned objects aren't printed automatically, you must either enter the name of the object, or wrap the command in parenthesis.
 
 ```{r objectrexcerices2, exercise = TRUE}
 (height <- 62)
@@ -150,91 +94,13 @@ Run each of the following commands in your console one at a time. Print out the 
 ```
 :::
 
-------------------------------------------------------------------------
-
-## R Markdown
-
-![Credit Allison Horst](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/rmarkdown_wizards.png){width="50%"}
-
-### How does it work?
-
-![](https://codimd.carpentries.org/uploads/upload_d3a37cb74a8c9c9b6956fd92d6a7f888.png){width="50%"}
-
-Ideally, such analysis reports are reproducible documents: If an error is discovered, or if some additional subjects are added to the data, you can just re-compile the report and get the new or corrected results rather than having to reconstruct figures, paste them into a Word document, and hand-edit various detailed results.
-
-> This process is known as literate programming
-
-### Basic Components of a Rmarkdown file
-
--   YAML header
-
--   code chunks
-
--   Markdown
-
-    -   bullet , numbered lists
-
-    -   bold, italic
-
-        -   Bold: `**text**`
-        -   Italic: `_text_`
-
-    -   section headers
-
-        -   First level `#text`
-        -   Second level `##text`
-
-::: blue
-### You try it.
-
-1.  Create a new R Markdown document. Save this to your class folder as `test.Rmd`.
-2.  Delete all of the R code chunks and write a bit of Markdown (some sections, some italicized text, and an itemized list).
-3.  Knit this file when you are done.
-:::
-
-### Basic $\LaTeX$
-
--   In line $\LaTeX$ code is surrounded by dollar signs `$` so `$x^{2}` resolves as $x^{2}$.
--   $\LaTeX$ code does **NOT** go inside R code chunks. It's not R code.
--   To create equations on their own line, surround your equation in two `$$`, and for readability put a blank line before and after your equation in your Markdown document, and put the `$$` each on their own line. Example:
-
-<!-- -->
-
-    $$
-    k_{n+1} = n^2 + k_n^2 - k_{n-1}
-    $$
-
-resolves as
-
-$$
-k_{n+1} = n^2 + k_n^2 - k_{n-1}
-$$
-
--   Superscript: `^`
--   Subscript: `_`
--   Greek, both lower and upper case: `\alpha, \Alpha, \beta, \Beta, \gamma, \Gamma`
--   Sums and integrals: `sum`($\sum$), `\sum_{i=1}^{10} t_i` ($\sum_{i=1}^{10} t_i$), `\int`($\int$), `\int_0^\infty` ($\int_0^\infty$)
-
-More help writing math in $\LaTeX$: <https://en.m.wikibooks.org/wiki/LaTeX/Mathematics>
-
-### Visual Editor
-
-RStudio has a nice visual editor to help you see what your compiled document will look like, and to help you with making your work more nicely formatted. [See here for more information.](https://rstudio.github.io/visual-markdown-editing/). This also has help for technical writing such as LaTeX
-
-::: blue
-Follow the link above and switch to visual editor mode for your new Rmarkdown test document.
-
-Then type out the Pythagorean theorem, and knit to PDF to make sure it looks right.
-:::
-
 ## Vectors
 
 A vector is a list of values in order to be able to work with them. For us they will usually represent data collected on a characteristic of the population. In general, we want to give the vector a name so that we can call it later when needed. 
 
-* Vector of the first 5 primes
+* Create a vector of the first 5 primes, and print this vector.
 ```{r}
-primes <- c(2,3,5,7,11)
-primes
+(primes <- c(2,3,5,7,11))
 ```
 
 ------------------------------------------------------------------------
