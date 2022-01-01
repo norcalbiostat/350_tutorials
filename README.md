@@ -108,13 +108,28 @@ Aldo Updates: Some notes.
 * Not sure why I didn’t look into the `gradethis` package a longggg time ago but that’s definitely the one we should go with regards to using it using to check student’s code as they move through the exercises
 	-The package is continuously updated and much easier to use
 * Progress so far: Basically wasted a lot of time editing ‘checkr.’
-	-but I learned a lot about github. Also, a lot of the same concepts carry over to the `gradethis` package
-	-Was able to create some example quizzes including those that include code-chunks
-	-Also included some hints and was able automate some questions and the checking progress by reusing the same checking function for similar questions.
-	-I’m still waiting on cleaning it since I have a ton of junk and test files up so I haven’t pushed it to my folder yet
+	-but I learned a lot about github. Also, a lot of the same concepts carry over to the `gradethis` package  
+	-Was able to create some example quizzes including those that include code-chunks  
+	-Also included some hints and was able automate some questions and the checking progress by reusing the same checking function for similar questions.  
+	-I’m still waiting on cleaning it since I have a ton of junk and test files up so I haven’t pushed it to my folder yet  
 * Also learned how to create exams that students can complete with an autograder without access to source code
 
+#### Robin's updates ####
+Refining our goal
 
+1. Create a learnr tutorial with a few different types of questions. We're already on a good path for ch1 here.
+2. use `gradethis` for feedback & answer checking
+3. use `learrhash` to generate a hash code of the student responses
+4. embed a google form into the learnR tutorial where a student can submit their hash
+
+@Faith Fatchen - since you have a copy of the ch1 tutorial i'll let you finish that up.
+@Aldo Perez It looks like you have example quizzes that use gradethis for answer checking.
+
+Who wants to work on adding a "generate hash" token using learnrhash and who wants to work on embedding a google form into a tutorial?
+
+I will look at what Faith has created & the examples Aldo added and combine into a single file, then add it to my tutorial package and make sure it works. Then i'll add in what you both generate from learnrhash + google forms and then redeploy my package.
+
+Then we can do some end user testing.
 
  
 

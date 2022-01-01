@@ -67,12 +67,15 @@ Most of the time we will want to save our results. To do so we use the *assignme
  height <- 62
 ```
 
+
 Assigned objects aren't printed automatically, you must either enter the name of the object, or wrap the command in parenthesis. Run the code below to see the objects printed.
+
 
 ```{r objectrexcerices2, exercise = TRUE}
 (height <- 62)
 height
 ```
+
 
 ### You try it
 
@@ -90,6 +93,7 @@ height<-62
 ```{r youtryit2, exercise = TRUE}
 
 ```
+
 
 ## Vectors
 
@@ -183,7 +187,9 @@ This works to compare each elements of a vector. Here it's returning TRUE and FA
 odds %in% primes
 ```
 
+
 ### TRUE and FALSE as binary indicators
+
 What's cool about TRUE and FALSE, is that TRUE resolves as 1 and FALSE resolves as 0 when doing arithmetic. 
 How many odd numbers are prime (in our given vectors)
 ```{r log4, exercise = TRUE}
@@ -191,17 +197,21 @@ How many odd numbers are prime (in our given vectors)
 sum(odds %in% primes)
 ```
 
+
 ### AND and OR
 
 Often we will want to find out if two events are true at the same time, or if at least one of them is true. Using parenthesis to help keep our statements organized, we can ask multiple logical statements at the same time using either AND `&` or OR `|`
 
 Is 9 an odd prime? 
+
 ```{r andor1, exercise = TRUE}
  primes <- c(2,3,5,7,11)
 (9 %in% odds) & (9 %in% primes)
 ```
 
+
 ### You try it
+
 
 Is 9 an odd or a prime? 
 ```{r andor2, exercise = TRUE}
@@ -209,7 +219,10 @@ Is 9 an odd or a prime?
 (9 %in% odds) | (9 %in% primes)
 ```
 
+
 ## Plotting
+
+For starters we are going to stick with the simple plotting method in R, namely the `plot` function. Short and simple, the arguments are `plot(x, y)`
 
 ```{r plot1, exercise = TRUE}
 x <- -10:10
@@ -225,6 +238,7 @@ y <- x^2
 plot(x, y, type='l')
 ```
 
+
 ### You try it
 Create a plot of $y = log(x+1)$ where $x$ is a sequence of non-negative numbers from $a$ to $b$ and YOU get to choose $a$ and $b$. 
 
@@ -232,8 +246,8 @@ Create a plot of $y = log(x+1)$ where $x$ is a sequence of non-negative numbers 
 
 ```
 
- want hint here?
 
+ want hint here?
 
 
 
