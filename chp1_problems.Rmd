@@ -34,7 +34,6 @@ pi^2
 
 There are many built in functions in R such as `log` or `exp`. Using these functions in R is not much different than using them on your calculator. The function `log` has two arguments, one is required and one is set to a default, $log_{b}(x)$ where *b* is the base. The default is *b* which is set to `exp(1)` (i.e. the natural logarithm).
 
-::: blue
 ### You try it
 
 Below are some examples of built in functions in R. Run them from the code box below.
@@ -48,7 +47,6 @@ log(8,base=2)
 ```{r youtryit1, exercise = TRUE}
     
 ```
-:::
 
 Now lets try a more complicated equation.
 
@@ -69,14 +67,16 @@ Most of the time we will want to save our results. To do so we use the *assignme
  height <- 62
 ```
 
--   Assigned objects aren't printed automatically, you must either enter the name of the object, or wrap the command in parenthesis. Run the code below to see the objects printed.
+
+Assigned objects aren't printed automatically, you must either enter the name of the object, or wrap the command in parenthesis. Run the code below to see the objects printed.
+
 
 ```{r objectrexcerices2, exercise = TRUE}
 (height <- 62)
 height
 ```
 
-::: blue
+
 ### You try it
 
 Run each of the following commands in the code box. Print out the value of `height` after each time. What happens?
@@ -93,7 +93,7 @@ height<-62
 ```{r youtryit2, exercise = TRUE}
 
 ```
-:::
+
 
 ## Vectors
 
@@ -181,12 +181,15 @@ primes <- c(2,3,5,7,11)
 ```
 
 This works to compare each elements of a vector. Here it's returning TRUE and FALSE for each element in `odds`, on whether or not it is also an element of `primes`.
+
 ```{r log3, exercise = TRUE}
  primes <- c(2,3,5,7,11)
 odds %in% primes
 ```
 
-## TRUE and FALSE as binary indicators
+
+### TRUE and FALSE as binary indicators
+
 What's cool about TRUE and FALSE, is that TRUE resolves as 1 and FALSE resolves as 0 when doing arithmetic. 
 How many odd numbers are prime (in our given vectors)
 ```{r log4, exercise = TRUE}
@@ -194,24 +197,28 @@ How many odd numbers are prime (in our given vectors)
 sum(odds %in% primes)
 ```
 
-## AND and OR
+
+### AND and OR
 
 Often we will want to find out if two events are true at the same time, or if at least one of them is true. Using parenthesis to help keep our statements organized, we can ask multiple logical statements at the same time using either AND `&` or OR `|`
 
-* Is 9 an odd prime? 
+Is 9 an odd prime? 
+
 ```{r andor1, exercise = TRUE}
  primes <- c(2,3,5,7,11)
 (9 %in% odds) & (9 %in% primes)
 ```
 
-:::{.blue}
+
 ### You try it
+
+
 Is 9 an odd or a prime? 
 ```{r andor2, exercise = TRUE}
  primes <- c(2,3,5,7,11)
 (9 %in% odds) | (9 %in% primes)
 ```
-:::
+
 
 ## Plotting
 
@@ -231,7 +238,6 @@ y <- x^2
 plot(x, y, type='l')
 ```
 
-:::{.blue}
 
 ### You try it
 Create a plot of $y = log(x+1)$ where $x$ is a sequence of non-negative numbers from $a$ to $b$ and YOU get to choose $a$ and $b$. 
@@ -240,9 +246,9 @@ Create a plot of $y = log(x+1)$ where $x$ is a sequence of non-negative numbers 
 
 ```
 
-* want hint here?*
 
-:::
+ want hint here?
+
 
 
 
