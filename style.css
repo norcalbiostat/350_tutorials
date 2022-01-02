@@ -1,0 +1,90 @@
+
+
+hr {
+    height: 5px;
+    background-color: #4d0000;
+}
+
+h5 {
+    color: blue;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+body {
+  background-color: #FFFCF7; 
+  color: black; 
+}
+
+/* Overall navbar background color */ 
+.navbar {
+  background-color: #432818; 
+}
+
+/* Background class title text name */ 
+.navbar-default .navbar-brand{
+    background-color: #6f1d1b; 
+    color: #ffffff;
+}
+
+/* Navigation bar link text color */
+.navbar-nav li > a {
+  color: white !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav > .active > a {
+  color: #ffffff !important;
+  background-color: #bb9457 !important;
+}
+
+/* change body link colors*/
+
+a:link {
+  color: #6f1d1b;
+  text-decoration-line: underline;
+}
+a:hover {
+  color: #236ca3;
+}
+a:visited {
+  color: #232ca3;
+}
+
+.btn {
+  color: #6f1d1b;
+  padding: .5em;
+  background: #ffffff;
+  /*margin: 1px; */
+}
+
+
+/* ======= BOXES ======= */
+.blue {
+  padding: .5em;
+  border-radius: 10px;
+  background: #5bc0de;
+}
+
+.blue-nos-center {
+  text-align: center;
+  background: #5bc0de;
+}
+
+.green {
+  padding: .5em;
+  border-radius: 10px;
+  background: #5cb85c;
+}
+
+.red {
+  padding: .5em;
+  border-radius: 10px;
+  background: #d9534f;
+}
+
+.yellow {
+  padding: .5em;
+  border-radius: 10px;
+  background: #f0ad4e;
+}
+
