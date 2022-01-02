@@ -119,21 +119,32 @@ Refining our goal
 
 1. Create a learnr tutorial with a few different types of questions. We're already on a good path for ch1 here.
 2. use `gradethis` for feedback & answer checking
-3. use `learrhash` to generate a hash code of the student responses
-4. embed a google form into the learnR tutorial where a student can submit their hash
+3. use `learrhash` to generate a hash code of the student responses -- Faith
+4. embed a google form into the learnR tutorial where a student can submit their hash -- Aldo
 
 @Faith Fatchen - since you have a copy of the ch1 tutorial i'll let you finish that up.
 @Aldo Perez It looks like you have example quizzes that use gradethis for answer checking.
 
 Who wants to work on adding a "generate hash" token using learnrhash and who wants to work on embedding a google form into a tutorial?
 
-I will look at what Faith has created & the examples Aldo added and combine into a single file, then add it to my tutorial package and make sure it works. Then i'll add in what you both generate from learnrhash + google forms and then redeploy my package.
+I will look at what Faith has created & the examples Aldo added and combine into a single file, then add it to my tutorial package and make sure it works. Then I'll add in what you both generate from learnrhash + google forms and then redeploy my package.
 
 Then we can do some end user testing.
 
 ### 1/2/22
 
 Course packet completely updated. What if we put all the coding examples as fill in the blank examples and you try it's as tutorials? 
+
+* Faith get hash - send to robin via slack
+* Aldo get google forms - send to robin via slack
+* robin 
+    - get updated ch1 tutorial back into this repo, clean up folders
+    - add new ch1 & 2.1 finished course notes for new material
+    - Incorporate new learnrhash and google form code into ch1 tutorial
+* aldo & faith pull new copy of repo - create branches
+* Faith update content/sections of ch1 - then start adding gradethis
+* Aldo extract examples and you try it for ch 2.1 - add gradethis
+* Robin will setup google form submissions for each ch1 & ch2
 
 
 
