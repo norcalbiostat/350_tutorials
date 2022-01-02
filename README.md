@@ -131,5 +131,10 @@ I will look at what Faith has created & the examples Aldo added and combine into
 
 Then we can do some end user testing.
 
- 
+### 1/2/22
+
+Course packet completely updated. What if we put all the coding examples as fill in the blank examples and you try it's as tutorials? 
+
+
+
 
