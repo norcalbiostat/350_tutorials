@@ -1,15 +1,194 @@
 ---
 title: "Section 2.1 Simulations"
-output: learnr::tutorial
+output: 
+    learnr::tutorial:
+      progressive: true
+      allow_skip: true
 runtime: shiny_prerendered
+description: > 
+  Dr. D add in description. 
 ---
 
 ```{r setup, include=FALSE}
-library('leaflet')
-library('learnr')
-library('checkr')
+library(learnr)
+library(gradethis)
+library(learnrhash)
+gradethis::gradethis_setup()
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Set operations in `R`
+
+The following functions are used to compute intersections and unions. Each function can only take into consideration 2 vectors. 
+
+* `union`:  Either event, or both. ($\cup$)
+* `intersect`: Where do the two events overlap. ($\cap$) 
+* `setdiff`: Where the two events do not overlap.
+
+### Example
+
+Lets revisit the deck of cards problem from above: _A single card is drawn from a standard deck of cards. Let $A$ be the event that an ace is selected, and let $B$ be the event that a heart is drawn._
+
+First create the sample space. I am also printing the vector to ensure that what's being created is what is intended. Trust, but verify your code. 
+
+```{r samplespace1, exercise = TRUE}
+(numbers <- rep(c(1:10, "J", "Q", "K", "A"), 4))
+(suits <- rep(c("H", "C", "D", "S"), each = 13))
+(deck <- paste0(numbers, suits))
+```
+
+Define event A
+```{r eventA, exercise = TRUE}
+(aces <- c("AH", "AC", "AD", "AS")) 
+```
+
+Define event B
+```{r eventB, exercise = TRUE}
+(hearts <- paste0(c(1:10, "J", "Q", "K", "A"), "H"))
+```
+
+Use R functions to find the following statements. Draw a venn diagram for each and shade the region of interest. 
+
+* $A\cup B$ 
+
+```{r union, exercise = TRUE}
+aces <- c("AH", "AC", "AD", "AS")
+hearts <- paste0(c(1:10, "J", "Q", "K", "A"), "H")
+(aces.and.hearts <- union(aces, hearts))
+```
+
+* $A\cap B$ 
+
+```{r intersect, exercise = TRUE}
+aces <- c("AH", "AC", "AD", "AS")
+hearts <- paste0(c(1:10, "J", "Q", "K", "A"), "H")
+(ace.of.hearts <- intersect(aces, hearts))
+```
+
+* $B^{c}$ 
+
+```{r complement, exercise = TRUE}
+aces <- c("AH", "AC", "AD", "AS")
+hearts <- paste0(c(1:10, "J", "Q", "K", "A"), "H")
+numbers <- rep(c(1:10, "J", "Q", "K", "A"), 4)
+suits <- rep(c("H", "C", "D", "S"), each = 13)
+deck <- paste0(numbers, suits)
+(no.hearts <- setdiff(deck, hearts))
 ```
 
 
+## Probability rules
+
+These are some important rules to memorize that come about as a result of the above axioms. Here are a few, there are more in the textbook.
+
+Let $A$ and $B$ be events in the sample space $S$.
+
+-   The probability of $\null$ is 0.
+-   If $A$ and $B$ are disjoint then $P(A\cap B)=P(A)+P(B)$.
+-   $P(A)=1-P(A^{c})$.
+-   $P(A\cup B)=P(A)+P(B)-P(A\cap B)$
+
+### You try it:
+
+If 50 percent of the families in a certain city subscribe to the morning newspaper, 65 percent of the families subscribe to the afternoon newspaper, and 85 percent of the families subscribe to at least one of the two newspapers. Draw a Venn Diagram to represent this situation. 
+
+* What percentage of the families subscribe to both newspapers? (Enter your answer as a decimal)
+
+```{r ytia, exercise = TRUE}
+
+```
+
+::: {#ytia-hint}
+*Dr. D add hint*
+:::
+
+```{r ytia-check}
+grade_result(pass_if(~identical(.result, .3)))
+```
+
+* What percentage of the families subscribe to only the afternoon paper? (Enter your answer as a decimal)
+
+```{r ytib, exercise = TRUE}
+
+```
+
+::: {#ytib-hint}
+*Dr. D add hint*
+:::
+
+```{r ytib-check}
+grade_result(pass_if(~identical(.result, .35),))
+```
+
+* What percentage of the families don't subscribe to any paper? 
+
+```{r ytic, exercise = TRUE}
+
+```
+
+::: {#ytib-hint}
+*Dr. D add hint*
+:::
+
+```{r ytic-check}
+grade_result(pass_if(~ identical(.result, .15), "Good job!"))
+```
+
+### Example
+
+David Diez was interested in exploring the factors that contribute to an email being flagged as spam by Gmail's system. So they downloaded all their emails for a few months in 2012 and noted certain characteristics such as if it was flagged as spam (0 means no, and 1 means yes), and what size of a number it contained (none, small, or big). A _two-way table_ of emails with these two characteristics are shown below. 
+
+```{r example2a, exercise = TRUE}
+em <- openintro::email
+addmargins(table(em$spam, em$number, dnn=c("Spam", "Size of number")))
+```
+
+If you were to randomly select an email from this pool, calculate the following probabilities: 
+
+* It is flagged as spam: 
+
+```{r example2b, exercise = TRUE}
+367/3921
+```
+
+```{r example2b-check}
+grade_result(pass_if(~ identical(.result, 367/3921), "Nice!"))
+```
+
+* It has a big number: 
+
+```{r example2c, exercise = TRUE}
+545/3921
+```
+
+```{r example2c-check}
+grade_result(pass_if(~ identical(.result, 545/3921)))
+```
+
+* It is not flagged as spam and has a small number: 
+
+```{r example2d, exercise = TRUE}
+2559/3921
+```
+
+```{r example2d-check}
+grade_result(pass_if(~ identical(.result, 2559/3921)))
+```
+
+## Submit your work
+Part of your grade in this class comes from submitting tutorial work like this. 
+
+Click the <kbd>Generate</kbd> button below to generate a hash for you assignment. This long string of numbers is a unique code for you, and this assignment. 
+
+Paste this code into the Google Form below to submit your hash to the instructional team for scoring. You also have the opportunity to provide feedback and thoughts about the specific lesson. This is valuable information for the instructional team to know what topics were confusing for students or where extra help is needed. 
+
+```{r context="server"}
+encoder_logic(strip_output=TRUE)
+```
+
+```{r encode, echo=FALSE}
+encoder_ui(ui_before = NULL, 
+           ui_after = iframe_ui(src = "https://docs.google.com/forms/d/e/1FAIpQLSdzre-kmqNje64ZCK7VsXHWKSVdGNOjSUwU1IZaCWs_vL_yuQ/viewform?embedded=true"))
+```
 
 
