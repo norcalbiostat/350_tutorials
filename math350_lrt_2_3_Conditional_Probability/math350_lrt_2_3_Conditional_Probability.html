@@ -220,8 +220,8 @@ Sum
 ##         .message = final_grade$message, .message_pipe_warning = NULL, 
 ##         .correct = correct, .incorrect = incorrect))
 ## }
-## &lt;bytecode: 0x7ff6685a09c0&gt;
-## &lt;environment: 0x7ff6685bbaa8&gt;</code></pre>
+## &lt;bytecode: 0x7f9202e1a200&gt;
+## &lt;environment: 0x7f9202e33160&gt;</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Find <span class="math inline">\(P(A\cap B)\)</span> if <span class="math inline">\(P(A)=0.2\)</span>, <span class="math inline">\(P(B)=0.4\)</span>, and <span class="math inline">\(P(A|B)+P(B|A)=0.75\)</span>.</li>
 </ol>
@@ -768,33 +768,42 @@ learnr:::store_exercise_cache(structure(list(global_setup = structure(c("library
     include = FALSE)), setup = NULL, chunks = list(list(label = "ex7", 
     code = "eventB <- replicate(10000,{\n  dieroll <- sample(1:6,2,replace=TRUE)\n  # Define event B here\n  \n  \n  \n  \n  })\n\nprobB <- mean(eventB)\n\neventAB <- replicate(10000,{\n  dieroll <- sample(1:6,2,replace=TRUE)\n  # Define event A&B here\n  \n  \n  \n  \n  \n  })\n\nprobAB <-  ________________\n(cond_prob <- _________/_________)", 
     opts = list(label = "\"ex7\"", exercise = "TRUE", eval = "FALSE"), 
-    engine = "r")), code_check = NULL, error_check = NULL, check = structure("grade_this(pass_if_equal(x = round(.result,0), y = 1))", chunk_opts = list(
-    label = "ex7-check")), solution = NULL, options = list(eval = FALSE, 
-    echo = TRUE, results = "markup", tidy = FALSE, tidy.opts = NULL, 
-    collapse = FALSE, prompt = FALSE, comment = NA, highlight = FALSE, 
-    size = "normalsize", background = "#F7F7F7", strip.white = TRUE, 
-    cache = 0, cache.path = "math350_lrt_2_3_Conditional_Probability_cache/html/", 
-    cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, autodep = FALSE, 
-    cache.rebuild = FALSE, fig.keep = "high", fig.show = "asis", 
-    fig.align = "default", fig.path = "math350_lrt_2_3_Conditional_Probability_files/figure-html/", 
-    dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
-    fig.width = 6.5, fig.height = 4, fig.env = "figure", fig.cap = NULL, 
-    fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, fig.pos = "", 
-    out.width = 624, out.height = NULL, out.extra = NULL, fig.retina = 2, 
-    external = TRUE, sanitize = FALSE, interval = 1, aniopts = "controls,loop", 
-    warning = TRUE, error = FALSE, message = TRUE, render = NULL, 
-    ref.label = NULL, child = NULL, engine = "r", split = FALSE, 
-    include = TRUE, purl = TRUE, max.print = 1000, exercise.timelimit = 60, 
-    exercise.checker = "function (label = NULL, solution_code = NULL, user_code = NULL, \n    check_code = NULL, envir_result = NULL, evaluate_result = NULL, \n    envir_prep = NULL, last_value = NULL, stage = NULL, ...) \n{\n    (utils::getFromNamespace(\"check_exercise\", \"gradethis\"))(label = label, \n        solution_code = solution_code, user_code = user_code, \n        check_code = check_code, envir_result = envir_result, \n        evaluate_result = evaluate_result, envir_prep = envir_prep, \n        last_value = last_value, stage = stage, ...)\n}", 
-    exercise.error.check.code = "gradethis_error_checker()", 
-    label = "ex7", exercise = TRUE, code = c("eventB <- replicate(10000,{", 
-    "  dieroll <- sample(1:6,2,replace=TRUE)", "  # Define event B here", 
-    "  ", "  ", "  ", "  ", "  })", "", "probB <- mean(eventB)", 
-    "", "eventAB <- replicate(10000,{", "  dieroll <- sample(1:6,2,replace=TRUE)", 
-    "  # Define event A&B here", "  ", "  ", "  ", "  ", "  ", 
-    "  })", "", "probAB <-  ________________", "(cond_prob <- _________/_________)"
-    ), out.width.px = 624, out.height.px = 384, params.src = "ex7, exercise = TRUE, eval=FALSE", 
-    fig.num = 0, exercise.df_print = "paged"), engine = "r"), class = "tutorial_exercise"))
+    engine = "r")), code_check = NULL, error_check = NULL, check = structure(c("ex7.answer.space<- replicate(100,{", 
+"  eventB <- replicate(10000,{", "  dieroll <- sample(1:6,2,replace=TRUE)", 
+"  mean(2 %in% dieroll)", "  })", "", "probB <- mean(eventB)", 
+"", "eventAB <- replicate(10000,{", "  dieroll <- sample(1:6,2,replace=TRUE)", 
+"  (sum(dieroll<=4) && (2 %in% dieroll))", "  })", "", "probAB <- mean(eventAB)", 
+"cond_prob <- probAB/probB", "})", "grade_this({", "  if (.result > min(ex7.answer.space) & ", 
+"      .result < max(ex7.answer.space)) {", "    pass(\"Great work!\")", 
+"  }", "  ", "  if (.result > max(ex7.answer.space)) {", "    fail(\"Your answer is a bit high\")", 
+"  }", "  if (.result < min(ex7.answer.space)) {", "    fail(\"Your answer is a bit low\")", 
+"  }", "  fail()", "})"), chunk_opts = list(label = "ex7-check")), 
+    solution = NULL, options = list(eval = FALSE, echo = TRUE, 
+        results = "markup", tidy = FALSE, tidy.opts = NULL, collapse = FALSE, 
+        prompt = FALSE, comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "math350_lrt_2_3_Conditional_Probability_cache/html/", 
+        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
+        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
+        fig.show = "asis", fig.align = "default", fig.path = "math350_lrt_2_3_Conditional_Probability_files/figure-html/", 
+        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
+        fig.width = 6.5, fig.height = 4, fig.env = "figure", 
+        fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
+        fig.pos = "", out.width = 624, out.height = NULL, out.extra = NULL, 
+        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
+        aniopts = "controls,loop", warning = TRUE, error = FALSE, 
+        message = TRUE, render = NULL, ref.label = NULL, child = NULL, 
+        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
+        max.print = 1000, exercise.timelimit = 60, exercise.checker = "function (label = NULL, solution_code = NULL, user_code = NULL, \n    check_code = NULL, envir_result = NULL, evaluate_result = NULL, \n    envir_prep = NULL, last_value = NULL, stage = NULL, ...) \n{\n    (utils::getFromNamespace(\"check_exercise\", \"gradethis\"))(label = label, \n        solution_code = solution_code, user_code = user_code, \n        check_code = check_code, envir_result = envir_result, \n        evaluate_result = evaluate_result, envir_prep = envir_prep, \n        last_value = last_value, stage = stage, ...)\n}", 
+        exercise.error.check.code = "gradethis_error_checker()", 
+        label = "ex7", exercise = TRUE, code = c("eventB <- replicate(10000,{", 
+        "  dieroll <- sample(1:6,2,replace=TRUE)", "  # Define event B here", 
+        "  ", "  ", "  ", "  ", "  })", "", "probB <- mean(eventB)", 
+        "", "eventAB <- replicate(10000,{", "  dieroll <- sample(1:6,2,replace=TRUE)", 
+        "  # Define event A&B here", "  ", "  ", "  ", "  ", 
+        "  ", "  })", "", "probAB <-  ________________", "(cond_prob <- _________/_________)"
+        ), out.width.px = 624, out.height.px = 384, params.src = "ex7, exercise = TRUE, eval=FALSE", 
+        fig.num = 0, exercise.df_print = "paged"), engine = "r"), class = "tutorial_exercise"))
 </script>
  
 <script type="application/shiny-prerendered" data-context="server">
