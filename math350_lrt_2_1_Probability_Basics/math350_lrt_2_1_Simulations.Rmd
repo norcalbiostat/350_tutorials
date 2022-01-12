@@ -15,6 +15,10 @@ library(gradethis)
 library(learnrhash)
 gradethis::gradethis_setup()
 knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(
+  exercise.blanks = TRUE, 
+  exercise.reveal_solution = FALSE
+)
 ```
 
 ## Set operations in `R`
@@ -37,37 +41,91 @@ First create the sample space. I am also printing the vector to ensure that what
 (deck <- paste0(numbers, suits))
 ```
 
+```{r samplespace1-solution}
+(numbers <- rep(c(1:10, "J", "Q", "K", "A"), 4))
+(suits <- rep(c("H", "C", "D", "S"), each = 13))
+(deck <- paste0(numbers, suits))
+```
+
+```{r samplespace1-check}
+grade_code()
+```
+
 Define event A
-```{r eventA, exercise = TRUE}
-(aces <- ___) 
+```{r eventA, exercise = TRUE, exercise.blanks = TRUE}
+(aces <-___) 
+```
+
+```{r eventA-solution}
+(aces <- c("AH", "AC", "AD", "AS")) 
+```
+
+```{r eventA-check}
+grade_code()
 ```
 
 Define event B
-```{r eventB, exercise = TRUE}
-(hearts <- ___)
+```{r eventB, exercise = TRUE, exercise.blanks = TRUE}
+(hearts <- paste0(c(1:10, "J", "Q", "K", "A"), "H"))
+```
+
+```{r eventB-solution}
+(hearts <- paste0(c(1:10, "J", "Q", "K", "A"), "H"))
+```
+
+```{r eventB-check}
+grade_code()
 ```
 
 Use R functions to find the following statements. Reminder in these tutorials (only) R code chunks don't talk to each other so you have to define your vectors each time. This does NOT happen in homework. 
 
 * $A\cup B$ 
 
-```{r union, exercise = TRUE}
+```{r union, exercise = TRUE, exercise.blanks = TRUE}
 aces <- ___
 hearts <- ___
 (aces.and.hearts <- ____(___, ____))
 ```
 
+```{r union-solution}
+aces <- c("AH", "AC", "AD", "AS")
+hearts <- paste0(c(1:10, "J", "Q", "K", "A"), "H")
+(aces.and.hearts <- union(aces, hearts))
+```
+
+```{r union-check}
+grade_code()
+```
+
 * $A\cap B$ 
 
-```{r intersect, exercise = TRUE}
+```{r intersect, exercise = TRUE, exercise.blanks = TRUE}
 aces <- ___
 hearts <- ___
 (ace.of.hearts <- ____(___, ____))
 ```
 
+```{r intersect-solution}
+aces <- c("AH", "AC", "AD", "AS")
+hearts <- paste0(c(1:10, "J", "Q", "K", "A"), "H")
+(ace.of.hearts <- intersect(aces, hearts))
+```
+
+```{intersect-check}
+```
+
 * $B^{c}$ 
 
-```{r complement, exercise = TRUE}
+```{r complement, exercise = TRUE, exercise.blanks = TRUE}
+aces <-  ___
+hearts <- ___
+numbers <-___
+suits <- ___
+deck <- paste0(numbers, suits)
+(no.hearts <-  ____(___, ____))
+```
+
+```{r complement-solution}
 aces <- c("AH", "AC", "AD", "AS")
 hearts <- paste0(c(1:10, "J", "Q", "K", "A"), "H")
 numbers <- rep(c(1:10, "J", "Q", "K", "A"), 4)
@@ -76,6 +134,9 @@ deck <- paste0(numbers, suits)
 (no.hearts <- setdiff(deck, hearts))
 ```
 
+```{r complement-check}
+
+```
 
 ## Probability rules
 
@@ -134,12 +195,12 @@ em <- openintro::email
 addmargins(table(em$spam, em$number, dnn=c("Spam", "Size of number")))
 ```
 
-If you were to randomly select an email from this pool, calculate the following probabilities: 
+If you were to randomly select an email from this pool, calculate the following probabilities using `R` as a calculator: 
 
 * It is flagged as spam: 
 
 ```{r example2b, exercise = TRUE}
-367/3921
+
 ```
 
 ```{r example2b-check}
@@ -149,7 +210,7 @@ grade_result(pass_if(~ identical(.result, 367/3921), "Nice!"))
 * It has a big number: 
 
 ```{r example2c, exercise = TRUE}
-545/3921
+
 ```
 
 ```{r example2c-check}
@@ -159,7 +220,7 @@ grade_result(pass_if(~ identical(.result, 545/3921)))
 * It is not flagged as spam and has a small number: 
 
 ```{r example2d, exercise = TRUE}
-2559/3921
+
 ```
 
 ```{r example2d-check}
@@ -174,12 +235,13 @@ Click the <kbd>Generate</kbd> button below to generate a hash for you assignment
 Paste this code into the Google Form below to submit your hash to the instructional team for scoring. You also have the opportunity to provide feedback and thoughts about the specific lesson. This is valuable information for the instructional team to know what topics were confusing for students or where extra help is needed. 
 
 ```{r context="server"}
-encoder_logic(strip_output=TRUE)
+#encoder_logic(strip_output=TRUE)
+encoder_logic()
 ```
 
+**Need to add 2.1 link**
 ```{r encode, echo=FALSE}
-encoder_ui(ui_before = NULL, 
-           ui_after = iframe_ui(src = "https://docs.google.com/forms/d/e/1FAIpQLSdzre-kmqNje64ZCK7VsXHWKSVdGNOjSUwU1IZaCWs_vL_yuQ/viewform?embedded=true"))
+encoder_ui(default_ui(url = "https://forms.gle/bqQRdSo3g5YFjZ4f9"))
 ```
 
 
