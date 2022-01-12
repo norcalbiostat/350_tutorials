@@ -14,190 +14,399 @@ library(learnr)
 library(gradethis)
 library(learnrhash)
 gradethis::gradethis_setup()
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, highlight = TRUE)
+tutorial_options(
+  exercise.blanks = TRUE, 
+  exercise.reveal_solution = FALSE
+)
 ```
 
-
-> Faith these become quiz questions
+##Simulation
 
 How would you find the probability of rolling a 4 on a six sided die?
 
-**Theoretical Probability**: 
+Theoretical Probability: 
 
-\vspace{1cm}
-
-**Estimated Probability**: 
-
-\vspace{1cm}
-
+Estimated Probability: 
 
 ### Example using R
 
-Continuing with the deck of cards example, find the probability of selected events using R code.
+Continuing with the deck of cards example, find the probability of selected events using R code. 
 
 * $P(A)$: `length(aces) / length(deck)`
-```{r, echo=FALSE}
+
+```{r ex1, exercise = TRUE}
+aces <- ___
+numbers <- ___
+suits <- ___
+deck <- ___
 length(aces) / length(deck)
+```
+
+::: {#ex1-hint}
+Did you tell `R` what `aces` and `deck` are? Checkout the tutorial from 2.1 for a reminder of how these were defined.
+:::
+
+```{r ex1-check}
+grade_result(pass_if(~identical(.result, length(aces.and.hearts) / length(deck))))
 ```
 
 * $A\cup B$: `length(aces.and.hearts) / length(deck)`
 
-```{r, echo=FALSE}
+```{r ex2, exercise = TRUE}
+deck<- ___
+aces.and.hearts<- ___
 length(aces.and.hearts) / length(deck)
 ```
 
+```{r ex2-check}
+grade_result(pass_if(~identical(.result,length(aces.and.hearts) / length(deck))))
+```
 
 ## Simulations with `sample()`
 
+```{r worep, exercise.reveal_solution=TRUE}
+quiz(
+question_text(
+  "What does sampling **without replacement** mean?",
+  answer("Once the outcome has been observed, it is removed from the sample space for the next draw. That is, the same outcome can’t be drawn more than once.", correct = TRUE),
+  allow_retry = TRUE
+))
 
-What does sampling **without replacement** mean? > faith quiz question
-
+```
 
 ### Example
 
 Take a sample of 2 from the numbers 1 through 10 without replacement.
 
-```{r}
+```{r ex3, exercise = TRUE}
 x <- 1:10   # Define the space
 sample(x, size = 2) # Sample 2 items from the space
 ```
 
+```{r ex3-solution}
+x <- 1:10   # Define the space
+sample(x, size = 2) # Sample 2 items from the space
+```
+
+```{r ex3-check}
+grade_code()
+```
+
 ### You try it 
+
 Sample without replacement three months from the list of months
-```{r, eval=FALSE}
+```{r yti1, exercise = TRUE}
 months <- c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug",
             "Sept","Oct","Nov","Dec")
 sample(__________,size = _____)
 ```
 
+::: {#yti2-hint}
+You need to tell `R` where to sample from and how big of a sample to take. The default setting is `sample(df, size = , replace = FALSE)`.  :::
+
+```{r yti1-solution}
+months <- c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug",
+            "Sept","Oct","Nov","Dec")
+sample(months, size = 3)
+```
+
+```{r yti1-check}
+grade_code()
+```
 
 The defaults can be changed. For instance, if you want to sample **with replacement** you would just add `replace=TRUE` to the command. This allows you to sample more values than the size of the sample space
 
 ### Example
-```{r}
+
+```{r ex4, exercise = TRUE}
 x <- 1:5 
 sample(x, size = 10, replace = TRUE)
 ```
 
+```{r ex4-solution}
+x <- 1:5 
+sample(x, size = 10, replace = TRUE)
+```
+
+```{r ex4-check}
+grade_code()
+```
+
+
 ### You try it
+
 Create a sample of 10 random days of the week. 
 
-```{r, eval=FALSE}
+```{r yti2, exercise = TRUE}
 days <- _______
 sample(__________,size = _____, replace = _____)
 ```
 
+::: {#yti2-hint}
+Thee tutorials are case sensitive and order matters. The days should look like this `"Mon", "Tues", "Weds",..`. 
+:::
+
+```{r yti2-solution}
+days <- c("Mon","Tues","Weds","Thurs","Fri","Sat","Sun")
+sample(days,size = 10, replace = TRUE)
+```
+
+```{r yti2-check}
+grade_code()
+```
+
+
 ### Example
+
 Suppose that two six-sided dice are rolled and the numbers appearing on the dice are added. Calculate the probabilities of the two events listed below using both theoretical methods and simulation. 
 
-* **Event D**: The sum of the two dice is 6.
-* **Event E**: At least 1 die is a 2. 
+* Event D: The sum of the two dice is 6.
+* Event E: At least 1 die is a 2. 
 
 First we simulate the results from two die rolls, and the sample space that represents the sum of the two numbers added together.
 
 1. Create two vectors, each length 10,000 by sampling the numbers from 1 to 6. These represent the rolls on each of two dice. 
 
-```{r}
+```{r ex5a, exercise = TRUE}
 die_1 <- sample(x=1:6, size=10000, replace=TRUE)
 die_2 <- sample(x=1:6, size=10000, replace=TRUE)
 ```
 
+```{r ex5a-solution}
+die_1 <- sample(x=1:6, size=10000, replace=TRUE)
+die_2 <- sample(x=1:6, size=10000, replace=TRUE)
+```
+
+```{r ex5a-check}
+grade_code()
+```
+
 2. Add these two vectors of dice results together to create the sample space. 
 
-```{r}
+```{r ex5b, exercise = TRUE}
+die_1 <- sample(x=1:6, size=10000, replace=TRUE)
+die_2 <- sample(x=1:6, size=10000, replace=TRUE)
 sum.of.2.dice <- die_1 + die_2
 ```
 
+```{r ex5b-solution}
+die_1 <- sample(x=1:6, size=10000, replace=TRUE)
+die_2 <- sample(x=1:6, size=10000, replace=TRUE)
+sum.of.2.dice <- die_1 + die_2
+```
+
+```{r ex5b-check}
+grade_code()
+```
 
 Let's look at event D: _The sum of the two dice is 6._
 
-**Theoretical Probability:** 
+Theoretical Probability: 
 
-```{r}
-5/36
+```{r ex7, exercise = TRUE}
+5/36 #should remove and make them do it?
 ```
 
-**Simulation:** 
+::: {#ex7-hint}
+How many ways can two die add to 6? How many total different combinations are there?
+:::
 
-```{r}
+```{r ex7-check}
+grade_result(pass_if(~identical(.result, 5/36)))
+```
+
+Simulation:
+
+```{r ex8, exercise = TRUE}
+die_1 <- sample(x=1:6, size=10000, replace=TRUE)
+die_2 <- sample(x=1:6, size=10000, replace=TRUE)
+sum.of.2.dice <- die_1 + die_2
 D <- sum.of.2.dice == 6
 sum(D)/length(D)
-mean(D) # exact same formula -- faith make sure the correct answer can be found either way sum/length or mean
+mean(D) # exact same formula -- faith make sure the correct answer can be found either way sum/length or mean -- should I remove the formulas? either will produce correc answer
+```
+
+::: {#ex8-hint}
+The object `D` records whether the some of the 2 die is equal to 6, so the mean of this object will tell you what?
+:::
+
+```{r ex8-check}
+grade_this(pass_if_equal(x = round(.result,2), y = .14))
 ```
 
 Let's look at event E: _At least 1 die is a 2._
 
-**Theoretical:** 
-```{r}
+Theoretical:
+
+```{r ex9, exercise = TRUE}
 11/36
 ```
 
-**Simulation:** Create our vector of TRUE and FALSES, and take the mean. 
+```{r ex9-check}
+grade_result(pass_if(~identical(.result, 11/36)))
+``` 
 
-```{r}
+Simulation: Create our vector of TRUE and FALSES, and take the mean. 
+
+```{r ex10, exercise = TRUE}
+die_1 <- sample(x=1:6, size=10000, replace=TRUE)
+die_2 <- sample(x=1:6, size=10000, replace=TRUE)
 E <- die_1==2 | die_2==2
 mean(E)
 ```
 
+```{r ex10-check}
+grade_this(pass_if_equal(x = round(.result,1), y = .3))
+```
+
 ### You try it
+
 Roll three six-sided dice and add all the face up numbers. Use simulation to estimate the probability that the sum of the three dice is at least 10.
 
-```{r}
-
+```{r yti3, exercise = TRUE}
+#Replace this with the code for a simulation
+mean(D) 
 ```
+
+::: {#yti3-hint}
+You will have to add multiple lines of code. Checkout the examples we have done.
+:::
+
+```{r yti3-check}
+grade_this(pass_if_equal(x = round(.result,2), y = .17))
+```
+
 
 ## Using `replicate` to repeat experiments
 
 ### Example
+
 Simulate rolling a dice 7 times and computing the sum of all rolls and recording if the sum is greater then 30.
 
-```{r}
+```{r ex11, exercise = TRUE}
 dice <- sample(1:6, size=7,replace=TRUE)
 sum(dice)>30
 ```
 
+```{r ex11-solution}
+dice <- sample(1:6, size=7,replace=TRUE)
+sum(dice)>30
+```
+
+```{r-check}
+grade_code()
+```
+
 Let's run this experiment 5 times. 
 
-```{r}
+```{r ex12, exercise = TRUE}
 replicate(n=5, {
   dice <- sample(1:6, size=7,replace=TRUE)
   sum(dice)>30
   })
 ```
 
+```{r ex12-solution}
+replicate(n=5, {
+  dice <- sample(1:6, size=7,replace=TRUE)
+  sum(dice)>30
+  })
+```
+
+```{r ex12-check}
+grade_code()
+```
+
 We will almost always want to replicate things a large number of times, say $n=10000$. We then store the output in a vector.
 
-```{r}
+```{r ex13, exercise = TRUE}
 results_dice <- replicate(n = 10000,{
   dice <- sample(1:6, size=7,replace=TRUE)
   sum(dice)>30
   })
 ```
 
+```{r ex13-solution}
+results_dice <- replicate(n = 10000,{
+  dice <- sample(1:6, size=7,replace=TRUE)
+  sum(dice)>30
+  })
+```
+
+```{r ex13-check}
+grade_code()
+```
+
 Now, calculate the probability of rolling a die 7 times and getting a sum larger than 30.
 
-```{r}
+```{r ex14, exercise = TRUE}
+results_dice <- replicate(n = 10000,{
+  dice <- sample(1:6, size=7,replace=TRUE)
+  sum(dice)>30
+  })
 mean(results_dice)
 ```
 
+```{r ex14-solution}
+results_dice <- replicate(n = 10000,{
+  dice <- sample(1:6, size=7,replace=TRUE)
+  sum(dice)>30
+  })
+mean(results_dice)
+```
+
+```{r ex14-check}
+grade_code()
+```
+
 ### You try it
+
 For both questions, compute the theoretical probability and then use simulation to confirm your results. Write all your work for both theoretical AND your simulation code in the space below. 
 
 1. If two die are rolled, what is the probability that the difference between the two numbers is less than 3? 
 
-```{r}
+```{r yti4ai, exercise = TRUE}
+#Delete this and calculate the theoretical probability here
+```
 
+```{r yti4ai-check}
+grade_result(pass_if(~identical(.result, 21/36)))
+```
+
+```{r yti4aii, exercise = TRUE}
+#Delete this and use simulation here
+```
+
+::: {#yti4aii-hint}
+First, write code that performs the experiment a single time. You may need to use the function abs which takes the absolute value of a number. Then use replicate and store them in a vector and calculate the mean to determine the probability.
+:::
+
+```{r yti4aii-check}
+grade_this(pass_if_equal(x = round(.result,2), y = .67))
 ```
 
 
 2. A fair coin is repeatedly tossed ten times. Compute the probability that the last three coin tosses results in heads. (Hint, review Example 2.13 in the textbook for an example)
 
-```{r}
-
+```{r yti4bi, exercise = TRUE}
+#Delete this and calculate the theoretical probability here
 ```
 
+```{r yti4bi-check}
+grade_result(pass_if(~identical(.result, 1/8)))
+```
+
+```{r yti4bii, exercise = TRUE}
+#Delete this and use simulation here
+```
+
+```{r yti4bii-check}
+grade_this(pass_if_equal(x = round(.result,2), y = .12))
+```
 
 ## Submit your work
+
 Part of your grade in this class comes from submitting tutorial work like this. 
 
 Click the <kbd>Generate</kbd> button below to generate a hash for you assignment. This long string of numbers is a unique code for you, and this assignment. 
