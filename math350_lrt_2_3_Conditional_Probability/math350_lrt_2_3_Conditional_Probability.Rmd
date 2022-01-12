@@ -172,16 +172,13 @@ grade_result(pass_if(~identical(.result, .1)))
 ## Simulating conditional probability
 
 ### Example 
-Two dice are rolled. Estimate the conditional probability that the sum of the dice is at most 4 given that one of the die is a 2. Let $A$ be that event that the sum of the dice is at most 4 and let $B$ be the event that one of the die is a 2. Thus,we want $P(A|B)$
+Two dice are rolled. Estimate the conditional probability that the sum of the dice is at most 4 given that one of the die is a 2. Let $A$ be that event that the sum of the dice is at most 4 and let $B$ be the event that one of the die is a 2. Thus,we want $P(A|B)$ (Note: It may take a minute for the tutorial to grade this problem)
 
 \singlespace
 ```{r ex7, exercise = TRUE, eval=FALSE}
 eventB <- replicate(10000,{
   dieroll <- sample(1:6,2,replace=TRUE)
   # Define event B here
-  
-  
-  
   
   })
 
@@ -191,10 +188,6 @@ eventAB <- replicate(10000,{
   dieroll <- sample(1:6,2,replace=TRUE)
   # Define event A&B here
   
-  
-  
-  
-  
   })
 
 probAB <-  ________________
@@ -202,8 +195,38 @@ probAB <-  ________________
 ```
 \doublespace
 
+
 ```{r ex7-check}
-grade_this(pass_if_equal(x = round(.result,0), y = 1))
+ex7.answer.space<- replicate(100,{
+  eventB <- replicate(10000,{
+  dieroll <- sample(1:6,2,replace=TRUE)
+  mean(2 %in% dieroll)
+  })
+
+probB <- mean(eventB)
+
+eventAB <- replicate(10000,{
+  dieroll <- sample(1:6,2,replace=TRUE)
+  (sum(dieroll<=4) && (2 %in% dieroll))
+  })
+
+probAB <- mean(eventAB)
+cond_prob <- probAB/probB
+})
+grade_this({
+  if (.result > min(ex7.answer.space) & 
+      .result < max(ex7.answer.space)) {
+    pass("Great work!")
+  }
+  
+  if (.result > max(ex7.answer.space)) {
+    fail("Your answer is a bit high")
+  }
+  if (.result < min(ex7.answer.space)) {
+    fail("Your answer is a bit low")
+  }
+  fail()
+})
 ```
 
 Now, compute the theoretical probability. Does your calculation match what is given above?

@@ -49,7 +49,22 @@ sample(x, size = 2)
 ```
 
 ```{r ex3-check}
-grade_code()
+grade_this({
+
+  if(length(.result) < length(.solution)){
+    fail("It seems you're missing a number or two...")
+  }
+  
+  if(length(unique(.result)) < length(unique(.solution))){
+    fail("I spy a duplicate number.")
+  }
+  
+  if (setequal(.result, .solution)) {
+    pass("Great work!")
+  }
+  
+  fail("Try again! Do you have all numbers 1-10?")
+})
 ```
 
 ### You try it 
@@ -117,7 +132,6 @@ sample(days,size = 10, replace = TRUE)
 grade_code()
 ```
 
-
 ### Example
 
 Suppose that two six-sided dice are rolled and the numbers appearing on the dice are added. Calculate the probabilities of the two events listed below using both theoretical methods and simulation. 
@@ -171,20 +185,32 @@ die_2 <- sample(x=___, size=___, replace=___)
 sum.of.2.dice <- ___ + ___
 ```
 
-```{r ex5b-solution}
-die_1 <- sample(x=1:6, size=10000, replace=TRUE)
-die_2 <- sample(x=1:6, size=10000, replace=TRUE)
-sum.of.2.dice <- die_1 + die_2
-```
-
 ```{r ex5b-check}
-grade_code()
+ex5b.answer.space <- replicate(1000, {
+      die_1 <- sample(x=1:6, size=10000, replace=TRUE)
+      die_2 <- sample(x=1:6, size=10000, replace=TRUE)
+      sum.of.2.dice <- die_1 + die_2
+})
+grade_this({
+  if (.result > min(ex5b.answer.space) & 
+      .result < max(ex5b.answer.space)) {
+    pass("Great work!")
+  }
+  
+  if (.result > max(ex5b.answer.space)) {
+    fail("Your answer is a bit high")
+  }
+  if (.result < min(ex5b.answer.space)) {
+    fail("Your answer is a bit low")
+  }
+  fail()
+})
 ```
 
 
 3. Create a boolean value that represents whether or not the sample space is in the event space, then calculate the mean of the boolean value. 
 
-<!---
+
 ```{r ex5c, exercise = TRUE}
 die_1 <- sample(x=___, size=___, replace=___)
 die_2 <- sample(x=___, size=___, replace=___)
@@ -193,23 +219,33 @@ D <- sum.of.2.dice == ___
 mean(___)
 ```
 
-
 ::: {#ex5c-hint}
 The object `D` records whether the some of the 2 die is equal to 6, so the mean of this object will tell you what?
 :::
 
-```{r ex5c-solution}
-die_1 <- sample(x=1:6, size=10000, replace=TRUE)
-die_2 <- sample(x=1:6, size=10000, replace=TRUE)
-sum.of.2.dice <- die_1 + die_2
-D <- sum.of.2.dice == 6
-mean(D)
-```
-
---->
 
 ```{r ex5c-check}
-grade_code()
+ex5c.answer.space <- replicate(1000, {
+    die_1 <- sample(x=1:6, size=10000, replace=TRUE)
+    die_2 <- sample(x=1:6, size=10000, replace=TRUE)
+    sum.of.2.dice <- die_1 + die_2
+    D <- sum.of.2.dice == 6
+    mean(D)
+})
+grade_this({
+  if (.result > min(ex5c.answer.space) & 
+      .result < max(ex5c.answer.space)) {
+    pass("Great work!")
+  }
+  
+  if (.result > max(ex5c.answer.space)) {
+    fail("Your answer is a bit high")
+  }
+  if (.result < min(ex5c.answer.space)) {
+    fail("Your answer is a bit low")
+  }
+  fail()
+})
 ```
 
 This simulated probability should be close to your theoretical probability, and to your classmates! Compare your answers with your team. 
@@ -236,7 +272,26 @@ mean(E)
 ```
 
 ```{r ex10-check}
-grade_this(pass_if_equal(x = round(.result,1), y = .3))
+ex10.answer.space <- replicate(1000, {
+    die_1 <- sample(x=1:6, size=10000, replace=TRUE)
+    die_2 <- sample(x=1:6, size=10000, replace=TRUE)
+    E <- die_1==2 | die_2 == 2
+    mean(E)
+})
+grade_this({
+  if (.result > min(ex10.answer.space) & 
+      .result < max(ex10.answer.space)) {
+    pass("Great work!")
+  }
+  
+  if (.result > max(ex10.answer.space)) {
+    fail("Your answer is a bit high")
+  }
+  if (.result < min(ex10.answer.space)) {
+    fail("Your answer is a bit low")
+  }
+  fail()
+})
 ```
 
 ### You try it
@@ -386,15 +441,15 @@ First, write code that performs the experiment a single time. You may need to us
 yti4aii.answer.space <- 1
 
 grade_this({
-  if (.result > min(yti4aii.answer.space) & 
-      .result < max(yti4aii.answer.space)) {
+  if (round(.result,0) > min(yti4aii.answer.space) & 
+      .round(.result,0) < max(yti4aii.answer.space)) {
     pass("Great work!")
   }
   
-  if (.result > max(yti4aii.answer.space)) {
+  if (round(.result,0) > max(yti4aii.answer.space)) {
     fail("Your answer is a bit high")
   }
-  if (.result < min(yti4aii.answer.space)) {
+  if (round(.result,0) < min(yti4aii.answer.space)) {
     fail("Your answer is a bit low")
   }
   fail()
@@ -416,8 +471,27 @@ grade_result(pass_if(~identical(.result, 1/8)))
 #Delete this and use simulation here
 ```
 
+
 ```{r yti4bii-check}
-grade_this(pass_if_equal(x = round(.result,2), y = .12))
+yti4bii.answer.space <-  replicate(1000, {
+    cointoss <- sample(c("H","T"), 10, replace=TRUE)
+    mean(sum(cointoss[8:10]=="H")==3)}
+    )
+
+grade_this({
+  if (.result > min(yti4bii.answer.space) & 
+      .result < max(yti4bii.answer.space)) {
+    pass("Great work!")
+  }
+  
+  if (.result > max(yti4bii.answer.space)) {
+    fail("Your answer is a bit high")
+  }
+  if (.result < min(yti4bii.answer.space)) {
+    fail("Your answer is a bit low")
+  }
+  fail()
+})
 ```
 
 ## Submit your work
