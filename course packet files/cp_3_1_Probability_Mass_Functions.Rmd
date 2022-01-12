@@ -1,0 +1,157 @@
+# Section 3.1: Probability Mass Functions
+
+## Random Variables
+
+Given a random experiment with an outcome sample space of $S$. A function that assigns one and only one real number to each element in $S$ is called a **random variable**.
+
+### Example 
+
+1. Consider an experiment that is the single roll of a die, where the number of spots on the face up side of the die when rolled is observed. 
+
+* Outcome space: 
+
+\vspace{1cm}
+
+* Space of the random variable $X$: 
+
+\vspace{1cm}
+
+2. Dr. D has 2 dogs and 2 cats in her household, so $S = \{cat, dog\}$. Let $Y$ be a random variable that denotes the type of animal. $Y$ then maps each element in $S$ to one and only one real number: 
+
+\vspace{2cm}
+
+When the sample space only has two outcomes, 
+
+
+\newpage
+
+### Distribution of a Random Variable:
+
+When a probability distribution has been specified on the sample space of an experiment, we can determine a probability distribution for the possible values of each random variable $X$.
+
+This section is focused on probability distributions for discrete distributions.  It is said that $X$ has a discrete distribution if $X$ can only take the values of a finite number $k$ different numbers $x_{1},x_{2},\dots,x_{k}$ or at most, an infinite sequence of different values $x_{1},x_{2},\dots$.  Random variables that can take any value in an interval are called continuous and will be discussed in a later chapter. Working with discrete random variables requires **summation** while continuous random variables required **integration**.
+
+Discrete variables are integers and usually represent a count of something while continuous variables take values in an interval of real numbers and often measure something.
+
+### Definition: PMF
+
+A discrete random variable is a variable that takes integer values and is characterized by a *probability mass function (pmf)*. The pmf *p* of a random variable $X$ is given by:
+
+\vspace{1cm}
+
+The above equation can be read as: the probability that the random variable $X$ is equal to some value, $x$. Properties that the pmf satisfies:
+
+1.\vspace{1cm}
+
+\noindent 2. 
+
+\vspace{1cm}
+
+The term *probability distribution* is a more generic term that describes the probabilities for each different value a random variable can take on. This holds for both discrete and continuous random variables. We will use the term probability distribution for all random variables, but the *pmf* is specific to discrete random variables, and *pdf* (chapter 4) is specific to continuous random variables. 
+
+
+### Example
+Consider a crooked dice where the cube is shortened in the one-six direction. This has the effect that 1's and 6's have a probability of 1/4 of being rolled, where the other faces each have a probability of 1/8. 
+
+* Define the random variable
+
+\vspace{2cm}
+
+* Write out the probability distribution.
+
+\vspace{3cm}
+
+* Is this a valid pmf?  Explain.
+
+\vspace{2cm}
+
+### You try it
+
+Suppose your roll 2 dice. Let $X$ be the sum of the two die. Write out the pmf. Don't forget you can refer to Example 2.8 in the textbook to visualize the sample space. 
+
+\newpage
+
+\singlespace
+## Using simulation to estimate discrete probability distributions. 
+In the cases we've encountered so far, the sample space and the values of the random variable have been discrete, that is, whole numbers. We will get into continuous random variables in the next chapter. 
+
+
+### Example
+Suppose your roll 2 dice. Let $X$ be the sum of the two die. Use simulation to estimate the probability distribution.
+
+```{r}
+die <- 1:6 
+d1  <- sample(die, 1000, replace = TRUE)
+d2  <- sample(die, 1000, replace = TRUE)
+sum.2d6   <- d1 + d2
+```
+
+The pmf of $X$ is: 
+```{r}
+proportions(table(sum.2d6))
+```
+
+## Plotting the pmf
+We can use the function `plot` to plot the estimate of the pmf using the following code.
+
+```{r}
+plot(proportions(table(sum.2d6)),
+     main="Sum of two dice", ylab="Probability")
+```
+
+\newpage
+\doublespace
+### You try it
+
+1. Three coins are tossed and the number of heads $X$ is counted. Write out the theoretical pmf for $X$ and confirm via simulation.
+
+\vspace{5cm}
+
+
+2. Seven balls number 1-7 are in an urn. Two balls are drawn from the urn without replacement and the sum of $X$ of the numbers is computed. Estimate via simulation the pmf of $X$.
+
+\vspace{6cm}
+
+What are the least likely outcomes of $X$?
+
+
+\newpage
+
+### Challenge Example
+
+Suppose you have a bag full of marbles; 50 are red and 50 are blue. You are standing on a number line, and you draw a marble out of the bag. If you get red, you go left one unit. If you get blue, you go right one unit. This is called a *random walk*. You draw marbles up to 100 times, each time moving left or right one unit. Let $X$ be the number of marbles drawn from the bag until you return to 0 for the first time. The rv $X$ is called the *first return time* since it is the number of steps it takes to return to your starting position.
+
+
+Estimate the pmf of $X$.
+
+\newpage
+
+## Sampling from a known distribution 
+Sometimes you know or are given what the distribution of a random variable is, but have need to draw a random sample. We can still use the `sample()` function to do so, we just provide it a vector of probabilities to use. 
+
+### Example: Blood types
+
+In the United states, human blood comes in four types: O,A,B,AB. Take a sample of thirty blood types with the following probabilities: $P(O) = 0.45, P(A) = 0.4, P(B) = 0.11, P(AB) = 0.04$ 
+
+```{r, eval=FALSE}
+bloodtypes <- c(_____,_____,_____,_____)
+prob_bloodtypes <- c(_____,_____,_____,_____)
+sample_blood <- sample(x =________________, size =_____, prob=________, replace=_____)
+sample_blood[1:10] #quick peek to confirm
+```
+
+The estimated pmf is then: 
+```{r, eval=FALSE}
+proportions(table(sample_blood)) 
+```
+
+### You try it
+
+Suppose the proportion of M&Ms by color is: 14% yellow, 13% Red, 20% Orange, 12% Brown, 20% Green, and 21% Blue. Answer the following questions using simulation. 
+
+a. What is the probability that a randomly selected M&M is not green?
+
+b. What is the probability that a randomly selected M&M is red, orange, or yellow?
+    
+\newpage
+Additional notes.

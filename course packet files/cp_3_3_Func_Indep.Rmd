@@ -1,0 +1,110 @@
+# Section 3.3: Functions of random variables (Speegle 3.4)
+
+There are many reasons why we might be more interested in looking at the distribution of a **function** of a random variable $X$ than the actual variable $X$. One example would be that we're interested in the absolute distance the random variable is away from it's mean: $g(x) = |X-\mu|$, or we want to know the total gain or loss in a stock portfolio by adding up all the sum of the daily results. 
+
+The pmf of $g(X)$ can be computed as follows. For each $y$, the probability that $g(X)=y$ is given by $\sum p(x)$ where the sum is over all values of $x$ such that $g(x)=y$.
+
+\vspace{-0.75cm}
+
+### Example
+Let $X = {-2, -1, 0, 1, 2}$, all equally likely and $g(x) = X^{2}$. Find the pmf of $y=g(x)$, and $E(Y)$. 
+
+\vspace{3cm}
+
+
+### You try it
+Using the random variable $X$ in the above example, find the pmf and expected value of $Y = 2X+1$. 
+
+\vspace{4cm}
+
+
+### Example
+John travels to work five days a week. We will use $X_{1}$ to represent his travel time on Monday, $X_{2}$ to represent his travel time on Tuesday, and so on. 
+
+* Write an equation using $X_{1}, \ldots X_{5}$ that represents his travel time for the week, denoted by $W$.
+
+\vspace{2cm}
+
+* It takes John an average of 18 minutes each day to commute to work. What would you expect his average commute time to be for the week? Explain how you got to this answer? 
+
+\vspace{2cm}
+
+What was a major assumption that we had to make to figure out this example? 
+
+\vspace{2cm}
+
+## Independent Random Variables (Speegle 3.5.1)
+
+We say that two random variables are **independent** if the outcome of $X$ does not give probabilistic information about the outcome of $Y$ and vice versa. 
+
+Give an example of 2 variables that you think are **independent**:
+\vspace{2cm}
+
+
+Give an example of 2 variables that you think are **not independent**.
+\vspace{2cm}
+
+\newpage
+
+## Theorem 3.8: Rules of Expectation
+For random variables $X$ and $Y$, and constants $a$, $b$, and $c$:
+
+$$
+E[aX+bY]=aE[X]+bE[Y] \qquad \mbox{ and } \qquad  E[c]=c
+$$
+
+Refer back to the commute time example. We intuitively reasoned that the expectation of the total time is equal to the sum of the expected individual times. This theorem generalizes and formalizes that statement to say that **the expectation of a sum of random variables is always the sum of the expectation for each random variable.**
+
+### Example
+1. Find $E(2X+5)$ if $E(X) = 4$
+
+\vspace{1cm}
+
+2. Find $E(2X+5Y)$ if $E(X) = 4$ and $E(Y) = -2$
+
+\vspace{1cm}
+
+### You try it
+1. Let $E(X) = 2$. Find $E(3X-1)$. 
+
+\vspace{1cm}
+
+2. Find $E(2)$ 
+
+\vspace{1cm}
+3. Find $E(2X-3Y)$ when $E(X) = -4$ and $E(Y)=1$
+
+\newpage
+
+## Theorem 3.9: Alternative method to calculate variance
+Now that we know some rules of expected value, we can use a simplified method to find the variance of a random variable. 
+
+\vspace{4cm}
+
+### Example
+Let $X = {-2, -1, 0, 1, 2}$, all values equally likely. Find $E(X)$ and $Var(X)$.
+
+\vspace{4cm}
+
+### You try it
+Let $Y = 2x$ where $x = {0, 1, 2}$ and $p(x) = {.1, .5, .4}$. Find $E(X)$ and $Var(X)$. 
+
+
+\newpage
+## Theorem 3.10: Rules of Variance
+
+1. Let $X$ be a random variable and $c$ a constant. Then
+\vspace{2cm}
+
+2. Let $X$ and $Y$ be independent random variables. Then
+\vspace{2cm}
+
+
+### Example
+Suppose that three random variables $X_{1},X_{2},X_{3}$ form a random sample from a distribution for which the mean is 5 and the variance is 3. Determine the value of $E(2X_{1}-3X_{2}+X_{3}-4)$ and Var($2X_{1}-3X_{2}+X_{3}-4$).
+
+
+\newpage
+
+### You try it:
+Marksmanship competition at a certain level requires each contestant to take ten shots with each of two different handguns. Final scores are computed by taking a weighted average of 4 times the number of bull-eyes made with the first gun plus 6 times the number gotten with the second gun. If Bertha has a 30% chance of hitting the bull's-eye with each shot from the first gun and a 40% chance with each shot from the second gun, what is the variance of her score?

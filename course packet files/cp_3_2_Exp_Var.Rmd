@@ -1,0 +1,125 @@
+# Section 3.2: Expected Value & Variance
+
+**NOTE:** We are going out of order from the textbook in Chapter 3.
+
+
+## Expected Value (Speegle Ch 3.2)
+
+Probability mass functions provide a global overview of a random variable's behavior.  Many times we don't need to know everything about a variable.  We often want to summarize the variable.  One feature of a distribution which we might be interested in is the central tendency of a variable. One measure of central tendency is the *expected value* or *mean* of the observation. The term expected value and mean can be used interchangeably.
+
+## Definition: Expected Value
+For a discrete random variable $X$ with a pmf $p$, the *expected value* of $X$ is 
+
+\vspace{2cm}
+
+where the sum is taken over all possible values of the random variable $X$.
+
+\newpage
+
+### Example
+
+Two books are assigned for a statistics class: a textbook costing \$137 and its corresponding study guide costing \$33. The university bookstore determined 20% of enrolled students do not buy either book, 55% buy the textbook only, and 25% buy both books, and these percentages are relatively constant from one term to another.
+
+Let $X$ be a random variable that denotes how much a single student will spend on their statistics book. The pmf is: 
+
+\vspace{3cm}
+
+Interpret this value in context: 
+
+\vspace{3cm}
+
+Confirm your results using simulation. 
+
+
+
+
+\newpage
+
+### You try it:
+
+A retirement portfolio's value increases by 18% during a financial boom and by 9% during normal times. It decreases by 12% during a recession. What is the expected return on this portfolio if each scenario is equally likely? 
+
+* Define a random variable.
+
+\vspace{2cm}
+
+* Write down the pdf.
+
+\vspace{2cm}
+
+* Calculate the theoretical expected value. Write your answer in a full sentence in context of the problem. 
+
+\vspace{3cm}
+
+* Confirm using simulation. 
+
+\newpage
+
+## Variance and standard deviation (Speegle Ch 3.5)
+
+Although the mean is a useful descriptive statistic, it only gives us an idea of where the center of the distribution is located.  For instance, the following table gives the monthly temperature of New York City and San Francisco:
+
+```{r, echo=FALSE,message=FALSE,warning=FALSE}
+library(magrittr)
+tabl <- data.frame(months = c("J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"), 
+                   NYC = c(32,34,42,53,63,72,77,76,68,57,48,37), 
+                   SF = c(49,52,53,56,58,62,63,64,65,61,55,49))
+
+knitr::kable(t(tabl)) %>% kableExtra::kable_styling(full_width=F, position="center", latex_options = c("striped", "hold_position"))
+```
+
+The mean temperature for San Francisco is about 57 degrees and the mean temperature for New York is around 55 degrees.  So, there mean yearly temperature is about the same.  Do you notice anything different about the two cities with regards to monthly temperatures?
+
+\vspace{2cm}
+
+
+To distinguish between 2 distributions with the similar means it might be useful to have a statistic that measures how spread out the distribution is.  The variance and standard deviations are such measures. 
+
+\vspace{-0.5cm}
+
+## Definition: Variance
+Suppose $X$ is a random variable with mean $\mu=E(X)$. The variance of $X$, denoted by Var($X$), is defined as follows:
+
+$$
+Var(X)=\sigma^{2}=E[(X-\mu)^{2}]=\sum_{all k}\left(k-\mu\right)^{2}*P(X=k)
+$$
+
+\vspace{2cm}
+
+The variance of a distribution provides 
+
+\vspace{1cm}
+
+The standard deviation of a random variable $X$ ($SD(X)$) is
+
+
+\vspace{1cm}
+
+
+\newpage
+
+Which of the two distributions below have the larger variance? 
+\singlespace
+```{r, fig.width=8, fig.height=3, fig.align='center'}
+par(mfrow=c(1,2))
+plot(proportions(table(sample(1:5, size=1000, replace=TRUE))), ylab="probability")
+plot(proportions(table(sample(1:10, size=1000, replace=TRUE))), ylab="probability")
+```
+\doublespace
+
+\vspace{2cm}
+
+### Example
+
+Let's return to the statistics book example and calculate $Var(X)$ and $SD(X)$. _Recap: The textbook costs \$137, the study guide costing \$33. 20% of students don't buy either book, 55% buy the textbook only, and 25% buy both books._ Confirm your results using simulation.
+
+
+
+
+
+\newpage
+
+### You try it:
+
+Return to the retirement portfolio question (_Recap: the value increases by 18% during a financial boom and by 9% during normal times, and decreases by 12% during a recession. Each scenario is equally likely_). Calculate the variance and standard deviation. 
+

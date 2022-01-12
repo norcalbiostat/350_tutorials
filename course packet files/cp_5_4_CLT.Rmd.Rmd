@@ -1,0 +1,151 @@
+# Section 5.4 The Central Limit Theorem 
+
+One of the goals for the field of Statistics is to make inference (a conclusion) about the underlying behavior of a characteristic, based on limited information. For example, researchers may be interested in how many days per week high-school aged people are physically active. If we were to measure the number of active days for every single high school aged person in the entire world (the population) and calculate the mean, we would have our answer. However that is completely infeasible and impractical. We can however, take a representative, random sample of youth and calculate their sample mean to estimate this population value. What are some pros and cons to this approach? 
+
+\vspace{4cm}
+
+If we want to estimate a population parameter such as the mean, using an estimate calculated on a sample, we need to know how these estimates behave. This section takes pieces of knowledge we've seen before, along with a few new propositions to give us the _Central Limit Theorem_ that describes the behavior of the sample mean. 
+
+## Definition 5.18: iid
+First lets remind ourselves of the definition of independence from section 3.3 and write that definition down again. 
+
+\newpage
+
+### Example
+I want to understand study habits of students, specifically the number of hours they study for an exam. If I were to put all the names of students in this class into a hat and draw 10, would you consider the results from those students to be independent of each other? Why or why not? 
+
+\vspace{2cm}
+
+What if I put the names of all students at Chico state into the hat and drew 10? 
+
+\vspace{2cm}
+
+What if the hat contained the names of all college students in the United States? 
+
+\vspace{2cm}
+
+So we can say that if the population of interest is large enough.... 
+
+\vspace{2cm}
+
+The term _independently and identically distributed (iid)_ is an important concept in statistics. If random variables $X_{1}, X_{2}, \cdots, X_{n}$ are all mutually independent and all have the same distribution, then they are called _iid_. When you sample from any of the named distribution functions like `rnorm` or `rexp`, you are drawing samples from iid random variables. 
+
+\newpage
+
+## Definition 5.19: Sampling Distribution
+
+The word _statistic_ is a generic term used to describe a numeric summary of a sample of data. When we calculate the mean or variance from a sample, this is called a _sample statistic_. E.g.
+
+```{r}
+x <- rnorm(1000)
+mean(x) # sample mean
+```
+
+We know that each time we draw a random sample, we will generate a slightly different sample statistic.
+
+```{r}
+replicate(5, {
+  mean(rnorm(1000))  
+})
+```
+
+The distribution of these sample statistics is called the _sampling distribution_. Knowing the behavior of the sampling distribution is key to making conclusions based on data. 
+
+## Proposition 5.1
+If $X_{1}, X_{2}, \cdots X_{n}$ are iid with mean $\mu$ and variance $\sigma^{2}$, then the sample mean $\bar{X} = \frac{1}{n}\sum_{i}{X_{i}}$ has the following mean and variance: 
+
+$$
+E[\bar{X}] = \mu \qquad Var(\bar{X}) = \frac{\sigma^{2}}{n}
+$$
+
+Now recall that the standard normal random variable $Z$ is calculated as $Z = \frac{x-\mu}{\sigma}$. We _standardize_ the variable $x$ by subtracting by it's mean and dividing by it's standard deviation. 
+
+\newpage
+
+## Theorem 5.3: The Central Limit Theorem (CLT)
+
+If $X_{1}, X_{2}, \cdots X_{n}$ are iid with mean $\mu$ and variance $\sigma^{2}$, then 
+
+$$
+\frac{\bar{X} - \mu}{\frac{\sigma}{\sqrt{n}}} \rightarrow Z \qquad \mbox{ as } n \rightarrow \infty
+$$
+
+where $Z$ is the Standard normal random variable. 
+
+### Example
+
+Let $X_{1}, X_{2}, \cdots X_{n}$ be independent Poisson random variables with rate 2. Assume that $n=30$ is considered a large enough sample for the CLT to hold. Then the CLT says
+
+\vspace{3cm}
+
+
+Let's look at this via simulation
+
+\vspace{3cm}
+
+
+### You try it
+
+Let $X_{1}, X_{2}, \cdots X_{n}$ be independent exponential random variables with rate 1/3. What is the distribution of the mean from a sample of $n=50$? Figure this out both theoretically and confirm your results using simulation. 
+
+\newpage
+
+## Usefulness of the CLT in practice
+
+In summary, the CLT says, 
+
+\vspace{3cm}
+
+
+but how large is large? 
+
+### Example
+Let $X_{1}, X_{2}, \cdots X_{n}$ be iid Uniform random variables on the range [1, 10]. What is the distribution of the mean at varying sample sizes? 
+\singlespace
+```{r}
+x <- runif(1000, 1, 10)
+n.5   <- replicate(1000, {mean(runif(5,   1, 10)) })
+n.10  <- replicate(1000, {mean(runif(10,  1, 10)) })
+n.30  <- replicate(1000, {mean(runif(30,  1, 10)) })
+n.50  <- replicate(1000, {mean(runif(50,  1, 10)) })
+n.100 <- replicate(1000, {mean(runif(100, 1, 10)) })
+```
+```{r, fig.width=10, fig.height=5}
+par(mfrow=c(2,3))
+hist(x);hist(n.5);hist(n.10); hist(n.30); hist(n.50);hist(n.100)
+```
+
+For this distribution, 
+\doublespace
+
+\newpage
+But what about something that is heavily skewed? Let's look at a Zero-inflated Poisson distribution. This occurs when there is a low probability of an event happening to begin with, but when it does there is a poisson distribution for the number of events. E.g. number of cigarettes each day a person smokes (in 2022).
+\singlespace
+```{r}
+create.zip <- function(nsamp){
+  ifelse(rbinom(nsamp, size = 1, prob = .5) > 0, 0, rpois(nsamp, lambda = 1))
+}
+x <- create.zip(1000)
+n.5   <- replicate(1000, {mean(create.zip(5))})
+n.10  <- replicate(1000, {mean(create.zip(10))})
+n.30  <- replicate(1000, {mean(create.zip(30))})
+n.50  <- replicate(1000, {mean(create.zip(50))})
+n.100 <- replicate(1000, {mean(create.zip(100))})
+```
+```{r, fig.width=10, fig.height=5}
+par(mfrow=c(2,3))
+hist(x);hist(n.5);hist(n.10); hist(n.30); hist(n.50);hist(n.100)
+```
+\doublespace
+
+\newpage
+
+### You try it
+Roughly what is the smallest sample size ($n$) do we need to say that the mean of $n$ Exponential random variables with rate 1/2 converge to a Normal distribution? Use Proposition 5.1 to figure out what the mean and sd of the sampling distribution should be, and plot a Normal density curve over your final answer to confirm. 
+
+\newpage
+
+## Concluding remarks
+
+
+

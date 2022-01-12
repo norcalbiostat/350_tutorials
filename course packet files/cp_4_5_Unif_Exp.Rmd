@@ -1,0 +1,121 @@
+# Section 4.5 Uniform and Exponential Random Variables
+
+## Uniform (Speegle 4.5.1)
+
+**Situation:** Uniform random variables can be either discrete or continuous, and describe a distribution where all outcomes are equally likely. Examples include
+\singlespace
+* the result of a die roll
+* pseudo random number generator
+* round off error in measurements 
+
+\doublespace
+
+**pdf:** $f(x)=\frac{1}{b-a} \qquad a \leq x \leq b$
+
+**Distributional Notation:** $X\sim Unif(a,b)$
+
+**Mean and variance:** $E[X]=\frac{b+a}{2} \qquad Var(X)=\frac{(b-a)^{2}}{12}$
+
+\singlespace
+**R commands:**
+
+* `dunif(x, a, b)` to compute $P(X == x)$ 
+* `punif(x, a, b)` to compute $P(X\leq x)$ (the cdf)
+* `runif(N, a, b)` to randomly draw N samples from a $X \sim Unuf(a,b)$ distribution.
+
+**Visualizing the shape of the distribution**
+```{r, fig.width=10, fig.height=2.5, fig.align='center', echo=FALSE}
+par(mfrow=c(1,3))
+hist(runif(1000, 0, 1), main="a=0, b=1")
+hist(runif(1000, -2, 2), main="a=-2, b=2")
+hist(runif(1000, 0, 10), main="a=0, b=10")
+```
+What happens to the distribution as you change a and b? 
+\doublespace
+
+\newpage
+
+### Example
+Suppose a random variable $X$ has a uniform distribution on the interval [-3,8], then the p.d.f. of $X$ is
+\vspace{2cm}
+
+
+Calculate P$(0\leq X\leq 4)$. Do this by hand, and confirm your answer using `punif`
+
+\vspace{3cm}
+
+Calculate the mean and standard deviation. Do this by hand, and confirm your answer using simulation.
+
+\vspace{3cm}
+
+### You try it
+Suppose that a random variable $X$ has a uniform distribution on the interval [-4,10]. Write down the pdf of $X$, find the mean, standard deviation and the value of $P(-1 < X < 6)$ both theoretically and using simulation. 
+
+
+
+\newpage
+## Exponential Random Variables (Speegle 4.5.2)
+
+**Situation:** Exponential random variables measure the waiting time until the first event occurs in a Poisson process. 
+
+* The waiting time until an electronic component fails could be exponential 
+* The time between customers in a store. 
+
+**Distributional Notation:** Let $X\sim Exp(\lambda)$ be an exponential random variable with rate $\lambda$.
+
+**pdf:** $f(x) = \lambda e^{-\lambda y} \qquad y \geq 0$
+
+**Mean and variance:** $E[X]=\frac{1}{\lambda} \qquad Var(X)=\frac{1}{\lambda^{2}}$
+
+\singlespace
+**R commands:**
+
+* `dunif(x, lambda)` to compute $P(X == x)$ 
+* `punif(x, lambda)` to compute $P(X\leq x)$ (the cdf)
+* `runif(N, lambda)` to randomly draw N samples from a $X \sim Exp(\lambda)$ distribution.
+
+**Visualizing the shape of the distribution**
+```{r, fig.width=10, fig.height=3, fig.align='center', echo=FALSE}
+par(mfrow=c(1,3))
+hist(rexp(1000, .01), main="lambda = .01")
+hist(rexp(1000, 1), main="lambda = 1")
+hist(rexp(1000, 10), main="lambda = 10")
+```
+What happens to the distribution as you change lambda? 
+\doublespace
+
+\newpage
+
+### Example
+
+Suppose the time to failure (in years) for a particular component is distributed as an exponential random variable with rate $\lambda=1/5$. For better performance, the system has two components installed, and the system will work as long as either components installed, and the system will work as long as either component is functional. Assume the time to failure for the two components is independent. What is the probability that the system will fail before 10 years has passed?
+
+* Problem setup
+
+\vspace{2cm}
+
+* Theoretical Probability
+
+\vspace{3cm}
+
+* Estimated Probability using Simulation
+
+\vspace{3cm}
+
+\newpage
+
+### You try it
+
+Customers arrive at a teller's window at a uniform rate 5 per hour. Let $X$ be the length in minutes of time that the teller has to wait until they see their first customer after starting their shift.
+
+\vspace{2cm}
+
+a) Calculate the mean and standard deviation of the wait time in minutes using both theoretical formulas and simulation. 
+
+\vspace{3cm}
+
+b) Find the probability that the teller waits less than 10 minutes for their first customer. Use both theoretical formulas (`pexp`) and simulation (`rexp`). 
+
+\newpage
+Additional notes.
+

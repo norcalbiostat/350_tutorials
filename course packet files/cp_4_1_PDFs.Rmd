@@ -1,0 +1,124 @@
+# Section 4.1: Probability density functions
+
+Random variables that can assume every value in an interval have continuous distributions.  A continuous distribution can also be characterized by its probability density function (p.d.f.). 
+
+Many experiments or observations of random phenomenon do not have integers as outcomes, but instead are measurements selected from an interval of numbers.  For example, you could find the length of time that it takes when waiting in line at the grocery store or the weight of a bag of potato chips advertised at 1 oz.  If the measurements could come from an interval of possible outcomes, we call them continuous-type data.
+
+\vspace{-0.5cm}
+## Definition 4.1: Probability distribution function (pdf)
+A probability density function (pdf) is a function $f$ such that:
+
+1. $f(x)\geq 0$ for all $x$
+2. $\int f(x)dx=1$ over the domain of support.
+
+\vspace{-0.25cm}
+### Example
+Suppose $f_{Y}(y)=4y^{3}$, $0\leq y\leq 1$. Is this a valid probability distribution? Why?
+
+\vspace{1cm}
+
+## Definition 4.3: Continuous random variable
+
+A *continuous* random variable $X$ is a random variable described by a pdf in the sense that...
+
+\vspace{2cm}
+
+whenever $a\leq b$, including the cases $a=-\infty$ or $b=\infty$.
+
+### Example
+Let $X$ be a random variable with the following p.d.f.
+\[
+f(x)=\{
+\begin{array}{cc}
+\frac{2}{3}x^{-1/3}& {for 0<x<1,}\\
+0& {otherwise}.
+\end{array}
+\]
+Compute P$(X\leq8/27)$.
+\vspace{3cm}
+
+```{r, eval=FALSE}
+integrand <- function(y) { ___________________}
+integrate(integrand,lower= _____ ,upper= _______)
+```
+
+
+### You try it
+Do both by hand, and using R. Don't forget to write your code down in these notes. 
+
+a. Suppose $f_{Y}(y)=4y^{3}$, $0\leq y\leq 1$. Find $P(0\leq Y\leq\frac{1}{2})$. 
+
+\vspace{3cm}
+
+b. For the random variable $Y$ with pdf $f(y)=\frac{2}{3}+\frac{2}{3}y$ for $0\leq y\leq 1$, find $P(\frac{3}{4}\leq Y\leq 1)$.
+
+
+\newpage
+## Definition 4.4: Cumulative distribution function (cdf)
+
+The _cumulative distribution function (cdf)_ associated with $X$ (either discrete or continuous) is the function $F(x)=P(X\leq x)$, or written out in terms of the pdf's and cdf's.
+\[
+F(x)=P(X\leq x)=\int_{-\infty}^{x}f(t)dt
+\]
+for continuous variables and
+\[
+F(x)=P(X\leq x)=\sum_{n=-\infty}^{x}p(n)
+\]
+for discrete variables. 
+
+## Theorem 4.1 
+Let $X$ be a continuous random variable with pdf $f$ and cdf $F$.
+
+1. \vspace{0.5cm}
+2. \vspace{0.5cm}
+3. \vspace{0.5cm}
+
+### Example
+Find the cdf for the random variable $Y$ for the following pdf: $f_{Y}(y)=4y^{3}$ for $0\leq y\leq 1$. Calculate $P(0\leq Y \leq 1/2)$ using $F_{Y}(y)$.
+
+\newpage
+### Example
+A random variable $Y$ has CDF as follows:
+
+$$
+F(y)= \Bigg\{
+\begin{array}{cc}
+0 & \mbox{ for } y<0\\
+ln(y)&1\leq y\leq e\\
+1&e<y\\
+\end{array}
+$$
+
+\noindent a. Find $P(Y<2)$.
+\vspace{3cm}
+
+
+
+\noindent b. Find $P(2<Y\leq 2\frac{1}{2})$
+\vspace{3cm}
+
+
+\noindent c. Find $P(2<Y<2\frac{1}{2})$
+\vspace{3cm}
+
+
+\noindent d. Find $f(y)$
+
+\newpage
+### You try it
+a. The cdf for a random variable $Y$ is defined by $F(y)=0$ for $y<0$, $F(y)=4y^{3}-3y^{4}$ for _$0\leq y\leq 1$; and $F(y)=1$ for $y>1$. Find $P(\frac{1}{4}<Y<\frac{3}{4})$. 
+
+\vspace{4cm}
+
+b. Suppose $F(y)=\frac{1}{12}\left(y^{3}+y^{2}\right)$, $0\leq y\leq 2$. Find $f(y)$.
+
+\vspace{4cm}
+
+
+c. In a certain country, the distribution of a family's disposable income, $Y$, is described by the pdf $f(y)=ye^{-y}$, $y\geq 0$. Find $F(y)$.
+
+\vspace{4cm}
+
+\newpage
+Additional notes.
+

@@ -1,0 +1,20 @@
+# Section 4.3: Variance and Standard Deviation
+
+Just like for discrete variables, the variance and the standard deviation measures the spread of the random variable around its mean. The formulas remain unchanged for the continuous random variable.
+
+\vspace{4cm}
+
+### Example
+Find the variance of the random variable $Y$, where
+\[
+f_{Y}(y)=3(1-y)^{2},0<y<1
+\]
+
+\newpage
+
+### You try it
+1. An exponential random variable has the following pdf: $f_{Y}(y)=\lambda e^{-\lambda y}$, $y\geq0$.  Show that the variance of $Y$ is $1/\lambda^{2}$.
+
+\vspace{5cm}
+
+2. A random variable $Y$ is described by the pdf $f_{Y}(y)=2y$ for $0\leq y\leq 1$. What is the standard deviation of $3Y+2$
