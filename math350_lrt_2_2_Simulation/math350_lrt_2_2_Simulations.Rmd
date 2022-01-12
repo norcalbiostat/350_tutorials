@@ -6,7 +6,7 @@ output:
       allow_skip: true
 runtime: shiny_prerendered
 description: > 
-  Dr. D add in description. 
+   Simulation "simulates" a mathematical problem by using repeated sampling from a sample space and observing what occurs. 
 ---
 
 ```{r setup, include=FALSE}
@@ -21,48 +21,6 @@ tutorial_options(
 )
 ```
 
-##Simulation
-
-How would you find the probability of rolling a 4 on a six sided die?
-
-Theoretical Probability: 
-
-Estimated Probability: 
-
-### Example using R
-
-Continuing with the deck of cards example, find the probability of selected events using R code. 
-
-* $P(A)$: `length(aces) / length(deck)`
-
-```{r ex1, exercise = TRUE}
-aces <- ___
-numbers <- ___
-suits <- ___
-deck <- ___
-length(aces) / length(deck)
-```
-
-::: {#ex1-hint}
-Did you tell `R` what `aces` and `deck` are? Checkout the tutorial from 2.1 for a reminder of how these were defined.
-:::
-
-```{r ex1-check}
-grade_result(pass_if(~identical(.result, length(aces.and.hearts) / length(deck))))
-```
-
-* $A\cup B$: `length(aces.and.hearts) / length(deck)`
-
-```{r ex2, exercise = TRUE}
-deck<- ___
-aces.and.hearts<- ___
-length(aces.and.hearts) / length(deck)
-```
-
-```{r ex2-check}
-grade_result(pass_if(~identical(.result,length(aces.and.hearts) / length(deck))))
-```
-
 ## Simulations with `sample()`
 
 ```{r worep, exercise.reveal_solution=TRUE}
@@ -75,18 +33,19 @@ question_text(
 
 ```
 
+
 ### Example
 
-Take a sample of 2 from the numbers 1 through 10 without replacement.
+Take a sample of 2 from the numbers 1 through 10 without replacement. 
 
 ```{r ex3, exercise = TRUE}
-x <- 1:10   # Define the space
-sample(x, size = 2) # Sample 2 items from the space
+x <- ___   
+sample(___, size = ___) 
 ```
 
 ```{r ex3-solution}
-x <- 1:10   # Define the space
-sample(x, size = 2) # Sample 2 items from the space
+x <- 1:10   
+sample(x, size = 2) 
 ```
 
 ```{r ex3-check}
@@ -102,8 +61,9 @@ months <- c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug",
 sample(__________,size = _____)
 ```
 
-::: {#yti2-hint}
-You need to tell `R` where to sample from and how big of a sample to take. The default setting is `sample(df, size = , replace = FALSE)`.  :::
+:::{#yti2-hint}
+You need to tell `R` where to sample from and how big of a sample to take. The default setting is `sample(df, size = , replace = FALSE)`.
+:::
 
 ```{r yti1-solution}
 months <- c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug",
@@ -118,10 +78,11 @@ grade_code()
 The defaults can be changed. For instance, if you want to sample **with replacement** you would just add `replace=TRUE` to the command. This allows you to sample more values than the size of the sample space
 
 ### Example
+Sample 10 times from the vector 1:5. 
 
 ```{r ex4, exercise = TRUE}
-x <- 1:5 
-sample(x, size = 10, replace = TRUE)
+x <- ___
+sample(___, size = ___, replace = ____)
 ```
 
 ```{r ex4-solution}
@@ -136,19 +97,19 @@ grade_code()
 
 ### You try it
 
-Create a sample of 10 random days of the week. 
+Create a sample of 10 random days of the week. Just use the first two letters in the day name, and all lowercase.  
 
 ```{r yti2, exercise = TRUE}
 days <- _______
 sample(__________,size = _____, replace = _____)
 ```
 
-::: {#yti2-hint}
-Thee tutorials are case sensitive and order matters. The days should look like this `"Mon", "Tues", "Weds",..`. 
+:::{#yti2-hint}
+Thee tutorials are case sensitive and order matters. The days should look like this `"mo", "tu", "we",..`. 
 :::
 
 ```{r yti2-solution}
-days <- c("Mon","Tues","Weds","Thurs","Fri","Sat","Sun")
+days <- c("mo","tu","we","th","fr","sa","su")
 sample(days,size = 10, replace = TRUE)
 ```
 
@@ -164,13 +125,33 @@ Suppose that two six-sided dice are rolled and the numbers appearing on the dice
 * Event D: The sum of the two dice is 6.
 * Event E: At least 1 die is a 2. 
 
-First we simulate the results from two die rolls, and the sample space that represents the sum of the two numbers added together.
+#### Event D: _The sum of the two dice is 6._
+
+**Theoretical Probability:**
+
+```{r ex7, exercise = TRUE}
+
+```
+
+::: {#ex7-hint}
+How many ways can two die add to 6? How many total different combinations are there?
+:::
+
+```{r ex7-check}
+grade_result(pass_if(~identical(.result, 5/36)))
+```
+
+
+**Simulation:**
+
+A successful simulation is built up in stages. First you create the sample space, then the event space. Then you identify the proportion of values drawn from the sample space that fall into the event space. 
+
 
 1. Create two vectors, each length 10,000 by sampling the numbers from 1 to 6. These represent the rolls on each of two dice. 
 
 ```{r ex5a, exercise = TRUE}
-die_1 <- sample(x=1:6, size=10000, replace=TRUE)
-die_2 <- sample(x=1:6, size=10000, replace=TRUE)
+die_1 <- sample(x=___, size=___, replace=___)
+die_2 <- sample(x=___, size=___, replace=___)
 ```
 
 ```{r ex5a-solution}
@@ -185,9 +166,9 @@ grade_code()
 2. Add these two vectors of dice results together to create the sample space. 
 
 ```{r ex5b, exercise = TRUE}
-die_1 <- sample(x=1:6, size=10000, replace=TRUE)
-die_2 <- sample(x=1:6, size=10000, replace=TRUE)
-sum.of.2.dice <- die_1 + die_2
+die_1 <- sample(x=___, size=___, replace=___)
+die_2 <- sample(x=___, size=___, replace=___)
+sum.of.2.dice <- ___ + ___
 ```
 
 ```{r ex5b-solution}
@@ -200,59 +181,57 @@ sum.of.2.dice <- die_1 + die_2
 grade_code()
 ```
 
-Let's look at event D: _The sum of the two dice is 6._
 
-Theoretical Probability: 
+3. Create a boolean value that represents whether or not the sample space is in the event space, then calculate the mean of the boolean value. 
 
-```{r ex7, exercise = TRUE}
-5/36 #should remove and make them do it?
+<!---
+```{r ex5c, exercise = TRUE}
+die_1 <- sample(x=___, size=___, replace=___)
+die_2 <- sample(x=___, size=___, replace=___)
+sum.of.2.dice <- ___ + ___
+D <- sum.of.2.dice == ___
+mean(___)
 ```
 
-::: {#ex7-hint}
-How many ways can two die add to 6? How many total different combinations are there?
+
+::: {#ex5c-hint}
+The object `D` records whether the some of the 2 die is equal to 6, so the mean of this object will tell you what?
 :::
 
-```{r ex7-check}
-grade_result(pass_if(~identical(.result, 5/36)))
-```
-
-Simulation:
-
-```{r ex8, exercise = TRUE}
+```{r ex5c-solution}
 die_1 <- sample(x=1:6, size=10000, replace=TRUE)
 die_2 <- sample(x=1:6, size=10000, replace=TRUE)
 sum.of.2.dice <- die_1 + die_2
 D <- sum.of.2.dice == 6
-sum(D)/length(D)
-mean(D) # exact same formula -- faith make sure the correct answer can be found either way sum/length or mean -- should I remove the formulas? either will produce correc answer
+mean(D)
 ```
 
-::: {#ex8-hint}
-The object `D` records whether the some of the 2 die is equal to 6, so the mean of this object will tell you what?
-:::
+--->
 
-```{r ex8-check}
-grade_this(pass_if_equal(x = round(.result,2), y = .14))
+```{r ex5c-check}
+grade_code()
 ```
 
-Let's look at event E: _At least 1 die is a 2._
+This simulated probability should be close to your theoretical probability, and to your classmates! Compare your answers with your team. 
 
-Theoretical:
+#### Event E: _At least 1 die is a 2._
+
+**Theoretical Probability**
 
 ```{r ex9, exercise = TRUE}
-11/36
+
 ```
 
 ```{r ex9-check}
 grade_result(pass_if(~identical(.result, 11/36)))
 ``` 
 
-Simulation: Create our vector of TRUE and FALSES, and take the mean. 
+**Simulation**
 
 ```{r ex10, exercise = TRUE}
-die_1 <- sample(x=1:6, size=10000, replace=TRUE)
-die_2 <- sample(x=1:6, size=10000, replace=TRUE)
-E <- die_1==2 | die_2==2
+die_1 <- ____
+die_2 <- ____
+E <- die_1==____ | die_2 == ____
 mean(E)
 ```
 
@@ -265,8 +244,7 @@ grade_this(pass_if_equal(x = round(.result,1), y = .3))
 Roll three six-sided dice and add all the face up numbers. Use simulation to estimate the probability that the sum of the three dice is at least 10.
 
 ```{r yti3, exercise = TRUE}
-#Replace this with the code for a simulation
-mean(D) 
+
 ```
 
 ::: {#yti3-hint}
@@ -274,7 +252,28 @@ You will have to add multiple lines of code. Checkout the examples we have done.
 :::
 
 ```{r yti3-check}
-grade_this(pass_if_equal(x = round(.result,2), y = .17))
+yti3.answer.space <- replicate(100, {
+  mean(
+    replicate(1000,{
+      sum(sample(x=1:6, size=3, replace=TRUE))>=10
+    })
+  )
+})
+
+grade_this({
+  if (.result > min(yti3.answer.space) & 
+      .result < max(yti3.answer.space)) {
+    pass("Great work!")
+  }
+  
+  if (.result > max(yti3.answer.space)) {
+    fail("Your answer is a bit high")
+  }
+  if (.result < min(yti3.answer.space)) {
+    fail("Your answer is a bit low")
+  }
+  fail()
+})
 ```
 
 
@@ -285,8 +284,8 @@ grade_this(pass_if_equal(x = round(.result,2), y = .17))
 Simulate rolling a dice 7 times and computing the sum of all rolls and recording if the sum is greater then 30.
 
 ```{r ex11, exercise = TRUE}
-dice <- sample(1:6, size=7,replace=TRUE)
-sum(dice)>30
+dice <- sample(___, size=___,replace=___)
+___(____)>____
 ```
 
 ```{r ex11-solution}
@@ -301,9 +300,9 @@ grade_code()
 Let's run this experiment 5 times. 
 
 ```{r ex12, exercise = TRUE}
-replicate(n=5, {
-  dice <- sample(1:6, size=7,replace=TRUE)
-  sum(dice)>30
+replicate(n=___, {
+  dice <- sample(___, size=___,replace=___)
+  ___(____)>____
   })
 ```
 
@@ -321,9 +320,9 @@ grade_code()
 We will almost always want to replicate things a large number of times, say $n=10000$. We then store the output in a vector.
 
 ```{r ex13, exercise = TRUE}
-results_dice <- replicate(n = 10000,{
-  dice <- sample(1:6, size=7,replace=TRUE)
-  sum(dice)>30
+results_dice <- replicate(n=___, {
+  dice <- sample(___, size=___,replace=___)
+  ___(____)>____
   })
 ```
 
@@ -341,11 +340,11 @@ grade_code()
 Now, calculate the probability of rolling a die 7 times and getting a sum larger than 30.
 
 ```{r ex14, exercise = TRUE}
-results_dice <- replicate(n = 10000,{
-  dice <- sample(1:6, size=7,replace=TRUE)
-  sum(dice)>30
+results_dice <- replicate(n=___, {
+  dice <- sample(___, size=___,replace=___)
+  ___(____)>____
   })
-mean(results_dice)
+mean(____)
 ```
 
 ```{r ex14-solution}
@@ -420,8 +419,4 @@ encoder_logic()
 ```{r encode, echo=FALSE}
 encoder_ui(default_ui(url = ""))
 ```
-
-
-
-
 
