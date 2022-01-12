@@ -381,8 +381,24 @@ grade_result(pass_if(~identical(.result, 21/36)))
 First, write code that performs the experiment a single time. You may need to use the function abs which takes the absolute value of a number. Then use replicate and store them in a vector and calculate the mean to determine the probability.
 :::
 
+
 ```{r yti4aii-check}
-grade_this(pass_if_equal(x = round(.result,2), y = .67))
+yti4aii.answer.space <- 1
+
+grade_this({
+  if (.result > min(yti4aii.answer.space) & 
+      .result < max(yti4aii.answer.space)) {
+    pass("Great work!")
+  }
+  
+  if (.result > max(yti4aii.answer.space)) {
+    fail("Your answer is a bit high")
+  }
+  if (.result < min(yti4aii.answer.space)) {
+    fail("Your answer is a bit low")
+  }
+  fail()
+})
 ```
 
 
