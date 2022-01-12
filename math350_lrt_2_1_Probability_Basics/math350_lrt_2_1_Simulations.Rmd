@@ -6,7 +6,7 @@ output:
       allow_skip: true
 runtime: shiny_prerendered
 description: > 
-  Dr. D add in description. 
+  Probability is a way to mathematically describe random events. 
 ---
 
 ```{r setup, include=FALSE}
@@ -51,7 +51,7 @@ First create the sample space. I am also printing the vector to ensure that what
 grade_code()
 ```
 
-Define event A
+Define event A using the elements defined in the `deck`, e.g. `"AH", "AC", "AD", "AS"`. 
 ```{r eventA, exercise = TRUE, exercise.blanks = TRUE}
 (aces <-___) 
 ```
@@ -61,20 +61,49 @@ Define event A
 ```
 
 ```{r eventA-check}
-grade_code()
+grade_this({
+  if(length(.result) < length(.solution)){
+    fail("It seems you're missing a card or two...")
+  }
+  
+   if(length(unique(.result)) < length(unique(.solution))){
+    fail("I spy a duplicate card.")
+   }
+  
+  if (setequal(.result, .solution)) {
+    pass("Great work!")
+  }
+  
+  fail("Try again! Do your cards match those found in the deck? (e.g. 'AC' not 'AceClubs')")
+})
 ```
 
-Define event B
+Define event B (again using elements defined in `deck` e.g `2H`. 
 ```{r eventB, exercise = TRUE, exercise.blanks = TRUE}
-(hearts <- paste0(c(1:10, "J", "Q", "K", "A"), "H"))
+
 ```
 
 ```{r eventB-solution}
-(hearts <- paste0(c(1:10, "J", "Q", "K", "A"), "H"))
+(hearts <- paste0(c(2:10, "J", "Q", "K", "A"), "H"))
 ```
 
 ```{r eventB-check}
-grade_code()
+grade_this({
+
+  if(length(.result) < length(.solution)){
+    fail("It seems you're missing a card or two...")
+  }
+  
+  if(length(unique(.result)) < length(unique(.solution))){
+    fail("I spy a duplicate card.")
+  }
+  
+  if (setequal(.result, .solution)) {
+    pass("Great work!")
+  }
+  
+  fail("Try again! Do your cards match those found in the deck? (e.g. '2H' not 'H2')")
+})
 ```
 
 Use R functions to find the following statements. Reminder in these tutorials (only) R code chunks don't talk to each other so you have to define your vectors each time. This does NOT happen in homework. 
@@ -94,7 +123,17 @@ hearts <- paste0(c(1:10, "J", "Q", "K", "A"), "H")
 ```
 
 ```{r union-check}
-grade_code()
+grade_this({
+ if(length(.result) < length(.solution)){
+    fail("It seems you're missing a card or two...")
+  }
+
+  if (setequal(.result, .solution)) {
+    pass("Great work!")
+  }
+  
+  fail()
+})
 ```
 
 * $A\cap B$ 
@@ -112,6 +151,17 @@ hearts <- paste0(c(1:10, "J", "Q", "K", "A"), "H")
 ```
 
 ```{intersect-check}
+grade_this({
+ if(length(.result) < length(.solution)){
+    fail("It seems you're missing a card or two...")
+  }
+
+  if (setequal(.result, .solution)) {
+    pass("Great work!")
+  }
+  
+  fail()
+})
 ```
 
 * $B^{c}$ 
@@ -135,7 +185,17 @@ deck <- paste0(numbers, suits)
 ```
 
 ```{r complement-check}
+grade_this({
+ if(length(.result) < length(.solution)){
+    fail("It seems you're missing a card or two...")
+  }
 
+  if (setequal(.result, .solution)) {
+    pass("Great work!")
+  }
+  
+  fail()
+})
 ```
 
 ## Probability rules
