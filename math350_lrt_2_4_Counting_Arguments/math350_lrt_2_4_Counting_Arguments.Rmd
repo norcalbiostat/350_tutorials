@@ -1,0 +1,331 @@
+---
+title: "Section 2.4 Counting Arguments"
+output: 
+    learnr::tutorial:
+      progressive: true
+      allow_skip: true
+runtime: shiny_prerendered
+description: > 
+  This section presents some common methods for counting the number of outcomes in a set.  When there are a lot of outcomes in an experiment, it is convenient to have a method of determining how many outcomes there are in $S$.
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(learnrhash)
+gradethis::gradethis_setup()
+knitr::opts_chunk$set(echo = FALSE, highlight = TRUE)
+tutorial_options(
+  exercise.blanks = TRUE, 
+  exercise.reveal_solution = FALSE
+)
+```
+
+### Example: Despite all my rage...
+Let $E_{1}$ denote the selection of a rat form a cage containing one female (F) rat and one male (M) rat.  Let $E_{2}$ denote the administering of either drug A, drug B, or a placebo to the selected rat.
+
+How many possible outcomes are there?
+<!---
+```{r ex1a}
+question_text(
+  "How many possible outcomes are there? Enter numeric answer below.",
+  answer("", message = "Don't forget to capitalize", correct=TRUE),
+  allow_retry = TRUE,
+  trim = FALSE
+)
+```
+--->
+List the possible outcomes in vector.:
+
+```{r ex1b, exercise = TRUE}
+
+```
+
+:::{#ex1b-hint}
+The tutorials are case sensitive and order matters. Use "F" to represent female, "M" for male,"A" and "B" for the drugs, and "P" for the placebo.
+:::
+
+```{r ex1b-solution}
+rats <- c("FA", "FB", "FP", "MA", "MB", "MP")
+```
+
+```{r ex1b-check}
+grade_this({
+  if(length(.result) < length(.solution)){
+    fail("It seems you're missing an outcome or two...")
+  }
+  
+   if(length(unique(.result)) < length(unique(.solution))){
+    fail("I spy a duplicate outcome.")
+   }
+  
+  if (setequal(.result, .solution)) {
+    pass("Great work!")
+  }
+  
+  fail("Try again! Do the number of outcomes match your answer above?")
+})
+```
+
+### You try it
+
+1.  Each year starts on one of the seven days (Sunday through Saturday). Each year is either a leap year (i.e., it includes February 29) or not. How many different calendars are possible for a year? Use `R` as a calculator below.
+
+```{r yti1a, exercise = TRUE}
+
+```
+
+```{r yti1a-check}
+grade_result(pass_if(~identical(.result, 14)))
+```
+
+2.  A chemical engineer wishes to observe the effects of temperature, pressure, and catalyst concentration on the yield resulting from a certain reaction. If she intends to include two different temperatures, three pressures, and two levels of catalyst, how many different runs must she make in order to observe each temperature-pressure catalyst combination exactly twice?
+
+```{r yti1b, exercise = TRUE}
+
+```
+
+```{r yti1b-check}
+grade_result(pass_if(~identical(.result, 24)))
+```
+
+3.  A restaurant offers a choice of four appetizers, fourteen entrees, six desserts, and five beverages. How many different meals are possible if a diner intends to order only three items, one from each menu? That is, you can't have two desserts and no entree.
+
+```{r yti1c, exercise = TRUE}
+
+```
+
+```{r yti1c-check}
+grade_result(pass_if(~identical(.result,1156))) 
+```
+
+## Permutations
+
+$$
+n! = n * (n-1) * (n-2) * \ldots * 1
+$$
+
+This is how to calculate a factorial in `R`.
+
+```{r permutations, exercise = TRUE}
+factorial(3)
+```
+
+```{r permutations-solution}
+factorial(3)
+```
+
+```{r permutations-check}
+grade_code()
+```
+
+### Example
+
+The "ice cream club" is hosting a make-your-own sundae at which the following are provided:
+
+-   Ice Cream flavors: Chocolate, Cookies-n-cream, Strawberry, Vanilla
+-   Toppings: Caramel, Hot Fudge Marshmallow, M&Ms, Nuts, Strawberries
+
+How many different sundaes are possible using one flavor of ice cream and three different toppings?
+
+```{r ex2a, exercise = TRUE}
+
+```
+
+```{r ex2a-check}
+grade_result(pass_if(~identical(.result, 288))) 
+```
+
+How many sundaes are possible using one flavor of ice cream and from 0 to 6 toppings?
+
+```{r ex2b, exercise = TRUE}
+
+```
+
+```{r ex2b-check}
+grade_result(pass_if(~identical(.result, 7828))) 
+```
+
+### You try it
+
+There are 9 presidential candidates at a debate. How many different ways can candidates be lined up?
+
+```{r yti2, exercise = TRUE}
+
+```
+
+:::{#yti2-hint}
+Once you place the first candidate they can't be chosen for the next spot...
+:::
+
+```{r yti2-check}
+grade_result(pass_if(~identical(.result, 362880))) 
+```
+
+## Combinations
+
+If the order of objects is not important, then the number of ways of choosing $k$ distinct objects from a set of $n$ is given by
+
+$$
+\binom{n}{k}=\frac{n!}{k!(n-k)!}.
+$$
+
+
+This is how to do combinations in `R`.
+
+```{r combo, exercise = TRUE}
+choose(3,2)
+```
+
+```{r combo-solution}
+choose(3,2)
+```
+
+```{r combo-check}
+grade_code()
+```
+
+### Example: $\alpha\beta\zeta$
+
+The Alpha Beta Zeta sorority is trying to fill a pledge class of nine new members during fall rush. Among the twenty-five available candidates, fifteen have been judged marginally acceptable and ten highly desirable. How many ways can the pledge class be chosen to give a two-to-one ratio of highly desirable to marginally acceptable candidates?
+
+```{r ex3, exercise = TRUE}
+
+```
+
+:::{#ex3-hint}
+If we want a 2:1 ratio of highly:marginal candidates, we want 6 highly desirable and 3 marginal candidates.
+:::
+
+```{r ex3-check}
+grade_result(pass_if(~identical(.result, 95550))) 
+```
+
+## You try it
+
+For each of these, write the R code used to calculate the answer and the answer itself.
+
+1.  Among the 9 presidential candidates at a debate, 3 are republicans and 6 are democrats. How many different line ups are possible if the only ordering that matters is political party (not name)?
+
+```{r yti3a, exercise = TRUE}
+
+```
+
+:::{#yti3a-hint}
+*ADD HINT*
+:::
+
+```{r yti3a-check}
+grade_result(pass_if(~identical(.result, 84))) #check answer
+```
+
+
+2.  Nine students, five statistics majors and 4 computer science majors, interview for four summer internships sponsored by Google.
+
+    a.  In how many ways can Google choose a set of four interns?
+    
+```{r yti3bi, exercise = TRUE}
+
+```
+
+:::{yti3bi--hint}
+For this question Google is choosing any four interns
+:::
+```{r yti3bi-check}
+grade_result(pass_if(~identical(.result, 126))) 
+```
+
+    b.  In how many can Google choose 2 stat majors and 2 computer science majors?
+    
+```{r yti3bii, exercise = TRUE}
+
+```
+
+:::{yti3bii--hint}
+*ADD HINT*
+:::
+
+```{r yti3bii-check}
+grade_result(pass_if(~identical(.result, 60)))
+```
+
+    c.  How many sets of four can be picked such that not everyone in the set is the same major?
+    
+```{r yti3biii, exercise = TRUE}
+
+```  
+
+:::{yti3biii-hint}
+Find the way that groups of 4 can be picked such that EVERYONE is in the same major, and subtract that from the total # of ways to choose 4 interns.
+:::
+
+```{r yti3biii-check}
+grade_result(pass_if(~identical(.result, 120))) 
+```
+
+## Combinatorial Probability
+
+### Example: Gender equality in promotions
+
+Ten equally qualified marketing assistants are candidates for promotion to associate buyer; seven are men and three are women. If the company intends to promote four of the ten at random, what is the probability that exactly two of the four are women?
+
+```{r ex4, exercise = TRUE}
+total <- ___  
+two_women <- ___  
+(prob_two_women <- ___  )
+```
+
+```{r ex4-check}
+grade_this(pass_if_equal(x = round(.result,1), y = .3)) 
+```
+
+### Example: Urns and chips
+
+An urn contains twenty chips, numbered 1 through 20. Two are drawn simultaneously. What is the probability that the numbers on the two chips will differ by more than 2? 
+```{r ex5, eval=FALSE}
+total <- ___________
+1 - ___________
+```
+
+:::{#ex5-hint}
+Calculate the complement and subtract from one.
+:::
+
+```{r ex5-check}
+grade_this(pass_if_equal(x = round(.result,1), y = .8)) 
+```
+
+### You try it:
+
+1.  An apartment building has eight floors. On the same floor?
+
+  a.) If seven people get on the elevator on the first floor, what is the probability that they all want to get off on different floors?
+
+```{r yti4ai, exercise = TRUE}
+
+```
+
+```{r yti4ai-check}
+grade_this(pass_if_equal(x = round(.results,3),y = .006 )) 
+```
+
+  b.) On the same floor?
+  
+```{r yti4aii, exercise = TRUE}
+
+```
+
+```{r yti4aii-check}
+grade_this(pass_if_equal(x = round(.results,1),y = round(8.49986e-06,1))) 
+```
+
+2.  If four dice are rolled, what is the probability that each of the four numbers that appear will be different?
+
+```{r yti4b, exercise = TRUE}
+
+```
+
+```{r yti4b-check}
+grade_this(pass_if_equal(x = round(.results,1),y = .3 )) 
+```
+
