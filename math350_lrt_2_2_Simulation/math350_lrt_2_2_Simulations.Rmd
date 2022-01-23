@@ -27,7 +27,9 @@ tutorial_options(
 quiz(
 question_text(
   "What does sampling **without replacement** mean?",
-  answer("Once the outcome has been observed, it is removed from the sample space for the next draw. That is, the same outcome can’t be drawn more than once.", correct = TRUE),
+  answer("Once the outcome has been observed, it is removed from the sample space for the next draw.", correct = TRUE),
+  answer("Each element is only represented in the sample space once"), 
+  answer("Elements in the sample space can be drawn repeated times")
   allow_retry = TRUE
 ))
 
