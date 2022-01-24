@@ -416,9 +416,17 @@ mean(results_dice)
 grade_code()
 ```
 
-### You try it
+```{r whyreplicate, echo = FALSE}
+question("Why repeat experiments thousands of times?",
+         answer("To get more accurate results"),
+         answer("To investigate the value of the parameter being estimated converges to the true probability in a specific setting", correct = TRUE),
+         answer("To create a range of plausible results"),
+         answer("To verify your results"),
+        allow_retry = TRUE
+        )
+```
 
-For both questions, compute the theoretical probability and then use simulation to confirm your results. Write all your work for both theoretical AND your simulation code in the space below. 
+### You try it
 
 1. If two die are rolled, what is the probability that the difference between the two numbers is less than 3? 
 
@@ -509,6 +517,6 @@ encoder_logic()
 ```
 
 ```{r encode, echo=FALSE}
-encoder_ui(default_ui(url = ""))
+encoder_ui(default_ui(url = "https://forms.gle/pcx2j9oaRT4NMtKU9"))
 ```
 
