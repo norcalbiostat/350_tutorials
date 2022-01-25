@@ -6,7 +6,7 @@ output:
       allow_skip: true
 runtime: shiny_prerendered
 description: > 
-  Dr. D add in description. 
+  In this chapter we learn that we can update probabilities of an event happening if we know that certain events are observed. The updated probability of event A after we learn that event B has occurred is the conditional probability of A given B.
 ---
 
 ```{r setup, include=FALSE}
@@ -14,10 +14,14 @@ library(learnr)
 library(gradethis)
 library(learnrhash)
 gradethis::gradethis_setup()
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, highlight = TRUE)
+tutorial_options(
+  exercise.blanks = TRUE, 
+  exercise.reveal_solution = FALSE
+)
 ```
 
-### Example: Tulips
+## Example: Tulips
 
 Suppose that we are given 20 tulip bulbs that are very similar in appearance and told that 8 tulips will bloom early, 12 will bloom late, 13 will be red, and 7 will be yellow. The following table summarizes information about the combination of features among these tulips:
 
@@ -60,7 +64,9 @@ $$P(A|B)=\frac{P(A \cap B)}{P(B)}$$
 Suppose that $P(A) =.3, P(B)=.7$, and $P(A \cap B)=.2$. What is $P(A|B)$? (Use `R` as a calculator here)
 
 ```{r ex3, exercise = TRUE}
-
+p.a <- ___
+p.b <- ___
+p.a.and.b <- ___
 ```
 
 ```{r ex3-check}
@@ -68,10 +74,9 @@ grade_result(pass_if(~identical(.result, .2/.7)))
 ```
 
 ### You try it
-1. Suppose that $P\left(A\right)$=.7, $P\left(B\right)=.5$, and $P\left(A\bigcap B\right)=.2$. Find $P(A|B)$. (Use `R` as a calculator here)
+1. Suppose that $P(A)=.7, P(B)=.5$, and $P(A \cap B)=.2$. Find $P(A|B)$. (Use `R` as a calculator here)
 
-
-```{r yti1a}
+```{r yti1a, exercise = TRUE}
 
 ```
 
@@ -107,11 +112,14 @@ grade_result(pass_if(~identical(.result, .5)))
 
 School board officials are debating whether to require all high school seniors to take a proficiency exam before graduating. A student passing all three parts (math, language, and general) would be awarded a diploma; otherwise, they would receive only a certificate of attendance. A practice test given to this year's ninety-five hundred seniors resulted in the following failures: **Math: 3325; Language: 1900; General knowledge: 1425**
 
-If "Student fails Math", "Student fails language", and "Student fails general knowledge" are independent events, what proportion of next year's seniors can be expected to fail to qualify for a diploma? Does independence seem reasonable here?
-Use `R` a calculator here.
+If "Student fails Math" (`M`), "Student fails language" (`L`), and "Student fails general knowledge" (`G`) are independent events, what proportion of next year's seniors can be expected to fail to qualify for a diploma? Does independence seem reasonable here?
+
+Store the probabilities of failing each subject in the objects below, and then calculte the probability using algebra on these objects. 
 
 ```{r ex5, exercise = TRUE}
-
+M <- ____
+L <- ____
+G <- ____
 ```
 
 ::: {#ex5-hint}
@@ -122,50 +130,46 @@ It may be helpful to use the complement.
 grade_result(pass_if(~identical(.result, .56)))
 ```
 
-### Example: Child Mortality
+### You try it
 
-In a certain nation, statistics show that only two out of ten children born in the early 80s reached the age of 21. Assume the probability of child death is independent between children. If the same mortality rate is operative over the next generation, how many children does a person need to have if they wants to have at least a 75% probability that at least one child survives to adulthood?
-
-```{r ex6, exercise = TRUE}
-
-```
-
-::: {#ex6-hint}
-You need to find the probability that at least one survives. Then solve for the number of children such that t least a 75% probability.
-:::
-
-```{r ex6-check}
-grade_result(pass_if(~identical(.result, 7)))
-```
-
-### You try it - FAITh turn these into quiz questions
-
-
-quiz( "Suppose that $P(A\bigcap B)=.2$, $P(A)=.6$, and $P(B)=.5$.",
-    question("Are $A$ and $B$ mutually exclusive?",
-    answer("True", correct = TRUE),
-    answer("False")),
-    question("Are $A$ and $B$ independent?",
-    answer("True"),
-    answer("False", correct = TRUE)),
-    question("Find $P(A^{C}\cup B^{C}$)",
-    answer("True"),
-    answer("False", correct = TRUE))
+```{r yti2, echo=FALSE}
+quiz(caption = "Suppose that $P(A \\cap B)=.2$, $P(A)=.6$, and $P(B)=.5$.",
+  question("Are $A$ and $B$ mutually exclusive?",
+    answer("Yes, because $P(A \\cup B) < 1$"),
+    answer("Yes, because they overlap"),
+    answer("No, because they overlap", correct = TRUE),
+    random_answer_order = TRUE
+  ),
+  question("Are $A$ and $B$ independent?",
+    answer("No, because $P(A \\cup B) < 1$"),
+    answer("Yes, because $P(A \\cap B) > 0$"),
+    answer("No, because $P(A)P(B) \\neq P(A \\cap B)$", correct = TRUE), 
+    random_answer_order = TRUE
+  ),
+    question("Find $P(A^{c} \\cup B^{c}$)",
+    answer(".2"),
+    answer(".9"),
+    answer(".8"),
+    answer(".1", correct = TRUE),
+    random_answer_order = TRUE
+  )
 )
+
+```
 
 
 ### You try it:
 Myra and Carlos are summer interns working as proofreaders for a local newspaper.  Based on aptitude tests, Myra has a 50% chance of spotting a hyphenation error, while Carlos picks up on that same kind of mistake 80% of the time. Suppose the copy they are proofing contains a hyphenation error.  What is the probability it goes undetected?
 
-```{r yti2, exercise = TRUE}
+```{r yti3, exercise = TRUE}
 
 ```
 
-::: {#yti2-hint}
+::: {#yti3-hint}
 What we are looking for is the probability of the complement of a union. 
 :::
 
-```{r yti2-check}
+```{r yti3-check}
 grade_result(pass_if(~identical(.result, .1)))
 ```
 
@@ -174,7 +178,6 @@ grade_result(pass_if(~identical(.result, .1)))
 ### Example 
 Two dice are rolled. Estimate the conditional probability that the sum of the dice is at most 4 given that one of the die is a 2. Let $A$ be that event that the sum of the dice is at most 4 and let $B$ be the event that one of the die is a 2. Thus,we want $P(A|B)$ (Note: It may take a minute for the tutorial to grade this problem)
 
-\singlespace
 ```{r ex7, exercise = TRUE, eval=FALSE}
 eventB <- replicate(10000,{
   dieroll <- sample(1:6,2,replace=TRUE)
@@ -193,26 +196,25 @@ eventAB <- replicate(10000,{
 probAB <-  ________________
 (cond_prob <- _________/_________)
 ```
-\doublespace
 
-
-```{r ex7-check}
-ex7.answer.space<- replicate(100,{
+```{r ex7-check, cache=TRUE}
+ex7.answer.space <- replicate(100,{
   eventB <- replicate(10000,{
-  dieroll <- sample(1:6,2,replace=TRUE)
-  mean(2 %in% dieroll)
+    dieroll <- sample(1:6,2,replace=TRUE)
+    2 %in% dieroll
   })
 
-probB <- mean(eventB)
+  probB <- mean(eventB)
 
-eventAB <- replicate(10000,{
-  dieroll <- sample(1:6,2,replace=TRUE)
-  (sum(dieroll<=4) && (2 %in% dieroll))
+  eventAB <- replicate(10000,{
+    dieroll <- sample(1:6,2,replace=TRUE)
+    (sum(dieroll)<=4) & (2 %in% dieroll)
   })
-
-probAB <- mean(eventAB)
-cond_prob <- probAB/probB
+  
+  probAB <- mean(eventAB)
+  cond_prob <- probAB/probB
 })
+
 grade_this({
   if (.result > min(ex7.answer.space) & 
       .result < max(ex7.answer.space)) {
@@ -246,11 +248,18 @@ The percentage of voters classified as Liberals in three different election dist
 
 
 ```{r ex9, exercise = TRUE}
+liberal.given.d1 <- ____
+liberal.given.d2 <- ____
+liberal.given.d3 <- ____
+p.d1 <- ___
+p.d2 <- ___
+p.d3 <- ___
 
+(P.L <- ____)
 ```
 
 ```{r ex9-check}
-grade_result(pass_if(~identical(.result, 1/3)))
+grade_result(pass_if(~identical(.result, .47)))
 ```
 
 ### You try it
@@ -262,7 +271,7 @@ In a certain study it was discovered that 15% of the participants were classifie
 ```
 
 ```{r ex10-check}
-grade_result(pass_if(~identical(.result, 1/3)))#faith get correct answer
+grade_result(pass_if(~identical(.result, .082)))
 ```
 
 ## Bayes' Rule and conditioning
@@ -275,11 +284,16 @@ Data indicate that your chances of having the disease  are only 1 in 10,000.  Ho
 
 
 ```{r ex11, exercise = TRUE}
+pos.given.disease <- ___
+pos.given.no.disease <- ____
+prob.disease <- ____
+prob.no.disease <- ____
 
+(prob.disease.given.positive <- ____ )
 ```
 
 ```{r ex11-check}
-grade_result(pass_if(~identical(.result, 0.0009)))
+grade_result(pass_if(~identical(round(.result,5), 0.0009)))
 ```
 
 ### You try it
@@ -287,22 +301,22 @@ grade_result(pass_if(~identical(.result, 0.0009)))
 1. At a hospital's emergency room, patients are classified and 20\% of them are critical, 30\% are serious, and 50\% are stable.  Of the critical ones, 30\% die; of the serious, 10\% die; and the stable, 1\% die.  Given that a patient dies, what is the conditional probability that the patient was classified as critical.
 
 
-```{r yti3a, exercise = TRUE}
+```{r yti4a, exercise = TRUE}
 
 ```
 
-```{r yti3a-check}
+```{r yti4a-check}
 grade_this(pass_if_equal(x = round(.result,1), y = .6))
 ```
 
 
 2. In a certain city, 30% of the people are Conservatives, 50% are Liberals, and 20% are Independents. Records show that in a particular election, 65% of the Conservatives voted, 82% of the Liberals voted, and 50% of the Independents voted. If a person in the city is selected at random and it is learned that she did not vote in the last election, what is the probability that she is a liberal?
 
-```{r yti3b, exercise = TRUE}
+```{r yti4b, exercise = TRUE}
 
 ```
 
-```{r yti3b-check}
+```{r yti4b-check}
 grade_this(pass_if_equal(x = round(.result,1), y = .5))
 ```
 
