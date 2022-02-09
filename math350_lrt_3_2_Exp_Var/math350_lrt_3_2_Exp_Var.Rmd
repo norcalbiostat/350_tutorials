@@ -1,0 +1,138 @@
+---
+title: "Section 3.2: Expected Value & Variance"
+output: 
+    learnr::tutorial:
+      progressive: true
+      allow_skip: true
+runtime: shiny_prerendered
+description: > 
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(learnrhash)
+library(shiny)
+gradethis::gradethis_setup()
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(
+  exercise.blanks = TRUE, 
+  exercise.reveal_solution = FALSE
+)
+```
+
+
+## Expected Value (Speegle Ch 3.2)
+
+### Example
+
+Two books are assigned for a statistics class: a textbook costing \$137 and its corresponding study guide costing \$33. The university bookstore determined 20% of enrolled students do not buy either book, 55% buy the textbook only, and 25% buy both books, and these percentages are relatively constant from one term to another.
+
+Let $X$ be a random variable that denotes how much a single student will spend on their statistics book. The pmf is: 
+
+Confirm your results using simulation. 
+
+```{r ex1, exercise = TRUE}
+
+```
+
+
+### You try it:
+
+A retirement portfolio's value increases by 18% during a financial boom and by 9% during normal times. It decreases by 12% during a recession. What is the expected return on this portfolio if each scenario is equally likely? 
+
+* Define a random variable.
+
+
+* Write down the pdf.
+
+
+* Calculate the theoretical expected value. 
+
+```{r yti1a, exercise = TRUE}
+
+```
+
+
+* Confirm using simulation. 
+
+```{r yti1b, exercise = TRUE}
+
+```
+
+## Variance and standard deviation (Speegle Ch 3.5)
+
+Although the mean is a useful descriptive statistic, it only gives us an idea of where the center of the distribution is located.  For instance, the following table gives the monthly temperature of New York City and San Francisco:
+
+```{r ex2,exercise = TRUE}
+library(magrittr)
+tabl <- data.frame(months = c("J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"), 
+                   NYC = c(32,34,42,53,63,72,77,76,68,57,48,37), 
+                   SF = c(49,52,53,56,58,62,63,64,65,61,55,49))
+
+knitr::kable(t(tabl)) %>% kableExtra::kable_styling(full_width=F, position="center", latex_options = c("striped", "hold_position"))
+```
+
+The mean temperature for San Francisco is about 57 degrees and the mean temperature for New York is around 55 degrees.  So, there mean yearly temperature is about the same.  Do you notice anything different about the two cities with regards to monthly temperatures?
+
+Which of the two distributions below have the larger variance? 
+
+```{r, fig.width=8, fig.height=3, fig.align='center'}
+par(mfrow=c(1,2))
+plot(proportions(table(sample(1:5, size=1000, replace=TRUE))), xlab = "A", ylab="probability")
+plot(proportions(table(sample(1:10, size=1000, replace=TRUE))),xlab = "B", ylab="probability")
+```
+
+```{r quiz1, exercise.reveal_solution=TRUE}
+
+question(
+  "Which of the two distributions below have the larger variance? ",
+  answer("A"),
+  answer("B", correct = TRUE),
+  allow_retry = TRUE
+)
+
+```
+
+### Example
+
+Let's return to the statistics book example and calculate $Var(X)$ and $SD(X)$. _Recap: The textbook costs \$137, the study guide costing \$33. 20% of students don't buy either book, 55% buy the textbook only, and 25% buy both books._ Confirm your results using simulation.
+
+```{r ex3, exercise = TRUE}
+
+```
+
+### You try it:
+
+Return to the retirement portfolio question (_Recap: the value increases by 18% during a financial boom and by 9% during normal times, and decreases by 12% during a recession. Each scenario is equally likely_). Calculate the variance and standard deviation. 
+
+```{r yti2, exercise = TRUE}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+## Submit your work
+
+Part of your grade in this class comes from submitting tutorial work like this. 
+
+Click the <kbd>Generate</kbd> button below to generate a hash for you assignment. This long string of numbers is a unique code for you, and this assignment. 
+
+Paste this code into the Google Form below to submit your hash to the instructional team for scoring. You also have the opportunity to provide feedback and thoughts about the specific lesson. This is valuable information for the instructional team to know what topics were confusing for students or where extra help is needed. 
+
+```{r context="server"}
+encoder_logic()
+```
+
+```{r encode, echo=FALSE}
+encoder_ui(default_ui(url = ""))
+```
+
