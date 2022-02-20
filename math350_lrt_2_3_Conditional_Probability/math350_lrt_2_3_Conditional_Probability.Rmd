@@ -40,19 +40,41 @@ If one tulip bulb is selected at random, what is the probability that it will pr
 
 ```
 
-```{r ex1-check}
-grade_result(pass_if(~identical(.result, 13/20)))
+```{r ex1-solution}
+13/20
 ```
 
-Suppose that, under close examination, we know that it will be an early bulb. What is the probability that, given we have an early bulb, it is a red tulip? (Use `R` as a calculator here)
+```{r ex1-check}
+grade_this( {
+if(setequal(.result, .solution)){  
+    pass("Great work!")
+}
+else{
+  fail()
+}
+})
+
+```
+
+Suppose that, under close examination, we know that it will be an early bulb. What is the probability that, given we have an early bulb, it is a red tulip? (Use `R` as a calculator here. Keep three decimal places).
 
 ```{r ex2, exercise = TRUE}
 
 ```
 
+```{r ex2-solution}
+5/8
+```
 
 ```{r ex2-check}
-grade_result(pass_if(~identical(.result, 5/8)))
+grade_this(
+  if (setequal(.result, .solution)) {
+    pass("Keep up the good work!")
+  }
+  else{
+  fail()
+  }
+)
 ```
 
 ## Definition: Conditional Probability
@@ -69,8 +91,18 @@ p.b <- ___
 p.a.and.b <- ___
 ```
 
+```{r ex3-solution}
+.2/.7
+```
+
 ```{r ex3-check}
-grade_result(pass_if(~identical(.result, .2/.7)))
+grade_this(if (setequal(round(.result,3), .round(solution,3))) {
+    pass("Nice!")
+}
+else{
+  fail()
+}
+)
 ```
 
 ### You try it
@@ -80,8 +112,18 @@ grade_result(pass_if(~identical(.result, .2/.7)))
 
 ```
 
+```{r yti1a-solution}
+.2/.5
+```
+
 ```{r yti1a-check}
-grade_result(pass_if(~identical(.result, .2/.5)))
+grade_this(if (setequal(.result, .solution)) {
+    pass("Yes!")
+}
+else{
+  fail()
+}
+)
 ```
 
 2. Find $P(A\cap B)$ if $P(A)=0.2$, $P(B)=0.4$, and $P(A|B)+P(B|A)=0.75$.
@@ -91,7 +133,7 @@ grade_result(pass_if(~identical(.result, .2/.5)))
 ```
 
 ```{r yti1b-check}
-grade_result(pass_if(~identical(.result, .1)))
+grade_this(pass_if_equal(x = round(.result,1), y = .1))
 ```
 
 ## Section 2.3.1 Independent Events
@@ -104,8 +146,18 @@ Suppose that two machines 1 and 2 in a factory are operated independently of eac
 
 ```
 
+```{r ex4-solution}
+.5
+```
+
 ```{r ex4-check}
-grade_result(pass_if(~identical(.result, .5)))
+grade_this(if (setequal(.result, .solution)) {
+    pass("Woohoo!")
+}
+else{
+  fail()
+}
+)
 ```
 
 ### Example: Graduation Requirements
@@ -126,8 +178,19 @@ G <- ____
 It may be helpful to use the complement.
 :::
 
+```{r ex5-solution}
+.56
+```
+
+
 ```{r ex5-check}
-grade_result(pass_if(~identical(.result, .56)))
+grade_this(if (setequal(.result, .solution)) {
+    pass("Good work!")
+}
+else{
+  fail()
+}
+)
 ```
 
 ### You try it
@@ -227,7 +290,8 @@ grade_this({
   if (.result < min(ex7.answer.space)) {
     fail("Your answer is a bit low")
   }
-  fail()
+  else{
+  fail()}
 })
 ```
 
@@ -237,8 +301,18 @@ Now, compute the theoretical probability. Does your calculation match what is gi
 
 ```
 
+```{r ex8-solution}
+4/12
+```
+
 ```{r ex8-check}
-grade_result(pass_if(~identical(.result, 4/12)))
+grade_this(if (setequal(.result, .solution)) {
+    pass()
+}
+else{
+  fail()
+}
+)
 ```
 
 ## Theorem 2.3 Law of Total Probability
