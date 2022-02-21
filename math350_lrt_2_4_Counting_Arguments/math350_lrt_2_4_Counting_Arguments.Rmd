@@ -216,7 +216,7 @@ For each of these, write the R code used to calculate the answer and the answer 
 :::
 
 ```{r yti3a-check}
-grade_result(pass_if(~identical(.result, 84))) #check answer
+grade_result(pass_if(~identical(.result, 84))) 
 ```
 
 
@@ -282,7 +282,7 @@ grade_this(pass_if_equal(x = round(.result,1), y = .3))
 ### Example: Urns and chips
 
 An urn contains twenty chips, numbered 1 through 20. Two are drawn simultaneously. What is the probability that the numbers on the two chips will differ by more than 2? 
-```{r ex5, eval=FALSE}
+```{r ex5, exercise = TRUE}
 total <- ___________
 1 - ___________
 ```
@@ -306,7 +306,7 @@ grade_this(pass_if_equal(x = round(.result,1), y = .8))
 ```
 
 ```{r yti4ai-check}
-grade_this(pass_if_equal(x = round(.results,3),y = .006 )) 
+grade_this(pass_if_equal(x = round(.result,3),y = .006 )) 
 ```
 
   b.) On the same floor?
@@ -315,8 +315,9 @@ grade_this(pass_if_equal(x = round(.results,3),y = .006 ))
 
 ```
 
+
 ```{r yti4aii-check}
-grade_this(pass_if_equal(x = round(.results,1),y = round(8.49986e-06,1))) 
+grade_this(pass_if_equal(x = round(.result,1),y = round(8.49986e-06,1))) 
 ```
 
 2.  If four dice are rolled, what is the probability that each of the four numbers that appear will be different?
@@ -326,6 +327,21 @@ grade_this(pass_if_equal(x = round(.results,1),y = round(8.49986e-06,1)))
 ```
 
 ```{r yti4b-check}
-grade_this(pass_if_equal(x = round(.results,1),y = .3 )) 
+grade_this(pass_if_equal(x = round(.result,1),y = .3 )) 
+```
+
+## Submit your work
+Part of your grade in this class comes from submitting tutorial work like this. 
+
+Click the <kbd>Generate</kbd> button below to generate a hash for you assignment. This long string of numbers is a unique code for you, and this assignment. 
+
+Paste this code into the Google Form below to submit your hash to the instructional team for scoring. You also have the opportunity to provide feedback and thoughts about the specific lesson. This is valuable information for the instructional team to know what topics were confusing for students or where extra help is needed. 
+
+```{r context="server"}
+encoder_logic()
+```
+
+```{r encode, echo=FALSE}
+encoder_ui(default_ui(url = ""))
 ```
 

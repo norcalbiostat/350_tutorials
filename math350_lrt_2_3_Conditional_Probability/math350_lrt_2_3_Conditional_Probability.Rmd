@@ -83,7 +83,7 @@ Let $A$ and $B$ be events in the sample space $S$, with $P(B)\neq 0$. The **cond
 $$P(A|B)=\frac{P(A \cap B)}{P(B)}$$
 
 ### Example
-Suppose that $P(A) =.3, P(B)=.7$, and $P(A \cap B)=.2$. What is $P(A|B)$? (Use `R` as a calculator here)
+Suppose that $P(A) =.3, P(B)=.7$, and $P(A \cap B)=.2$. What is $P(A|B)$? (Use `R` as a calculator here) *NEED to specify enter fraction*s
 
 ```{r ex3, exercise = TRUE}
 p.a <- ___
@@ -96,7 +96,7 @@ p.a.and.b <- ___
 ```
 
 ```{r ex3-check}
-grade_this(if (setequal(round(.result,3), .round(solution,3))) {
+grade_this(if (setequal(.result, solution)) {
     pass("Nice!")
 }
 else{
@@ -106,7 +106,7 @@ else{
 ```
 
 ### You try it
-1. Suppose that $P(A)=.7, P(B)=.5$, and $P(A \cap B)=.2$. Find $P(A|B)$. (Use `R` as a calculator here)
+1. Suppose that $P(A)=.7, P(B)=.5$, and $P(A \cap B)=.2$. Find $P(A|B)$. (Use `R` as a calculator here) *NEED to specify enter fraction*
 
 ```{r yti1a, exercise = TRUE}
 
