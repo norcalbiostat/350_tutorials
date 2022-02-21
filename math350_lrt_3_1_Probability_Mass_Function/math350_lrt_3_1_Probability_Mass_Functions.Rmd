@@ -116,6 +116,7 @@ question(
 
 ### Example
 Suppose your roll 2 dice. Let $X$ be the sum of the two die. Use simulation to estimate the probability distribution.
+(Make sure to click `submit answer`)
 
 ```{r ex4a, exercise = TRUE}
 die <- 1:6 
@@ -316,7 +317,7 @@ proportions(table(sample_blood))
 ```
 
 ```{r ex5b-check}
-
+grade_code()
 ```
 
 
