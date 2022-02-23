@@ -1,0 +1,268 @@
+---
+title: "Section 3.2 Expected Value & Variance "
+output: 
+    learnr::tutorial:
+      progressive: true
+      allow_skip: true
+runtime: shiny_prerendered
+description: > 
+  
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(learnrhash)
+gradethis::gradethis_setup()
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(
+  exercise.blanks = TRUE, 
+  exercise.reveal_solution = FALSE
+)
+```
+
+### Example
+
+Two books are assigned for a statistics class: a textbook costing \$137 and its corresponding study guide costing \$33. The university bookstore determined 20% of enrolled students do not buy either book, 55% buy the textbook only, and 25% buy both books, and these percentages are relatively constant from one term to another.
+
+Let $X$ be a random variable that denotes how much a single student will spend on their statistics book. The pmf is: 
+
+```{r ex1a, exercise = TRUE}
+X<-____
+p_X<- ___
+```
+
+```{r ex1a-check}
+
+```
+
+
+Interpret this value in context: 
+
+```{r ex1b, exercise = TRUE}
+
+```
+
+Confirm your results using simulation. 
+
+```{r ex1c, exercise = TRUE}
+cost<-replicate(___)
+mean(cost)
+```
+
+```{r ex1c-solution}
+
+```
+
+
+```{r ex1c-check}
+grade_this(
+  if(round(.result,1) = round(.solution,1)){
+    pass("Great work!")
+  }
+  else{
+    fail()
+  }
+)
+```
+
+### You try it:
+
+A retirement portfolio's value increases by 18% during a financial boom and by 9% during normal times. It decreases by 12% during a recession. What is the expected return on this portfolio if each scenario is equally likely? 
+
+* Define a random variable.
+
+```{r yti1a, exercise = TRUE}
+
+```
+
+
+```{r yti1a-solution}
+
+```
+
+
+```{r yti1a-check}
+
+```
+
+
+* Write down the pdf.
+
+```{r yti1b, exercise = TRUE}
+
+```
+
+
+```{r yti1b-solution}
+
+```
+
+
+```{r yti1b-check}
+
+```
+
+* Calculate the theoretical expected value. Write your answer in a full sentence in context of the problem. 
+
+```{r yti1c, exercise = TRUE}
+
+```
+
+
+```{r yti1c-solution}
+
+```
+
+
+```{r yti1c-check}
+
+```
+
+* Confirm using simulation. 
+
+```{r yti1d, exercise = TRUE}
+
+```
+
+
+```{r yti1d-solution}
+
+```
+
+
+```{r yti1d-check}
+
+```
+
+Which of the two distributions below have the larger variance? 
+
+```{r, fig.width=8, fig.height=3, fig.align='center'}
+par(mfrow=c(1,2))
+plot(proportions(table(sample(1:5, size=1000, replace=TRUE))), ylab="probability")
+plot(proportions(table(sample(1:10, size=1000, replace=TRUE))), ylab="probability")
+```
+
+
+```{r quiz1, echo = FALSE}
+question("Which of the two distributions below have the larger variance?",
+         answer("Plot 1"),
+         answer("Plot 2", correct = TRUE),
+        allow_retry = TRUE
+        )
+```
+
+
+### Example
+
+Let's return to the statistics book example and calculate $Var(X)$ and $SD(X)$. _Recap: The textbook costs \$137, the study guide costing \$33. 20% of students don't buy either book, 55% buy the textbook only, and 25% buy both books._ Confirm your results using simulation.
+
+* Calculate the $Var(X)$ here
+
+```{r ex2a, exercise = TRUE}
+
+```
+
+```{r ex2a-check}
+grade_result(pass_if(~ identical(.result, ))) #get answer 
+
+```
+
+* Calculate $SD(X)$ here
+
+```{r ex2b, exercise = TRUE}
+
+```
+
+```{r ex2b-check}
+grade_result(pass_if(~ identical(.result, ))) #get answer 
+
+```
+
+* Confirm $Var(X)$ using simulation here 
+
+```{r ex2c, exercise = TRUE}
+
+```
+
+```{r ex2c-solution}
+
+```
+
+```{r ex2c-check}
+grade_this(
+  if(){
+    pass()
+  }
+  else{
+    
+  }
+)
+```
+
+
+* Confirm $SD(X)$ using simulation here 
+
+```{r ex2d, exercise = TRUE}
+
+```
+
+```{r ex2d-solution}
+
+```
+
+```{r ex2d-check}
+grade_this(
+  if(){
+    pass()
+  }
+  else{
+    
+  }
+)
+```
+
+
+### You try it:
+
+Return to the retirement portfolio question (_Recap: the value increases by 18% during a financial boom and by 9% during normal times, and decreases by 12% during a recession. Each scenario is equally likely_). Calculate the variance and standard deviation. 
+
+* Calculate the variance here
+
+```{r yti2a, exercise = TRUE}
+
+```
+
+```{r yti2a-check}
+grade_result(pass_if(~ identical(.result, ))) #get answer 
+
+```
+
+* Calculate standard deviation here
+
+```{r yti2b, exercise = TRUE}
+
+```
+
+```{r yti2b-check}
+grade_result(pass_if(~ identical(.result, ))) #get answer 
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
