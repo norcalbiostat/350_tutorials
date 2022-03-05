@@ -147,5 +147,15 @@ Course packet completely updated. What if we put all the coding examples as fill
 * Robin will setup google form submissions for each ch1 & ch2
 
 
+--- Useful functions
+
+```{r}
+compare.tables(
+  mock_this_exercise(
+    .user_code = {nheads},
+    .solution_code = {nheads.soln}
+  )
+)
+```
 
 

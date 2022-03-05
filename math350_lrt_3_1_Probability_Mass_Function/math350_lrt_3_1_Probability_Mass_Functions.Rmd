@@ -21,107 +21,63 @@ tutorial_options(
 )
 ```
 
-### Example 
+## Random Variables
 
-```{r quiz1, echo = FALSE}
-quiz(caption ="Consider an experiment that is the single roll of a die, where the number of spots on the face up side of the die when rolled is observed.",
-question(
-  "Outcome space:",
-  answer("NO1", correct = TRUE),
-  answer("NO2"),
-  answer("NO3"),
-  answer("NO4"),
-  answer("NO5"),
-  allow_retry = TRUE
-),
-question(
-  "Space of the random variable $X$:",
-  answer("NO1", correct = TRUE),
-  answer("NO2"),
-  answer("NO3"),
-  answer("NO4"),
-  answer("NO5"),
-  allow_retry = TRUE
-)
-)
-
-```
-
-
-```{r quiz2, exercise.reveal_solution=TRUE}
-quiz(caption = "Dr. D has 2 dogs and 2 cats in her household, so S = {cat, dog}. Let $Y$ be a random variable that denotes the type of animal. $Y$ then maps each element in $S$ to one and only one real number:",
-question(
-  "When the sample space only has two outcomes,",
-  answer("NO1", correct = TRUE),
-  answer("NO2"),
-  answer("NO3"),
-  answer("NO4"),
-  answer("NO5"),
-  allow_retry = TRUE
+```{r quiz1, exercise.reveal_solution=TRUE}
+quiz(caption = "A statistical experiment produces an outcome in a sample space, but frequently we are more interested in....", 
+     question("",
+  answer("a number that summarizes that outcome.", correct = TRUE),
+  answer("repeating that experiment many times."),
+  answer("the correct answer."),
+  answer("exploring the entire sample space."),
+  random_answer_order = TRUE
 ))
 
 ```
 
-### Example 
-
-```{r quiz3, echo = FALSE}
-quiz(caption = "Consider a crooked dice where the cube is shortened in the one-six direction. This has the effect that 1's and 6's have a probability of 1/4 of being rolled, where the other faces each have a probability of 1/8.",
+```{r quiz2, exercise.reveal_solution=TRUE}
+quiz(caption = "Dr. D has 2 dogs and 2 cats in her household, so S = {cat, dog}. Let $Y$ be a random variable that denotes the type of animal.",
 question(
-  "Define the random variable",
-  answer("NO1", correct = TRUE),
-  answer("NO2"),
-  answer("NO3"),
-  answer("NO4"),
-  answer("NO5"),
-  allow_retry = TRUE
-),
-question(
-  "What is the probability distribution.",
-  answer("NO1", correct = TRUE),
-  answer("NO2"),
-  answer("NO3"),
-  answer("NO4"),
-  answer("NO5"),
-  allow_retry = TRUE
-),
-question(
-  "Is this a valid pmf?  Explain.",
-  answer("NO1", correct = TRUE),
-  answer("NO2"),
-  answer("NO3"),
-  answer("NO4"),
-  answer("NO5"),
-  allow_retry = TRUE
-)
-)
-
+  "What are the possible outcome spaces of $Y$?",
+  answer("{0,1}", correct = TRUE),
+  answer("{'cat', 'dog'}"),
+  answer("{'cat', 'cat', 'dog', 'dog'}"),
+  answer("{1,2}", correct = TRUE),
+  random_answer_order = TRUE
+))
 ```
 
-### You try it
+## Probability Mass Functions
 
-Suppose your roll 2 dice. Let $X$ be the sum of the two die. Write out the pmf. Don't forget you can refer to Example 2.8 in the textbook to visualize the sample space. 
-
-```{r quiz4, echo = FALSE}
+```{r quiz3, exercise.reveal_solution=TRUE}
+quiz(caption = "Suppose your roll 2 dice. Let $X$ be the sum of the two die. ",
 question(
-  "Suppose your roll 2 dice. Let $X$ be the sum of the two die. Write out the pmf. Don't forget you can refer to Example 2.8 in the textbook to visualize the sample space. ",
-  answer("NO1", correct = TRUE),
-  answer("NO2"),
-  answer("NO3"),
-  answer("NO4"),
-  answer("NO5"),
-  allow_retry = TRUE
+  "What is $P(X = 3)$?",
+  answer('2/36', correct = TRUE),
+  answer('1/36'),
+  answer('3/36'),
+  answer('4/36'),
+  random_answer_order = TRUE
+), 
+question(
+  "What is $P(X \\leq 3)$?",
+  answer('3/36', correct = TRUE),
+  answer('2/36'),
+  answer('1/36'),
+  answer('4/36'),
+  random_answer_order = TRUE
 )
-
+)
 ```
 
 ### Example
 Suppose your roll 2 dice. Let $X$ be the sum of the two die. Use simulation to estimate the probability distribution.
 
 ```{r ex4a, exercise = TRUE}
-die <- 1:6 
-d1  <- sample(die, 1000, replace = TRUE)
-d2  <- sample(die, 1000, replace = TRUE)
-sum.2d6   <- d1 + d2
+die <- ____ 
+d1  <- sample(____, ____, replace = ____)
+d2  <- sample(____, ____, replace = ____)
+sum.2d6   <- ____
 ```
 
 ```{r ex4a-solution}
@@ -138,18 +94,18 @@ grade_code()
 The pmf of $X$ is: 
 
 ```{r ex4b, exercise = TRUE}
-die <- 1:6 
-d1  <- sample(die, 1000, replace = TRUE)
-d2  <- sample(die, 1000, replace = TRUE)
-sum.2d6   <- d1 + d2
-proportions(table(sum.2d6))
+die <- ____ 
+d1  <- sample(____, ____, replace = ____)
+d2  <- sample(____, ____, replace = ____)
+sum.2d6   <- ____
+____(____(____))
 ```
 
 ```{r ex4b-solution}
 die <- 1:6 
 d1  <- sample(die, 1000, replace = TRUE)
 d2  <- sample(die, 1000, replace = TRUE)
-sum.2d6   <- d1 + d2
+sum.2d6 <- d1 + d2
 proportions(table(sum.2d6))
 ```
 
@@ -157,15 +113,15 @@ proportions(table(sum.2d6))
 grade_code()
 ```
 
-### Plotting the pmf
-We can use the function `plot` to plot the estimate of the pmf using the following code. Delete the `#` to see.
+## Plotting the pmf
+We can use the function `plot` to plot the estimate of the pmf using the following code. 
 
 ```{r plot1, exercise = TRUE}
 die <- 1:6 
 d1  <- sample(die, 1000, replace = TRUE)
 d2  <- sample(die, 1000, replace = TRUE)
 sum.2d6   <- d1 + d2
-#plot(proportions(table(sum.2d6)), main="Sum of two dice", ylab="Probability")
+plot(______, main=_____, ylab="Probability")
 ```
 
 ```{r plot1-solution}
@@ -182,65 +138,69 @@ grade_code()
 
 ### You try it
 
-1. Three coins are tossed and the number of heads $X$ is counted.
+1. Three coins are tossed and the number of heads $X$ is counted. Simulate the pmf. **Store the pmf in the vector `nheads` provided**
 
-```{r theoretical, echo = FALSE}
-question("Write out the theoretical pmf for $X$",
-  answer("NO1"),
-  answer("NO2"),
-  answer("NO3", correct = TRUE),
-  answer("NO4"),
-  answer("NO5"),
-  allow_retry = TRUE
-)
-```
-
-Confirm via simulation.
-*DR D*
 ```{r yti2a, exercise = TRUE}
+coin <- c("h","t")
 
+coin_toss <- replicate(5,{
+  results <- sample(coin,3,replace=TRUE)
+  sum(results=="h")
+})
+
+nheads <- proportions(table(coin_toss))
 ```
+
 
 ```{r yti2a-check}
 coin <- c("h","t")
 
 coin_toss <- replicate(10000,{
-  results <- sample(coin,5,replace=TRUE)
+  results <- sample(coin,3,replace=TRUE)
   sum(results=="h")
 })
 
-prop.table(table(coin_toss))
-grade_this()
+nheads.soln <- proportions(table(coin_toss))
+
+grade_this({
+  if (length(.result) != length(nheads.soln)) {
+    fail("Incorrect space of the random variable. Did you use sufficient replications?")
+  }
+  if ( abs(sum(.result - nheads.soln)) <.01 ) {
+    pass("Great work!")
+  }
+  fail()
+})
 ```
 
 
-2. Seven balls number 1-7 are in an urn. Two balls are drawn from the urn without replacement and the sum of $X$ of the numbers is computed. Estimate via simulation the pmf of $X$.
+2. Seven balls number 1-7 are in an urn. Two balls are drawn from the urn without replacement. Let $X$ be the sum of the numbers on the balls. Estimate via simulation the pmf of $X$. **Store the pmf in the vector `sum.balls` provided**
 
 ```{r yti2bi, exercise = TRUE}
+
 ```
 
-*DR D*
+
 ```{r yti2bi-check}
-urn <- 1:7
 x <- replicate(10000, {
-  balls <- sample(urn,2,replace=FALSE) 
+  balls <- sample(1:7,2,replace=FALSE) 
   total_2balls <- sum(balls)
 })
-prop.table(table(x))
-grade_this()
+
+sum.balls <- proportions(table(x))
+
+grade_this({
+  if (length(.result) != length(sum.balls)) {
+    fail("Incorrect space of the random variable. Did you use sufficient replications?")
+  }
+  if ( abs(sum(.result - sum.balls)) <.01 ) {
+    pass("Great work!")
+  }
+  fail()
+})
+
 ```
 
-
-```{r yti2bi}
-question("What are the least likely outcomes of $X$?",
-  answer("NO1"),
-  answer("NO2"),
-  answer("NO3", correct = TRUE),
-  answer("NO4"),
-  answer("NO5"),
-  allow_retry = TRUE
-)
-```
 
 ### Challenge Example
 
@@ -253,35 +213,37 @@ Estimate the pmf of $X$.
 
 ```
 
-*Dr. D check*
 
 ```{r challenge-check}
 bag <- c(rep(-1, 50), rep(1, 50))
-replicate(1000,{
-steps <- sample(bag)
-steps[1:10]
-walk <- cumsum(steps)
-walk[1:10]
-where.zero <- which(walk==0)
-ans<-min(where.zero)
-answer.space
+
+walk.space <- replicate(100,{
+  rand.walk <- replicate(10000,{
+    steps <- sample(bag)
+    walk <- cumsum(steps)
+    where.zero <- which(walk==0)
+    ans <- min(where.zero)
+  })
+  mean(rand.walk)
 })
+
 grade_this({
-  if (.result > min(answer.space) & 
-      .result < max(answer.space)) {
+  if (.result > min(walk.space) & 
+      .result < max(walk.space)) {
     pass("Great work!")
   }
   
-  if (.result > max(answer.space)) {
+  if (.result > max(walk.space)) {
     fail("Your answer is a bit high")
   }
-  if (.result < min(answer.space)) {
+  if (.result < min(walk.space)) {
     fail("Your answer is a bit low")
   }
   fail()
 })
 ```
 
+## Sampling from a known distribution
 
 ### Example: Blood types
 
@@ -308,15 +270,22 @@ grade_code()
 The estimated pmf is then: 
 
 ```{r ex5b, exercise = TRUE}
-proportions(table(sample_blood)) 
+bloodtypes <- c(_____,_____,_____,_____)
+prob_bloodtypes <- c(_____,_____,_____,_____)
+sample_blood <- sample(x =________________, size =_____, prob=________, replace=_____)
+
+proportions(table(_____)) 
 ```
 
 ```{r ex5b-solution}
+bloodtypes <- c(O,A,B,AB)
+prob_bloodtypes <- c(0.45,0.4,0.11,0.04)
+sample_blood <- sample(x =bloodtypes_, size = 30, prob=prob_bloodtypes, replace=TRUE)
 proportions(table(sample_blood)) 
 ```
 
 ```{r ex5b-check}
-
+grade_code()
 ```
 
 
@@ -330,13 +299,36 @@ a. What is the probability that a randomly selected M&M is not green?
 
 ```
 
-*DR D*
 ```{r yti3a-check}
-yti3a.answer.space<-___
+colors <- c("Y","R","O","Br","G","Bl")
+prob_mnms <- c(.14,.13,.2,.12,.2,.21)
+
+mm.green.ans.space <- replicate(100, {
+  not.green <- replicate(10000,{
+    mnm_sample <- sample(colors, 50, prob=prob_mnms, replace=TRUE)
+    mnm_sample !="G"
+  })
+  mean(not.green)
+})
+
 grade_this({
  
 })
 
+grade_this({
+  if (.result > min(mm.green.ans.space) & 
+      .result < max(mm.green.ans.space)) {
+    pass("Great work!")
+  }
+  
+  if (.result > max(mm.green.ans.space)) {
+    fail("Your answer is a bit high")
+  }
+  if (.result < min(mm.green.ans.space)) {
+    fail("Your answer is a bit low")
+  }
+  fail()
+})
 ```
 
 
@@ -347,12 +339,37 @@ b. What is the probability that a randomly selected M&M is red, orange, or yello
 ```    
 
 ```{r yti3b-check}
-yti3b.answer.space<-___
+colors <- c("Y","R","O","Br","G","Bl")
+prob_mnms <- c(.14,.13,.2,.12,.2,.21)
+
+mm.roy.ans.space <- replicate(100, {
+  roy <- replicate(10000,{
+    mnm_sample <- sample(colors, 50, prob=prob_mnms, replace=TRUE)
+    mnm_sample %in% c("R", "O", "Y")
+  })
+  mean(roy)
+})
+
 grade_this({
  
 })
 
+grade_this({
+  if (.result > min(mm.roy.ans.space) & 
+      .result < max(mm.roy.ans.space)) {
+    pass("Great work!")
+  }
+  
+  if (.result > max(mm.roy.ans.space)) {
+    fail("Your answer is a bit high")
+  }
+  if (.result < min(mm.roy.ans.space)) {
+    fail("Your answer is a bit low")
+  }
+  fail()
+})
 ```
+
 
 ## Submit your work
 
@@ -367,7 +384,7 @@ encoder_logic()
 ```
 
 ```{r encode, echo=FALSE}
-encoder_ui(default_ui(url = ""))
+encoder_ui(default_ui(url = "https://forms.gle/xUK6GV9hxJau3Hrv8"))
 ```
 
 
