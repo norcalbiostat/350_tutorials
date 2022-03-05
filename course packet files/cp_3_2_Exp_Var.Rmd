@@ -1,63 +1,103 @@
-# Section 3.2: Expected Value & Variance
+---
+title: "Section 3.2: Expected Value & Variance"
+output: 
+  html_document: 
+    theme: sandstone
+    toc: yes
+    toc_depth: 1
+    toc_float: yes
+    css: ../style.css
+    highlight: tango
+---
 
 **NOTE:** We are going out of order from the textbook in Chapter 3.
 
+# Expected Value (Speegle Ch 3.2)
 
-## Expected Value (Speegle Ch 3.2)
-
-Probability mass functions provide a global overview of a random variable's behavior.  Many times we don't need to know everything about a variable.  We often want to summarize the variable.  One feature of a distribution which we might be interested in is the central tendency of a variable. One measure of central tendency is the *expected value* or *mean* of the observation. The term expected value and mean can be used interchangeably.
+Probability mass functions provide a global overview of a random variable's behavior. Many times we don't need to know everything about a variable. We often want to summarize the variable. One feature of a distribution which we might be interested in is the central tendency of a variable. One measure of central tendency is the *expected value* or *mean* of the observation. The term expected value and mean can be used interchangeably.
 
 ## Definition: Expected Value
-For a discrete random variable $X$ with a pmf $p$, the *expected value* of $X$ is 
 
-\vspace{2cm}
+For a discrete random variable $X$ with a pmf $p$, the *expected value* of $X$ is
+
+$$
+E[X]=\sum_{x}xp(x)
+$$
 
 where the sum is taken over all possible values of the random variable $X$.
-
-\newpage
 
 ### Example
 
 Two books are assigned for a statistics class: a textbook costing \$137 and its corresponding study guide costing \$33. The university bookstore determined 20% of enrolled students do not buy either book, 55% buy the textbook only, and 25% buy both books, and these percentages are relatively constant from one term to another.
 
-Let $X$ be a random variable that denotes how much a single student will spend on their statistics book. The pmf is: 
+Let $X$ be a random variable that denotes how much a single student will spend on their course materials. The pmf is:
 
-\vspace{3cm}
+-   Textbook only: \$137
 
-Interpret this value in context: 
+-   Textbook + Study guide: \$173 + \$33 = \$170
 
-\vspace{3cm}
+-   Neither: \$0
 
-Confirm your results using simulation. 
+|      |     |     |     |
+|------|-----|-----|-----|
+| x    | 0   | 137 | 170 |
+| p(x) | .20 | .55 | .25 |
 
+Calculate E(X) and interpret this value in context:
 
+```{r}
+0 * .20 + 137 *.55 + 170*.25
+```
 
+*On average, a single student will spend \$117.85 on their course materials.*
 
-\newpage
+Confirm your results using simulation.
+
+```{r}
+dollars <- c(0, 137, 170)
+prob <- c(.2, .55, .25)
+
+spend <- sample(dollars, size=10000, prob=prob, replace=TRUE)
+mean(spend)
+```
 
 ### You try it:
 
-A retirement portfolio's value increases by 18% during a financial boom and by 9% during normal times. It decreases by 12% during a recession. What is the expected return on this portfolio if each scenario is equally likely? 
+A retirement portfolio's value increases by 18% during a financial boom and by 9% during normal times. It decreases by 12% during a recession. What is the expected return on this portfolio if each scenario is equally likely?
 
-* Define a random variable.
+**Define a random variable.**
 
-\vspace{2cm}
+Let $X$ be the change in portfolio value.
 
-* Write down the pdf.
+-   Write down the pdf.
 
-\vspace{2cm}
+    |      |     |     |     |
+    |------|-----|-----|-----|
+    | x    | 18  | 9   | -12 |
+    | p(x) | 1/3 | 1/3 | 1/3 |
 
-* Calculate the theoretical expected value. Write your answer in a full sentence in context of the problem. 
+-   Calculate the theoretical expected value. Write your answer in a full sentence in context of the problem.
 
-\vspace{3cm}
+```{r}
+18*1/3 + 9*1/3  - 12*1/3
+```
 
-* Confirm using simulation. 
+In the long run this portfolio's value is expected to increase by 5%. 
 
-\newpage
+-   Confirm using simulation.
 
-## Variance and standard deviation (Speegle Ch 3.5)
+```{r}
+value <- c(18, 9, -12)
 
-Although the mean is a useful descriptive statistic, it only gives us an idea of where the center of the distribution is located.  For instance, the following table gives the monthly temperature of New York City and San Francisco:
+portfolio.change <- sample(value, size=10000, replace=TRUE)
+mean(portfolio.change)
+```
+
+----
+
+# Variance and standard deviation (Speegle Ch 3.5)
+
+Although the mean is a useful descriptive statistic, it only gives us an idea of where the center of the distribution is located. For instance, the following table gives the monthly temperature of New York City and San Francisco:
 
 ```{r, echo=FALSE,message=FALSE,warning=FALSE}
 library(magrittr)
@@ -68,58 +108,81 @@ tabl <- data.frame(months = c("J", "F", "M", "A", "M", "J", "J", "A", "S", "O", 
 knitr::kable(t(tabl)) %>% kableExtra::kable_styling(full_width=F, position="center", latex_options = c("striped", "hold_position"))
 ```
 
-The mean temperature for San Francisco is about 57 degrees and the mean temperature for New York is around 55 degrees.  So, there mean yearly temperature is about the same.  Do you notice anything different about the two cities with regards to monthly temperatures?
+The mean temperature for San Francisco is about 57 degrees and the mean temperature for New York is around 55 degrees. So, there mean yearly temperature is about the same. Do you notice anything different about the two cities with regards to monthly temperatures?
 
-\vspace{2cm}
+_The temperature range in NYC has higher highs, and lower lows compared to SF. SF has a lower range of temperatures compared to NYC._
 
-
-To distinguish between 2 distributions with the similar means it might be useful to have a statistic that measures how spread out the distribution is.  The variance and standard deviations are such measures. 
-
-\vspace{-0.5cm}
+To distinguish between 2 distributions with the similar means it might be useful to have a statistic that measures how spread out the distribution is. The variance and standard deviations are such measures.
 
 ## Definition: Variance
-Suppose $X$ is a random variable with mean $\mu=E(X)$. The variance of $X$, denoted by Var($X$), is defined as follows:
+
+Suppose $X$ is a random variable with mean $\mu=E(X)$. The variance of $X$, denoted by Var($X$) or $\sigma^{2}$, is defined as follows:
 
 $$
 Var(X)=\sigma^{2}=E[(X-\mu)^{2}]=\sum_{all k}\left(k-\mu\right)^{2}*P(X=k)
 $$
 
-\vspace{2cm}
+The variance of a distribution provides a measure of the spread or dispersion of the distribution around its mean $\mu$.
 
-The variance of a distribution provides 
+The standard deviation of a random variable $X$ ($SD(X)$) is the square root of the variance. We denote the standard deviation by $\sigma$ and the variance by $\sigma^{2}$. E.g.: $\sigma = \sqrt{\sigma^{2}}$
 
-\vspace{1cm}
+-   Which of the two distributions below have the larger variance?
 
-The standard deviation of a random variable $X$ ($SD(X)$) is
-
-
-\vspace{1cm}
-
-
-\newpage
-
-Which of the two distributions below have the larger variance? 
-\singlespace
 ```{r, fig.width=8, fig.height=3, fig.align='center'}
 par(mfrow=c(1,2))
 plot(proportions(table(sample(1:5, size=1000, replace=TRUE))), ylab="probability")
 plot(proportions(table(sample(1:10, size=1000, replace=TRUE))), ylab="probability")
 ```
-\doublespace
-
-\vspace{2cm}
 
 ### Example
 
-Let's return to the statistics book example and calculate $Var(X)$ and $SD(X)$. _Recap: The textbook costs \$137, the study guide costing \$33. 20% of students don't buy either book, 55% buy the textbook only, and 25% buy both books._ Confirm your results using simulation.
+Let's return to the statistics book example and calculate $Var(X)$ and $SD(X)$. *Recap: The textbook costs \$137, the study guide costing \$33. 20% of students don't buy either book, 55% buy the textbook only, and 25% buy both books.* Confirm your results using simulation.
 
+```{r}
+x <- c(0, 137, 170)
+p.x <- c(.2, .55, .25)
+```
 
+* Theoretical
+```{r}
+(x.minus.mu <- x - 117.85)
+(var.dollars <- sum(x.minus.mu^2 * p.x))
+sqrt(var.dollars)
+```
 
+* Simulation
+```{r}
+spend <- sample(x, size=10000, prob=p.x, replace=TRUE)
+var(spend)
+```
 
+_Bonus_: You may have noticed that the formula for $\sum_{all k}\left(k-\mu\right)^{2}*P(X=k)$ has the same format as a dot product. You can perform vector multiplication like this in R using the `%*%` operator. 
 
-\newpage
+```{r}
+x.minus.mu^2 %*% p.x
+```
+
 
 ### You try it:
 
-Return to the retirement portfolio question (_Recap: the value increases by 18% during a financial boom and by 9% during normal times, and decreases by 12% during a recession. Each scenario is equally likely_). Calculate the variance and standard deviation. 
+Return to the retirement portfolio question (*Recap: the value increases by 18% during a financial boom and by 9% during normal times, and decreases by 12% during a recession. Each scenario is equally likely*). Calculate the variance and standard deviation.
 
+
+```{r}
+value.chg <- c(18, 9, -12)
+p.chg <- 1/3
+```
+
+* Theoretical
+```{r}
+(mean.chg <- sum(value.chg * p.chg))
+(var.chg <- sum((value.chg-mean.chg)^2 * p.chg))
+(sd.chg <- sqrt(var.chg))
+```
+
+* Simulation
+```{r}
+portfolio.change <- sample(value.chg, size=10000, replace=TRUE)
+var(portfolio.change)
+sd(portfolio.change)
+```

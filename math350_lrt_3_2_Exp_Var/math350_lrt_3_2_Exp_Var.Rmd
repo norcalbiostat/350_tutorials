@@ -1,15 +1,15 @@
 ---
-title: "Section "
+title: 'Section 3.2: Expected Value and Variance'
 output: 
     learnr::tutorial:
       progressive: true
       allow_skip: true
 tutorial:
-      id: math350_lrt_FILE NAME HERE
+      id: math350_lrt_3_2_Exp_Var
       version: 1 # change the version when you want to invalidate past progress
 runtime: shiny_prerendered
 description: > 
-  Dr. D add in description. 
+
 ---
 
 ```{r setup, include=FALSE}
@@ -37,7 +37,7 @@ encoder_logic()
 ```
 
 ```{r encode, echo=FALSE}
-encoder_ui(default_ui(url = ""))
+encoder_ui(default_ui(url = "https://forms.gle/aeRPcLGdwqRsFWXx7"))
 ```
 
 
