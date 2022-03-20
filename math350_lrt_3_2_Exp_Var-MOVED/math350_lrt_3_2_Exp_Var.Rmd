@@ -46,31 +46,31 @@ quiz(caption = "Two books are assigned for a statistics class: a textbook costin
 )
 ```
 
-Calculate E(X)
+Calculate E(X), and save the result as `E.dollars.spent`.  
 
 ```{r ex1, exercise = TRUE}
-
+E.dollars.spent <- 
 ```
 
 ```{r ex1-check}
-ans <- 0 * .20 + 137 *.55 + 170*.25
+E.dollars.spent <- 0 * .20 + 137 *.55 + 170*.25
 
-grade_result(pass_if(~identical(.result, ans)))
+grade_result(pass_if(~identical(.result, E.dollars.spent)))
 ```
 
 Confirm your results using simulation.
 
 ```{r ex2, exercise=TRUE}
 dollars <- _____
-prob <- ____
+prob.dollars <- ____
 spend <- sample(____, size=____, prob=____, replace=TRUE)
 mean(____)
 ```
 
 ```{r ex2-solution}
 dollars <- c(0, 137, 170)
-prob <- c(.2, .55, .25)
-spend <- sample(dollars, size=10000, prob=prob, replace=TRUE)
+prob.dollars <- c(.2, .55, .25)
+spend <- sample(dollars, size=10000, prob=prob.dollars, replace=TRUE)
 mean(spend)
 ```
 
@@ -82,16 +82,16 @@ grade_code()
 
 A retirement portfolio's value increases by 18% during a financial boom and by 9% during normal times. It decreases by 12% during a recession. What is the expected return on this portfolio if each scenario is equally likely? Let $X$ be the change in portfolio value.
 
-Calculate the theoretical expected value. 
+Calculate the theoretical expected value. Save your result as `Exp.return`.
 
 ```{r yti1_theo, exercise = TRUE}
-
+Exp.return <- 
 ```
 
 ```{r yti1_theo-check}
-ans <- 18*1/3 + 9*1/3  - 12*1/3
+Exp.return <- 18*1/3 + 9*1/3  - 12*1/3
 
-grade_result(pass_if(~identical(.result, ans)))
+grade_result(pass_if(~identical(.result, Exp.return)))
 ```
 
 Confirm using simulation.
@@ -102,38 +102,51 @@ Confirm using simulation.
 
 ```{r yti1_sim-check}
 value <- c(18, 9, -12)
-portfolio.change <- sample(value, size=10000, replace=TRUE)
-mean(portfolio.change)
+
+pch.space <- replicate(100,{
+  portfolio.change <- sample(value, size=10000, replace=TRUE)
+  mean(portfolio.change)
+})
+
+tol <- IQR(pch.space)
 
 grade_this({
-  if ( abs(sum(.result - sum.balls)) <.01 ) {
+  if ((.result > min(pch.space) - 1.5*tol) & 
+      (.result < max(pch.space) + 1.5*tol)) {
     pass("Great work!")
+  }
+  
+  if (.result > max(pch.space) + 1.5*tol) {
+    fail("Your answer is a bit high")
+  }
+  if (.result < min(pch.space) - 1.5*tol) {
+    fail("Your answer is a bit low")
   }
   fail()
 })
-
 ```
+
 
 ## Variance and standard deviation
 
 ### Example
 
-Let's return to the statistics book example and calculate the theoretical $Var(X)$ and $SD(X)$. 
+Let's return to the statistics book example and calculate the theoretical $SD(X)$. 
 
-* Theoretical
 ```{r ex3_theo, exercise=TRUE}
 x <- _____
 p.x <- _____
+mu <- ____
 (x.minus.mu <- x - _____)
 (var.dollars <- sum(_____))
 sqrt(_____)
 ```
 
-
 ```{r ex3_theo-solution}
 x <- c(0, 137, 170)
 p.x <- c(.2, .55, .25)
-(x.minus.mu <- x - 117.85)
+mu <- sum(x*p.x)
+(x.minus.mu <- x - mu)
 (var.dollars <- sum(x.minus.mu^2 * p.x))
 sqrt(var.dollars)
 ```
@@ -142,30 +155,31 @@ sqrt(var.dollars)
 grade_code()
 ```
 
-* Simulation
+
+Confirm via simulation.
+
 ```{r ex3_sim, exercise=TRUE}
 x <- _____
 p.x <- ______
 spend <- sample(______, size=______, prob=______, replace=TRUE)
-var(______)
+sd(______)
 ```
 
 ```{r ex3_sim-solution}
 x <- c(0, 137, 170)
 p.x <- c(.2, .55, .25)
 spend <- sample(x, size=10000, prob=p.x, replace=TRUE)
-var(spend)
+sd(spend)
 ```
 
 ```{r ex3_sim-check}
 grade_code()
 ```
 
-### You try it:
+### You try it
 
-Return to the retirement portfolio question. Calculate the variance and standard deviation using both formulas and simulation
+Return to the retirement portfolio question. Calculate the theoretical standard deviation. Use R as a calculator and don't round your answer. Save your final answer as `sd.chg`. 
 
-* Theoretical standard deviation
 ```{r yti2_theo_sd, exercise=TRUE}
 
 ```
@@ -177,10 +191,16 @@ mean.chg <- sum(value.chg * p.chg)
 var.chg <- sum((value.chg-mean.chg)^2 * p.chg)
 sd.chg <- sqrt(var.chg)
 
-grade_result(pass_if(~identical(.result, sd.chg)))
+grade_this({
+  if (abs(.result - sd.chg) < .001 ) {
+    pass("Great work!")
+  }
+  fail("Did you just type in a number?")
+})
+
 ```
 
-* Estimated standard deviation via simulation
+Confirm via simulation
 
 ```{r yti2_sim_sd, exercise=TRUE}
 
@@ -188,12 +208,25 @@ grade_result(pass_if(~identical(.result, sd.chg)))
 
 ```{r yti2_sim_sd-check}
 value <- c(18, 9, -12)
-portfolio.change <- sample(value, size=10000, replace=TRUE)
-sd(portfolio.change)
+
+pch.sd.space <- replicate(100,{
+  portfolio.change <- sample(value, size=10000, replace=TRUE)
+  sd(portfolio.change)
+})
+
+tol <- IQR(pch.sd.space)
 
 grade_this({
-  if ( abs(sum(.result - sum.balls)) <.01 ) {
+  if ((.result > min(pch.sd.space) - 1.5*tol) & 
+      (.result < max(pch.sd.space) + 1.5*tol)) {
     pass("Great work!")
+  }
+  
+  if (.result > max(pch.sd.space) + 1.5*tol) {
+    fail("Your answer is a bit high")
+  }
+  if (.result < min(pch.sd.space) - 1.5*tol) {
+    fail("Your answer is a bit low")
   }
   fail()
 })
