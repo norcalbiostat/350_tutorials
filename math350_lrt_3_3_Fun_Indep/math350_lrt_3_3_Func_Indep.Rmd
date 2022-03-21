@@ -1,0 +1,307 @@
+---
+title: "Section 3.3 Functions of random variables (Speegle 3.4)"
+output: 
+    learnr::tutorial:
+      progressive: true
+      allow_skip: true
+runtime: shiny_prerendered
+description: > 
+  
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(learnrhash)
+gradethis::gradethis_setup()
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Example:
+
+Let $X = {-2, -1, 0, 1, 2}$, all equally likely and $g(x) = X^{2}$. Find the pmf of $y=g(x)$, and $E(Y)$.
+
+| $x$ | $p(x)$ | $g(x) = X^{2}$ |
+|:---:|:------:|:--------------:|
+| -2  |   .2   |       4        |
+| -1  |   .2   |       1        |
+|  0  |   .2   |       0        |
+|  1  |   .2   |       1        |
+|  2  |   .2   |       4        |
+
+Notice that the same value for $y = g(x)$ can occur from multiple values of $x$. The pmf of Y should be simplified to only have one row per unique value of Y. We can also use this same table to calculate $E(Y)$
+
+| $Y = g(x)$ | $p(y)$ | $y*p(y)$ |
+|:----------:|:------:|:--------:|
+|     0      |   .2   |    0     |
+|     1      |   .4   |    .4    |
+|     4      |   .4   |   1.6    |
+
+So $E(Y) = \sum y*p(y) = 2$.
+
+Let's confirm via simulation.
+
+```{r ex1, exercise = TRUE}
+X <- ____
+sample.x <- sample(X, 10000, replace=TRUE) # sample from x with equal probability
+y <- ____ #y = g(x)
+proportions(table(y)) #pmf
+mean(y) # expected value
+```
+
+```{r ex1-check}
+X <- c(-2, -1, 0, 1, 2)
+sample.x <- sample(X, 10000, replace=TRUE) # sample from x with equal probability
+y <- sample.x^2 #y = g(x)
+answer<-mean(y) # expected value
+grade_result(pass_if(~identical(.result, answer)))
+```
+
+### You try it.
+
+Using the random variable $X$ in the above example, find the pmf and expected value of $Y = 2X+1$.
+
+-   Theoretical
+
+| $x$ | $p(x)$ | $g(x) = 2X+1$ |
+|:---:|:------:|:-------------:|
+| -2  |   .2   |      -3       |
+| -1  |   .2   |      -1       |
+|  0  |   .2   |       1       |
+|  1  |   .2   |       3       |
+|  2  |   .2   |       5       |
+
+```{r yti1a, exercise = TRUE}
+(E_x <- -3*.2 + -1*.2 + 1*.2 + 3*.2 + 5*.2)
+```
+
+```{r yti1a-check}
+grade_result(pass_if(~identical(.result, 1)))
+```
+
+
+-   Simulation
+
+```{r yti1b, exercise = TRUE}
+X <- _____
+sample.x <- ____
+y <- ____
+proportions(table(y)) 
+mean(y) 
+```
+
+```{r yti1b-check}
+X <- c(-2, -1, 0, 1, 2)
+sample.x <- sample(X, 10000, replace=TRUE) 
+y <- 2*sample.x + 1
+proportions(table(y)) 
+answer<-mean(y) 
+grade_result(pass_if(~identical(.result,answer)))
+```
+
+
+### Example:
+
+
+```{r quiz1, exercise.reveal_solution=TRUE}
+quiz(caption = "John travels to work five days a week. We will use $X_{1}$ to represent his travel time on Monday, $X_{2}$ to represent his travel time on Tuesday, and so on.", 
+     
+  question("Write an equation using $X_{1},... X_{5}$ that represents his total travel time for the week, denoted by $W$.",
+    answer("$$ W = sum_{i=1}^{5} X_{i} $$", correct = TRUE),
+    answer(""),
+    answer(""),
+    answer(""),
+    random_answer_order = TRUE), 
+  
+  question("It takes John an average of 18 minutes each day to commute to work. What would you expect his average commute time to be for the week? Explain how you got to this answer?",
+    answer("I would expect him to take $W/5$ minutes on average to commute to work each day. W is the sum of the travel time on each of the five individual days, so the average is calculated as the total time divided by number of days.", correct = TRUE),
+    answer(""),
+    answer(""),
+    answer("")), 
+  
+  question("What was a major assumption that we had to make to figure out this example?",
+    answer(""),
+    answer(""),
+    answer(""),
+    answer("That the travel time one day is independent of the travel time on another day. That is, $X_{i}$ and $X_{j}$ are independent $forall i, j$.", correct=TRUE))
+)
+```
+
+### You try it
+
+1.  Let $E(X) = 2$. Find $E(3X-1)$. 
+
+```{r yti2a, exercise = TRUE }
+
+```
+
+
+```{r yti2a-check}
+grade_result(pass_if(~identical(.result,5)))
+```
+
+2.  Find $E(2)$
+
+```{r yti2b, exercise = TRUE }
+
+```
+
+
+```{r yti2b-check}
+grade_result(pass_if(~identical(.result,2)))
+```
+
+3.  Find $E(2X-3Y)$ when $E(X) = -4$ and $E(Y)=1$
+
+```{r yti2c, exercise = TRUE }
+
+```
+
+
+```{r yti2c-check}
+grade_result(pass_if(~identical(.result,-11)))
+```
+
+### Example
+
+Let $X = {-2, -1, 0, 1, 2}$, all values equally likely. Find $E(X)$ and $Var(X)$.
+
+| $x$ | $p(x)$ | $x*p(x)$ | $x^{2}$ | $x^{2}*p(x)$ |
+|:---:|:------:|:--------:|:-------:|:------------:|
+| -2  |   .2   |   -0.4   |    4    |     0.8      |
+|  1  |   .2   |   -0.2   |    1    |     0.2      |
+|  0  |   .2   |    0     |    0    |      0       |
+|  1  |   .2   |   0.2    |    1    |     0.2      |
+|  2  |   .2   |   0.4    |    4    |     0.8      |
+
+$$
+E(X) = \sum(x*p(x)) = 0 \\
+E(X^2) = \sum (x^{2}*p(x)) = 2  \\
+Var(X) = E(X^{2}) - E(X)^2 = 2 - 0^2 = 2
+$$
+
+
+Confirm via Simulation
+
+```{r ex2a, exercise = TRUE}
+X <- ___
+sample.x <- sample(___, 10000, replace=___)
+mean(sample.x)
+var(sample.x)
+```
+
+```{r ex2a-check}
+X <- c(-2, -1, 0, 1, 2)
+sample.x <- sample(X, 10000, replace=TRUE)
+mean(sample.x)
+ans<-var(sample.x)
+grade_result(pass_if(~identical(.result,ans)))
+```
+
+
+### You try it
+
+Let X be a random variable with values $x = {0, 1, 2}$ and $p(x) = {.1, .5, .4}$. Find $E(X)$ and $Var(X)$.
+
+| $x$ | $p(x)$ | $x*p(x)$ | $x^{2}$ | $x^{2}*p(x)$ |
+|:---:|:------:|:--------:|:-------:|:------------:|
+|  0  |   .1   |    0     |    0    |      0       |
+|  1  |   .5   |   0.5    |    1    |     0.5      |
+|  2  |   .4   |   0.8    |    4    |     1.6      |
+
+$$
+E(X) = \sum(x*p(x)) = 1.3 \\
+E(X^2) = \sum (x^{2}*p(x)) = 2.1  \\
+Var(X) = E(X^{2}) - E(X)^2 = 2.1 - 1.3^2 = 0.41
+$$
+
+Confirm via simulation
+```{r yti3, exercise = TRUE}
+X <- ____
+p.X <- ____
+sample.x <- sample(X, 10000, prob=p.X, replace=TRUE)
+mean(sample.x)
+var(sample.x)
+```
+
+```{r yti3-check}
+X <- c(0, 1, 2)
+p.X <- c(.1, .5, .4)
+sample.x <- sample(X, 10000, prob=p.X, replace=TRUE)
+mean(sample.x)
+ans<-var(sample.x)
+grade_result(pass_if(~identical(.result,ans)))
+```
+
+### You try it:
+
+Marksmanship competition at a certain level requires each contestant to take ten shots with each of two different handguns. Final scores are computed by taking a weighted average of 4 times the number of bull-eyes made with the first gun plus 6 times the number gotten with the second gun. If Bertha has a 30% chance of hitting the bull's-eye with each shot from the first gun and a 40% chance with each shot from the second gun, what is the theoretical mean and sd of her score?
+
+1. Define the random variables, and the function to create her final score. 
+
+Let $X_{1}$ be the number of hits out of 10 shots for gun 1, and let $X_{2}$ be the number of hits out of 10 shots on gun 2. Her $Score = 4X_{1} + 6X_{2}$.
+
+2. My mistake on the placement of this question - You don't have enough information yet to solve this problem. So here is some additional information: 
+
+> Average on first gun is 3, with variance 2.1. Average on second gun is 4, with variance 2.4. 
+
+3. Mean and variance of score. 
+
+$$
+E(4X1+6X2) = 4*3 + 6*4 = 36
+$$
+
+$$
+Var(4X1+6X2) = 16*2.1 + 36 * 2.4 = 120 \\
+SD(4X1+6X2) = \sqrt{120} = 10.95
+$$
+
+
+**Confirm via simulation**
+
+> This is really the key of why we practice simulation. Sometimes you don't have the ability to calculate the theoretical values, but you can simulate the experiment to get an estimate of the values. 
+
+```{r yti4, exercise = TRUE}
+weighted.score <- replicate(10000, {
+  # let 0=miss and 1=hit, so sum() equals number of hits
+  gun1 <- sample(c(0,1), size=10, prob=c(.7, .3), replace=TRUE)
+  score.gun.1 <- sum(gun1)
+  gun2 <- sample(c(0,1), size=10, prob=c(.6, .4), replace=TRUE)
+  score.gun.2 <- sum(gun2)
+  
+  score <- 4*score.gun.1 + 6*score.gun.2
+})
+
+mean(weighted.score)
+sd(weighted.score)
+```
+
+## Submit your work
+Part of your grade in this class comes from submitting tutorial work like this. 
+
+Click the <kbd>Generate</kbd> button below to generate a hash for you assignment. This long string of numbers is a unique code for you, and this assignment. 
+
+Paste this code into the Google Form below to submit your hash to the instructional team for scoring. You also have the opportunity to provide feedback and thoughts about the specific lesson. This is valuable information for the instructional team to know what topics were confusing for students or where extra help is needed. 
+
+```{r context="server"}
+encoder_logic()
+```
+
+```{r encode, echo=FALSE}
+encoder_ui(default_ui(url = "https://forms.gle/jVdZw6biVXEzGXDE9"))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
