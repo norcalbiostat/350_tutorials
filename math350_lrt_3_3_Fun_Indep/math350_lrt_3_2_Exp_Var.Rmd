@@ -1,0 +1,12 @@
+---
+title: "Section 3.3 Functions of random variables (Speegle 3.4)"
+output: 
+    learnr::tutorial:
+      progressive: true
+      allow_skip: true
+runtime: shiny_prerendered
+description: > 
+  
+---
+
+

@@ -1,0 +1,297 @@
+---
+title: "Section 3.3: Functions of random variables (Speegle 3.4)"
+output: 
+  html_document: 
+    theme: sandstone
+    toc: yes
+    toc_depth: 1
+    toc_float: yes
+    css: ../style.css
+    highlight: tango
+---
+
+> Note: I forgot to leave room in the course packet to demonstrate how to simulate functions of RV's.
+
+# Functions of RVs
+
+There are many reasons why we might be more interested in looking at the distribution of a **function** of a random variable $X$ than the actual variable $X$. One example would be that we're interested in the absolute distance the random variable is away from it's mean: $g(x) = |X-\mu|$, or we want to know the total gain or loss in a stock portfolio by adding up all the sum of the daily results.
+
+The pmf of $g(X)$ can be computed as follows. For each $y$, the probability that $g(X)=y$ is given by $\sum p(x)$ where the sum is over all values of $x$ such that $g(x)=y$.
+
+## Example:
+
+Let $X = {-2, -1, 0, 1, 2}$, all equally likely and $g(x) = X^{2}$. Find the pmf of $y=g(x)$, and $E(Y)$.
+
+| $x$ | $p(x)$ | $g(x) = X^{2}$ |
+|:---:|:------:|:--------------:|
+| -2  |   .2   |       4        |
+| -1  |   .2   |       1        |
+|  0  |   .2   |       0        |
+|  1  |   .2   |       1        |
+|  2  |   .2   |       4        |
+
+Notice that the same value for $y = g(x)$ can occur from multiple values of $x$. The pmf of Y should be simplified to only have one row per unique value of Y. We can also use this same table to calculate $E(Y)$
+
+| $Y = g(x)$ | $p(y)$ | $y*p(y)$ |
+|:----------:|:------:|:--------:|
+|     0      |   .2   |    0     |
+|     1      |   .4   |    .4    |
+|     4      |   .4   |   1.6    |
+
+So $E(Y) = \sum y*p(y) = 2$.
+
+Let's confirm via simulation.
+
+```{r}
+X <- c(-2, -1, 0, 1, 2)
+sample.x <- sample(X, 10000, replace=TRUE) # sample from x with equal probability
+y <- sample.x^2 #y = g(x)
+proportions(table(y)) #pmf
+mean(y) # expected value
+```
+
+### You try it.
+
+Using the random variable $X$ in the above example, find the pmf and expected value of $Y = 2X+1$.
+
+-   Theoretical
+
+| $x$ | $p(x)$ | $g(x) = 2X+1$ |
+|:---:|:------:|:-------------:|
+| -2  |   .2   |      -3       |
+| -1  |   .2   |      -1       |
+|  0  |   .2   |       1       |
+|  1  |   .2   |       3       |
+|  2  |   .2   |       5       |
+
+```{r}
+(E_x <- -3*.2 + -1*.2 + 1*.2 + 3*.2 + 5*.2)
+```
+
+-   Simulation
+
+```{r}
+X <- c(-2, -1, 0, 1, 2)
+sample.x <- sample(X, 10000, replace=TRUE) 
+y <- 2*sample.x + 1
+proportions(table(y)) 
+mean(y) 
+```
+
+### Example:
+
+John travels to work five days a week. We will use $X_{1}$ to represent his travel time on Monday, $X_{2}$ to represent his travel time on Tuesday, and so on.
+
+-   Write an equation using $X_{1}, \ldots X_{5}$ that represents his total travel time for the week, denoted by $W$.
+
+$$ W = \sum_{i=1}^{5} X_{i} $$
+
+-   It takes John an average of 18 minutes each day to commute to work. What would you expect his average commute time to be for the week? Explain how you got to this answer?
+
+I would expect him to take $W/5$ minutes on average to commute to work each day. W is the sum of the travel time on each of the five individual days, so the average is calculated as the total time divided by number of days.
+
+-   What was a major assumption that we had to make to figure out this example?
+
+That the travel time one day is independent of the travel time on another day. That is, $X_{i}$ and $X_{j}$ are independent $\forall i, j$.
+
+------------------------------------------------------------------------
+
+## Independent Random Variables (Speegle 3.5.1)
+
+We say that two random variables are **independent** if the outcome of $X$ does not give probabilistic information about the outcome of $Y$ and vice versa.
+
+Give an example of 2 variables that you think are **independent**:
+
+-   The number of animals in the student's household
+-   The student's GPA
+
+Give an example of 2 variables that you think are **not independent**:
+
+-   How much time a student spends on their coursework
+-   The student's GPA
+
+## Theorem 3.8: Rules of Expectation
+
+For random variables $X$ and $Y$, and constants $a$, $b$, and $c$:
+
+$$
+E[aX+bY]=aE[X]+bE[Y] \qquad \mbox{ and } \qquad  E[c]=c
+$$
+
+Refer back to the commute time example. We intuitively reasoned that the expectation of the total time is equal to the sum of the expected individual times. This theorem generalizes and formalizes that statement to say that **the expectation of a sum of random variables is always the sum of the expectation for each random variable.**
+
+### Example
+
+1.  Find $E(2X+5)$ if $E(X) = 4$
+
+$$
+\begin{align}
+E(2X+5) & =  E(2X) + E(5) \\
+        & =  2E(X) + 5 \\
+        & = 2(4) + 5 \\
+        & = 13
+\end{align}
+$$
+
+2.  Find $E(2X+5Y)$ if $E(X) = 4$ and $E(Y) = -2$
+
+$$
+\begin{align}
+E(2X+5Y) & = E(2X) + E(5Y) \\
+         & = 2E(X) + 5E(Y) \\
+         & = 2(4) + 5(-2) \\
+         & = -2
+\end{align}
+$$
+
+### You try it
+
+1.  Let $E(X) = 2$. Find $E(3X-1)$.
+
+$$
+E(3X-1) = 3E(X) - 1 = 3(2)-1 = 5
+$$
+
+2.  Find $E(2)$
+
+$$
+E(2) = 2
+$$
+
+3.  Find $E(2X-3Y)$ when $E(X) = -4$ and $E(Y)=1$
+
+$$
+E(2X-3Y) = 2E(X) - 3E(Y) = 2(-4) - 3(1) = -11
+$$
+
+------------------------------------------------------------------------
+
+## Theorem 3.9: Alternative method to calculate variance
+
+Now that we know some rules of expected value, we can use a simplified method to find the variance of a random variable.
+
+$$
+Var(X) = E(X^{2}) - E(X)^2
+$$
+
+### Example
+
+Let $X = {-2, -1, 0, 1, 2}$, all values equally likely. Find $E(X)$ and $Var(X)$.
+
+| $x$ | $p(x)$ | $x*p(x)$ | $x^{2}$ | $x^{2}*p(x)$ |
+|:---:|:------:|:--------:|:-------:|:------------:|
+| -2  |   .2   |   -0.4   |    4    |     0.8      |
+|  1  |   .2   |   -0.2   |    1    |     0.2      |
+|  0  |   .2   |    0     |    0    |      0       |
+|  1  |   .2   |   0.2    |    1    |     0.2      |
+|  2  |   .2   |   0.4    |    4    |     0.8      |
+
+$$
+E(X) = \sum(x*p(x)) = 0 \\
+E(X^2) = \sum (x^{2}*p(x)) = 2  \\
+Var(X) = E(X^{2}) - E(X)^2 = 2 - 0^2 = 2
+$$
+
+
+Confirm via Simulation
+
+```{r}
+X <- c(-2, -1, 0, 1, 2)
+sample.x <- sample(X, 10000, replace=TRUE)
+mean(sample.x)
+var(sample.x)
+```
+
+### You try it
+
+Let X be a random variable with values $x = {0, 1, 2}$ and $p(x) = {.1, .5, .4}$. Find $E(X)$ and $Var(X)$.
+
+| $x$ | $p(x)$ | $x*p(x)$ | $x^{2}$ | $x^{2}*p(x)$ |
+|:---:|:------:|:--------:|:-------:|:------------:|
+|  0  |   .1   |    0     |    0    |      0       |
+|  1  |   .5   |   0.5    |    1    |     0.5      |
+|  2  |   .4   |   0.8    |    4    |     1.6      |
+
+$$
+E(X) = \sum(x*p(x)) = 1.3 \\
+E(X^2) = \sum (x^{2}*p(x)) = 2.1  \\
+Var(X) = E(X^{2}) - E(X)^2 = 2.1 - 1.3^2 = 0.41
+$$
+
+Confirm via simulation
+```{r}
+X <- c(0, 1, 2)
+p.X <- c(.1, .5, .4)
+sample.x <- sample(X, 10000, prob=p.X, replace=TRUE)
+mean(sample.x)
+var(sample.x)
+```
+
+------------------------------------------------------------------------
+
+## Theorem 3.10: Rules of Variance
+
+1.  Let $X$ be a random variable and $c$ a constant. Then
+
+$$
+Var(cX) = c^{2}Var(X) \qquad \mbox{ and } \qquad Var(c) = 0 
+$$
+
+2.  Let $X$ and $Y$ be independent random variables. Then \vspace{2cm}
+
+$$
+Var(aX + bY) = a^{2}Var(X) + b^{2}Var(Y)
+$$
+
+### Example
+
+Suppose that three random variables $X_{1},X_{2},X_{3}$ form a random sample from a distribution for which the mean is 5 and the variance is 3. Determine the value of $E(2X_{1}-3X_{2}+X_{3}-4)$ and Var($2X_{1}-3X_{2}+X_{3}-4$).
+
+$$E(2X_{1}-3X_{2}+X_{3}-4) = 2E(X_1) - 3*E(X_2) + E(X_3)-4 = -4$$
+
+$$Var(2X_{1}-3X_{2}+X_{3}-4) = 4Var(X_1) + 9Var(X_2) + Var(X_3) = 4*3+9*3+3 = 42$$
+
+### You try it:
+
+Marksmanship competition at a certain level requires each contestant to take ten shots with each of two different handguns. Final scores are computed by taking a weighted average of 4 times the number of bull-eyes made with the first gun plus 6 times the number gotten with the second gun. If Bertha has a 30% chance of hitting the bull's-eye with each shot from the first gun and a 40% chance with each shot from the second gun, what is the theoretical mean and sd of her score?
+
+1. Define the random variables, and the function to create her final score. 
+
+Let $X_{1}$ be the number of hits out of 10 shots for gun 1, and let $X_{2}$ be the number of hits out of 10 shots on gun 2. Her $Score = 4X_{1} + 6X_{2}$.
+
+2. My mistake on the placement of this question - You don't have enough information yet to solve this problem. So here is some additional information: 
+
+> Average on first gun is 3, with variance 2.1. Average on second gun is 4, with variance 2.4. 
+
+3. Mean and variance of score. 
+
+$$
+E(4X1+6X2) = 4*3 + 6*4 = 36
+$$
+
+$$
+Var(4X1+6X2) = 16*2.1 + 36 * 2.4 = 120 \\
+SD(4X1+6X2) = \sqrt{120} = 10.95
+$$
+
+
+**Confirm via simulation**
+
+> This is really the key of why we practice simulation. Sometimes you don't have the ability to calculate the theoretical values, but you can simulate the experiment to get an estimate of the values. 
+
+```{r}
+weighted.score <- replicate(10000, {
+  # let 0=miss and 1=hit, so sum() equals number of hits
+  gun1 <- sample(c(0,1), size=10, prob=c(.7, .3), replace=TRUE)
+  score.gun.1 <- sum(gun1)
+  gun2 <- sample(c(0,1), size=10, prob=c(.6, .4), replace=TRUE)
+  score.gun.2 <- sum(gun2)
+  
+  score <- 4*score.gun.1 + 6*score.gun.2
+})
+
+mean(weighted.score)
+sd(weighted.score)
+```
+
+

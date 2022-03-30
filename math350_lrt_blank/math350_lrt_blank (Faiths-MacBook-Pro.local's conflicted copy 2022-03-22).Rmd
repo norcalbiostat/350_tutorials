@@ -1,0 +1,46 @@
+---
+title: "Section "
+output: 
+    learnr::tutorial:
+      progressive: true
+      allow_skip: true
+tutorial:
+      id: math350_lrt_FILE NAME HERE
+      version: 1 # change the version when you want to invalidate past progress
+runtime: shiny_prerendered
+description: > 
+  Dr. D add in description. 
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(learnrhash)
+gradethis::gradethis_setup()
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+
+
+
+## Submit your work
+Part of your grade in this class comes from submitting tutorial work like this. 
+
+Click the <kbd>Generate</kbd> button below to generate a hash for you assignment. This long string of numbers is a unique code for you, and this assignment. 
+
+Paste this code into the Google Form below to submit your hash to the instructional team for scoring. You also have the opportunity to provide feedback and thoughts about the specific lesson. This is valuable information for the instructional team to know what topics were confusing for students or where extra help is needed. 
+
+```{r context="server"}
+encoder_logic()
+```
+
+```{r encode, echo=FALSE}
+encoder_ui(default_ui(url = ""))
+```
+
+
+
+
+

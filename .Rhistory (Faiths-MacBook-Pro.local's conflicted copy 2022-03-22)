@@ -1,0 +1,382 @@
+install.packages(checkr)
+git checkout -b faithchp1
+git checkout -b faithchp1
+git checkout -b "faithchp1"
+install.packages("learnrhash")
+install.packages(learnrhash)
+devtools::install_github("rundel/learnrhash")
+library('leaflet')
+library('learnr')
+library('checkr')
+library('learnrhash')
+devtools::install_github("rstudio-education/gradethis")
+learnrhash::decoder_ui(QlpoOTFBWSZTWbfvNx0AAPl/wP/ySAhDd//UCQAGQL+n3uBAAAADsAEWamG1SE0wUxNGjAJoPUabQDTJPEZTDRMommGo0Bo0NAAAAAAG0pqTSMamnqeo9CYgAxANqDCAOe2KURMia1QGsMBEcQiCn2gQPpMe10FCGG8CLCa/M2uEkjgYqGOx9XX710ven2SUo2zxQpi6CV4BMQMaQKZiEvR9HCnJphxtWmV2lvjNEaO0+FHqaoIyGYoigHNxcMhdOA2OnHf7qbrC5LgQ+SwFosJ6jZMepuFhBNbKZeFXsrpRbIjKoHfv3IUioVdJMlOk0a7NX6yTSm+blOdxPlsfn3YuqpgX1HyaUFUdY6JVD3tCPI8ZCQvRK+3yK/QrBjCJ1vBJiH7l+zGrGF6hg7ZBeqyymUgMCmUbI5qKzud2CRYTfKXeHun5DB/xdyRThQkLfvNx0A==)
+learnrhash::decoder_ui("QlpoOTFBWSZTWbfvNx0AAPl/wP/ySAhDd//UCQAGQL+n3uBAAAADsAEWamG1SE0wUxNGjAJoPUabQDTJPEZTDRMommGo0Bo0NAAAAAAG0pqTSMamnqeo9CYgAxANqDCAOe2KURMia1QGsMBEcQiCn2gQPpMe10FCGG8CLCa/M2uEkjgYqGOx9XX710ven2SUo2zxQpi6CV4BMQMaQKZiEvR9HCnJphxtWmV2lvjNEaO0+FHqaoIyGYoigHNxcMhdOA2OnHf7qbrC5LgQ+SwFosJ6jZMepuFhBNbKZeFXsrpRbIjKoHfv3IUioVdJMlOk0a7NX6yTSm+blOdxPlsfn3YuqpgX1HyaUFUdY6JVD3tCPI8ZCQvRK+3yK/QrBjCJ1vBJiH7l+zGrGF6hg7ZBeqyymUgMCmUbI5qKzud2CRYTfKXeHun5DB/xdyRThQkLfvNx0A==")
+learnrhash::decoder_ui("QlpoOTFBWSZTWbfvNx0AAPl/wP/ySAhDd//UCQAGQL+n3uBAAAADsAEWamG1SE0wUxNGjAJoPUabQDTJPEZTDRMommGo0Bo0NAAAAAAG0pqTSMamnqeo9CYgAxANqDCAOe2KURMia1QGsMBEcQiCn2gQPpMe10FCGG8CLCa/M2uEkjgYqGOx9XX710ven2SUo2zxQpi6CV4BMQMaQKZiEvR9HCnJphxtWmV2lvjNEaO0+FHqaoIyGYoigHNxcMhdOA2OnHf7qbrC5LgQ+SwFosJ6jZMepuFhBNbKZeFXsrpRbIjKoHfv3IUioVdJMlOk0a7NX6yTSm+blOdxPlsfn3YuqpgX1HyaUFUdY6JVD3tCPI8ZCQvRK+3yK/QrBjCJ1vBJiH7l+zGrGF6hg7ZBeqyymUgMCmUbI5qKzud2CRYTfKXeHun5DB/xdyRThQkLfvNx0A==")
+?r
+?encoder_logic
+?encoder_logic
+?tutorial_html_dependency()
+??learnrhash::encoder_ui
+?learnrhash::encoder_ui
+?learnrhash::encoder_ui
+library('leaflet')
+library('learnr')
+library('checkr')
+learnrhash::encoder_logic(
+iframe_ui(src = "https://docs.google.com/document/d/1X9upNDFh0waV_FJTCu5o2PonqjlPTYmgvpReulFSzU8/edit#")
+)
+learnrhash::encoder_logic(src = "https://docs.google.com/document/d/1X9upNDFh0waV_FJTCu5o2PonqjlPTYmgvpReulFSzU8/edit#")
+learnrhash::encoder_logic(src = "https://docs.google.com/document/d/1X9upNDFh0waV_FJTCu5o2PonqjlPTYmgvpReulFSzU8/edit#")
+iframe_ui(src = "https://docs.google.com/forms/d/1q8XYAgMvojotcYfU0VXfDG1xkvVgOrr-61DHxI5WRIo/edit")
+iframe_ui(src = "https://docs.google.com/forms/d/1q8XYAgMvojotcYfU0VXfDG1xkvVgOrr-61DHxI5WRIo/edit")
+learnrhash::iframe_ui(src = "https://docs.google.com/forms/d/1q8XYAgMvojotcYfU0VXfDG1xkvVgOrr-61DHxI5WRIo/edit")
+learnrhash::encoder_logic()
+learnrhash::iframe_ui(src = "https://docs.google.com/forms/d/1q8XYAgMvojotcYfU0VXfDG1xkvVgOrr-61DHxI5WRIo/edit")
+?ui_after
+?encoder_ui
+?
+iframe_ui
+?encoder_ui
+?ifram_ui
+?iframe_ui
+?ifram
+?iframe
+?gradethis
+??gradethis
+1+1
+4-3
+3*7
+8/3
+2^3
+pi^2
+?pass_f
+?pass_if
+gradethis::gradethis_demo()
+grade_result(
+pass_if(.results[1,],2)
+)
+grade_results(
+pass_if(.results[1,],2)
+)
+?pass_if
+?pass_if_equal
+?pass_if_equal
+?grade_code()
+library('leaflet')
+library('learnr')
+library('checkr')
+library(gradethis)
+library(learnrhash)
+em <- openintro::email
+addmargins(table(em$spam, em$number, dnn=c("Spam", "Size of number")))
+?exercise.blank
+library(learnr)
+library(gradethis)
+library(learnrhash)
+gradethis::gradethis_setup()
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(
+exercise.blanks = TRUE,
+exercise.reveal_solution = FALSE
+)
+?question_text
+die_1 <- sample(x=1:6, size=10000, replace=TRUE)
+die_2 <- sample(x=1:6, size=10000, replace=TRUE)
+sum.of.2.dice <- die_1 + die_2
+D <- sum.of.2.dice == 6
+sum(D)/length(D)
+mean(D) # exact same formula -- faith make sure the correct answer can be found either way sum/length or mean
+die_1 <- sample(x=1:6, size=10000, replace=TRUE)
+die_2 <- sample(x=1:6, size=10000, replace=TRUE)
+sum.of.2.dice <- die_1 + die_2
+D <- sum.of.2.dice == 6
+sum(D)/length(D)
+mean(D) # exact same formula -- faith make sure the correct answer can be found either way sum/length or mean
+?round
+die_1 <- sample(x=1:6, size=10000, replace=TRUE)
+die_2 <- sample(x=1:6, size=10000, replace=TRUE)
+E <- die_1==2 | die_2==2
+mean(E)
+die_1 <- sample(x=1:6, size=10000, replace=TRUE)
+die_2 <- sample(x=1:6, size=10000, replace=TRUE)
+E <- die_1==2 | die_2==2
+mean(E)
+die_1 <- sample(x=1:6, size=10000, replace=TRUE)
+die_2 <- sample(x=1:6, size=10000, replace=TRUE)
+E <- die_1==2 | die_2==2
+mean(E)
+die_1 <- sample(x=1:6, size=10000, replace=TRUE)
+die_2 <- sample(x=1:6, size=10000, replace=TRUE)
+sum.of.2.dice <- die_1 + die_2
+D <- sum.of.2.dice >9
+sum(D)/length(D)
+mean(D)
+die_1 <- sample(x=1:6, size=10000, replace=TRUE)
+die_2 <- sample(x=1:6, size=10000, replace=TRUE)
+sum.of.2.dice <- die_1 + die_2
+D <- sum.of.2.dice >9
+sum(D)/length(D)
+mean(D)
+die_1 <- sample(x=1:6, size=10000, replace=TRUE)
+die_2 <- sample(x=1:6, size=10000, replace=TRUE)
+sum.of.2.dice <- die_1 + die_2
+D <- sum.of.2.dice >9
+sum(D)/length(D)
+mean(D)
+die_1 <- sample(x=1:6, size=10000, replace=TRUE)
+die_2 <- sample(x=1:6, size=10000, replace=TRUE)
+sum.of.2.dice <- die_1 + die_2
+D <- sum.of.2.dice >9
+sum(D)/length(D)
+mean(D)
+#Delete this and calculate the theoretical probability here
+diff_2d6_lt3 <- replicate(10000,{
+one_roll <- sample(1:6,2,replace=TRUE)
+abs(one_roll[1]-one_roll[2])<3
+})
+mean(diff_2d6_lt3 )
+#Delete this and calculate the theoretical probability here
+diff_2d6_lt3 <- replicate(10000,{
+one_roll <- sample(1:6,2,replace=TRUE)
+abs(one_roll[1]-one_roll[2])<3
+})
+mean(diff_2d6_lt3 )
+#Delete this and calculate the theoretical probability here
+diff_2d6_lt3 <- replicate(10000,{
+one_roll <- sample(1:6,2,replace=TRUE)
+abs(one_roll[1]-one_roll[2])<3
+})
+mean(diff_2d6_lt3 )
+21/36
+#Delete this and use simulation here
+results_3H <- replicate( 10000,{
+cointoss <- sample(c("H","T"), 10, replace=TRUE)
+sum(cointoss[8:10]=="H")==3
+})
+mean(results_3H)
+#Delete this and use simulation here
+results_3H <- replicate( 10000,{
+cointoss <- sample(c("H","T"), 10, replace=TRUE)
+sum(cointoss[8:10]=="H")==3
+})
+mean(results_3H)
+#Delete this and use simulation here
+results_3H <- replicate( 10000,{
+cointoss <- sample(c("H","T"), 10, replace=TRUE)
+sum(cointoss[8:10]=="H")==3
+})
+mean(results_3H)
+#Delete this and use simulation here
+results_3H <- replicate( 10000,{
+cointoss <- sample(c("H","T"), 10, replace=TRUE)
+sum(cointoss[8:10]=="H")==3
+})
+mean(results_3H)
+#Delete this and use simulation here
+results_3H <- replicate( 10000,{
+cointoss <- sample(c("H","T"), 10, replace=TRUE)
+sum(cointoss[8:10]=="H")==3
+})
+mean(results_3H)
+library(learnr)
+library(gradethis)
+library(learnrhash)
+gradethis::gradethis_setup()
+knitr::opts_chunk$set(echo = FALSE)
+library(dplyr); library(knitr); library(kableExtra)
+tulip <- data.frame(bloom = c(rep("Early", 8), rep("Late", 12)),
+color = c(rep("Yellow",3), rep("Red",5), rep("Yellow", 4), rep("Red",8))
+)
+table(tulip$color, tulip$bloom) %>% addmargins() %>% kable() %>%
+kable_styling(full_width=F, position="center", latex_options = c("striped", "hold_position"))
+library(dplyr); library(knitr); library(kableExtra)
+tulip <- data.frame(bloom = c(rep("Early", 8), rep("Late", 12)),
+color = c(rep("Yellow",3), rep("Red",5), rep("Yellow", 4), rep("Red",8))
+)
+table(tulip$color, tulip$bloom) %>% addmargins() %>% kable() %>%
+kable_styling(full_width=F, position="center", latex_options = c("striped", "hold_position"))
+eventB <- replicate(10000,{
+dieroll <- sample(1:6,2,replace=TRUE)
+mean(2 %in% dieroll)
+})
+probB <- mean(eventB)
+eventAB <- replicate(10000,{
+dieroll <- sample(1:6,2,replace=TRUE)
+(sum(dieroll<=4) && (2 %in% dieroll))
+})
+probAB <- mean(eventAB)
+(cond_prob <- probAB/probB)
+eventB <- replicate(10000,{
+dieroll <- sample(1:6,2,replace=TRUE)
+mean(2 %in% dieroll)
+})
+probB <- mean(eventB)
+eventAB <- replicate(10000,{
+dieroll <- sample(1:6,2,replace=TRUE)
+(sum(dieroll<=4) && (2 %in% dieroll))
+})
+probAB <- mean(eventAB)
+(cond_prob <- probAB/probB)
+eventB <- replicate(10000,{
+dieroll <- sample(1:6,2,replace=TRUE)
+mean(2 %in% dieroll)
+})
+probB <- mean(eventB)
+eventAB <- replicate(10000,{
+dieroll <- sample(1:6,2,replace=TRUE)
+(sum(dieroll<=4) && (2 %in% dieroll))
+})
+probAB <- mean(eventAB)
+(cond_prob <- probAB/probB)
+eventB <- replicate(10000,{
+dieroll <- sample(1:6,2,replace=TRUE)
+mean(2 %in% dieroll)
+})
+probB <- mean(eventB)
+eventAB <- replicate(10000,{
+dieroll <- sample(1:6,2,replace=TRUE)
+(sum(dieroll<=4) && (2 %in% dieroll))
+})
+probAB <- mean(eventAB)
+(cond_prob <- probAB/probB)
+eventB <- replicate(10000,{
+dieroll <- sample(1:6,2,replace=TRUE)
+mean(2 %in% dieroll)
+})
+probB <- mean(eventB)
+eventAB <- replicate(10000,{
+dieroll <- sample(1:6,2,replace=TRUE)
+(sum(dieroll<=4) && (2 %in% dieroll))
+})
+probAB <- mean(eventAB)
+(cond_prob <- probAB/probB)
+eventB <- replicate(10000,{
+dieroll <- sample(1:6,2,replace=TRUE)
+mean(2 %in% dieroll)
+})
+probB <- mean(eventB)
+eventAB <- replicate(10000,{
+dieroll <- sample(1:6,2,replace=TRUE)
+(sum(dieroll<=4) && (2 %in% dieroll))
+})
+probAB <- mean(eventAB)
+(cond_prob <- probAB/probB)
+?answer.space
+yti4bii.answer.space <-  replicate(1000, {
+cointoss <- sample(c("H","T"), 10, replace=TRUE)
+mean(sum(cointoss[8:10]=="H")==3)}
+)
+ex7.answer.space<- replicate(1000,{
+eventB <- replicate(10000,{
+dieroll <- sample(1:6,2,replace=TRUE)
+mean(2 %in% dieroll)
+})
+probB <- mean(eventB)
+eventAB <- replicate(10000,{
+dieroll <- sample(1:6,2,replace=TRUE)
+(sum(dieroll<=4) && (2 %in% dieroll))
+})
+probAB <- mean(eventAB)
+cond_prob <- probAB/probB
+})
+?question_text
+>%in%
+?%in%
+?class
+3*choose(5,3)
+factorial(9)
+362880
+choose(9,4)
+choose(5,2)*choose(4,2)
+library(learnr)
+library(gradethis)
+library(learnrhash)
+gradethis::gradethis_setup()
+knitr::opts_chunk$set(echo = FALSE, highlight = TRUE)
+tutorial_options(
+exercise.blanks = TRUE,
+exercise.reveal_solution = FALSE
+)
+8.49986e-06
+x<-rep(1/6,6)
+dice<-1:6
+x<-sample(dice,1)
+dice<-1:6
+x<-sample(dice,1)
+dice<-1:6
+x<-sample(dice,1)
+dice<-1:6
+x<-sample(dice,1)
+bag <- c(rep(-1, 50), rep(1, 50))
+steps <- sample(bag)
+steps[1:10]
+walk <- cumsum(steps)
+walk[1:10]
+where.zero <- which(walk==0)
+?which
+?cumsum
+bag <- c(rep(-1, 50), rep(1, 50))
+replicate(1000,{
+steps <- sample(bag)
+steps[1:10]
+walk <- cumsum(steps)
+walk[1:10]
+where.zero <- which(walk==0)
+ans<-min(where.zero)
+})
+bag <- c(rep(-1, 50), rep(1, 50))
+replicate(1000,{
+steps <- sample(bag)
+steps[1:10]
+walk <- cumsum(steps)
+walk[1:10]
+where.zero <- which(walk==0)
+ans<-min(where.zero)
+ans
+})
+coin <- c("h","t")
+coin_toss <- replicate(10000,{
+results <- sample(coin,5,replace=TRUE)
+sum(results=="h")
+})
+prop.table(table(coin_toss))
+grade_this()
+par(mfrow=c(1,2))
+plot(proportions(table(sample(1:5, size=1000, replace=TRUE))), ylab="probability")
+plot(proportions(table(sample(1:10, size=1000, replace=TRUE))), ylab="probability")
+?plot
+par(mfrow=c(1,2))
+plot(proportions(table(sample(1:5, size=1000, replace=TRUE))), xlab = "A", ylab="probability")
+plot(proportions(table(sample(1:10, size=1000, replace=TRUE))),xlab = "B", ylab="probability")
+par(mfrow=c(1,2))
+plot(proportions(table(sample(1:5, size=1000, replace=TRUE))), ylab="probability")
+plot(proportions(table(sample(1:10, size=1000, replace=TRUE))), ylab="probability")
+par(mfrow=c(1,2))
+plot(proportions(table(sample(1:5, size=1000, replace=TRUE))), ylab="probability")
+plot(proportions(table(sample(1:10, size=1000, replace=TRUE))), ylab="probability")
+library(learnr)
+library(gradethis)
+library(learnrhash)
+gradethis::gradethis_setup()
+knitr::opts_chunk$set(echo = FALSE)
+(E_x <- -3*.2 + -1*.2 + 1*.2 + 3*.2 + 5*.2)
+X <- c(-2, -1, 0, 1, 2)
+sample.x <- sample(X, 10000, replace=TRUE)
+y <- 2*sample.x + 1
+proportions(table(y))
+mean(y)
+X <- c(-2, -1, 0, 1, 2)
+sample.x <- sample(X, 10000, replace=TRUE) # sample from x with equal probability
+y <- sample.x^2 #y = g(x)
+proportions(table(y)) #pmf
+mean(y) # expected value
+library(learnr)
+library(gradethis)
+library(learnrhash)
+gradethis::gradethis_setup()
+knitr::opts_chunk$set(echo = FALSE)
+X <- c(-2, -1, 0, 1, 2)
+sample.x <- sample(X, 10000, replace=TRUE)
+mean(sample.x)
+var(sample.x)
